@@ -30,7 +30,7 @@ export const HOTSPOTS: Hotspot[] = [
   {
     id: 'red-fox',
     name: 'Red Fox',
-    image: '/src/lib/assets/images/fox-2.png',
+    image: '/images/fox-2.png',
     showAt: 0,
     highlightAt: 25,
     maskNumber: 1,
@@ -39,7 +39,7 @@ export const HOTSPOTS: Hotspot[] = [
   {
     id: 'predator',
     name: 'Predator',
-    image: '/src/lib/assets/images/mountain-lion.png',
+    image: '/images/mountain-lion.png',
     showAt: 0,
     highlightAt: 50,
     maskNumber: 2,
@@ -48,7 +48,7 @@ export const HOTSPOTS: Hotspot[] = [
   {
     id: 'mate',
     name: 'Mate',
-    image: '/src/lib/assets/images/fox.png',
+    image: '/images/fox.png',
     showAt: 0,
     highlightAt: 75,
     maskNumber: 3,
@@ -57,7 +57,7 @@ export const HOTSPOTS: Hotspot[] = [
   {
     id: 'prey',
     name: 'Prey',
-    image: '/src/lib/assets/images/rabbit.png',
+    image: '/images/rabbit.png',
     showAt: 0,
     highlightAt: 100,
     maskNumber: 4,

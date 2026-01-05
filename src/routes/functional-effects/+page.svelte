@@ -243,7 +243,7 @@
 {#if !showViewer}
 <div class="overlay-360" style="display: {showViewer ? 'none' : 'flex'}">
   <div class="overlay-content" on:click={enter360}>
-    <img loading="lazy" src="/src/lib/assets/icons/icon-360.svg" alt="360" width="100">
+    <img loading="lazy" src="/icons/icon-360.svg" alt="360" width="100">
     <span>360<sup>0</sup> Experience</span>
   </div>
 </div>
@@ -282,7 +282,7 @@
     </div>
     <div class="content-wrapper">
       <div class="back-to-panolens close-icon" on:click={closePanel}>
-        <img width="16" src="/src/lib/assets/icons/closeX.svg" alt="">
+        <img width="16" src="/icons/closeX.svg" alt="">
       </div>
       <div class="upper-content">
         <h2>{item.title}</h2>
@@ -310,13 +310,13 @@
       <div class="lower-content">
         <div class="third back back-to-panolens">
           <button class="btn-pano-close" on:click={closePanel}>
-            <img loading="lazy" src="/src/lib/assets/icons/back-360.svg" alt=""> Back to 360° Experience
+            <img loading="lazy" src="/icons/back-360.svg" alt=""> Back to 360° Experience
           </button>
         </div>
         <div class="third">
           <button class="progress-button" on:click={prev}>
             <div class="control">
-              <img loading="lazy" src="/src/lib/assets/icons/arrow-left.svg" alt="">
+              <img loading="lazy" src="/icons/arrow-left.svg" alt="">
             </div>
             <div class="img">
               <img loading="lazy" src={hotspots[(activeIndex-1+hotspots.length)%hotspots.length].thumbnail} alt="">
@@ -326,7 +326,7 @@
         <div class="third">
           <button class="progress-button" on:click={next}>
             <div class="control">
-              <img loading="lazy" src="/src/lib/assets/icons/arrow-right.svg" alt="">
+              <img loading="lazy" src="/icons/arrow-right.svg" alt="">
             </div>
             <div class="img">
               <img loading="lazy" src={hotspots[(activeIndex+1)%hotspots.length].thumbnail} alt="">
