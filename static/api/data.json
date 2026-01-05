@@ -1,0 +1,22 @@
+{
+  "parkService": {
+    "title": "NATIONAL PARK SERVICE",
+    "partnership": "In partnership with Penn State University",
+    "poweredBy": "POWERED BY HIKER"
+  },
+  "sections": {
+    "functional-effects": {
+      "title": "Functional Effects",
+      "description": "...",
+      "images": {
+        "desktop": "/images/functional-effects-desktop.jpg",
+        "tablet": "/images/functional-effects-tablet.jpg",
+        "mobile": "/images/functional-effects-mobile.jpg"
+      }
+    },
+    "physics-of-sound": {
+      "title": "Physics of Sound",
+      "description": "..."
+    }
+  }
+}
