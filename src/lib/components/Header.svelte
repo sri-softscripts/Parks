@@ -18,7 +18,7 @@
     
     <a class="branding" href="/">
       <img
-        src="src/lib/assets/images/logo@2x.png"
+        src="/images/logo@2x.png"
         alt="National Park Service logo"
         loading="lazy"
       />
@@ -66,7 +66,7 @@
   <div class="site-header__inner">
     <a class="branding" href="/" on:click|preventDefault={() => goto("/")}>
       <img
-        src="src/lib/assets/images/logo@2x.png"
+        src="/images/logo@2x.png"
         alt="National Park Service logo"
       />
       <p>

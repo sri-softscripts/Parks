@@ -18,8 +18,8 @@ export const tipsHotspots: TipHotspot[] = [
   {
     id: "tip-tech",
     title: "USE QUIET TECHNOLOGY",
-    thumbnail: "/src/lib/assets/images/button-technology@2x.jpg",
-    image: "/src/lib/assets/images/christina-silo@2x.png",
+    thumbnail: "/images/button-technology@2x.jpg",
+    image: "/images/christina-silo@2x.png",
     highlight:"We lowered noise emission standards for snowmobiles in Yellowstone, and we created an additional policy incentive to encourage manufacturers to build quieter snowmobiles in the future. I also worked with snowcoach operators to implement the use of low pressure tires instead of tracks, making snowcoaches 4–5 times quieter.",
     content: `
 
@@ -38,28 +38,28 @@ export const tipsHotspots: TipHotspot[] = [
           </p>`,
     position: { x: 0, y: 0, z: -400 }
   },
-  {
-    id: "tip-design",
-    title: "CONSIDER SITE DESIGN",
-    thumbnail: "/src/lib/assets/images/button-design@2x.jpg",
-    image: "/src/lib/assets/images/large-design@2x.png",
-    highlight:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fermentum egestas diam. Nulla fringilla tellus neque, at porttitor dolor gravida nec. Donec fermentum rutrum odio in cursus. In id leo pretium, egestas purus at, sodales enim. Proin ac velit finibus, accumsan odio vel, dignissim augue. Nullam ullamcorper tortor vel tristique.",
-    content: `
-          <p>
-            Sometimes the structure of a site can contribute to poor
-            soundscape quality. If this is the case, site design can go a
-            long way in helping to reduce noise emissions in park
-            settings. This can include noise-reducing pavements, quieter
-            boardwalks for visitor use, and reducing the speed limit of
-            vehicles.
-          </p>
-          <p>
-            For example, [personnel from Death Valley NP] describes how
-            rethinking pavement helped to reduce vehicle noise in the
-            park:
-          </p>`,
-    position: { x: 300, y: 100, z: -300 }
-  },
+  // {
+  //   id: "tip-design",
+  //   title: "CONSIDER SITE DESIGN",
+  //   thumbnail: "/images/button-design@2x.jpg",
+  //   image: "/images/large-design@2x.png",
+  //   highlight:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris fermentum egestas diam. Nulla fringilla tellus neque, at porttitor dolor gravida nec. Donec fermentum rutrum odio in cursus. In id leo pretium, egestas purus at, sodales enim. Proin ac velit finibus, accumsan odio vel, dignissim augue. Nullam ullamcorper tortor vel tristique.",
+  //   content: `
+  //         <p>
+  //           Sometimes the structure of a site can contribute to poor
+  //           soundscape quality. If this is the case, site design can go a
+  //           long way in helping to reduce noise emissions in park
+  //           settings. This can include noise-reducing pavements, quieter
+  //           boardwalks for visitor use, and reducing the speed limit of
+  //           vehicles.
+  //         </p>
+  //         <p>
+  //           For example, [personnel from Death Valley NP] describes how
+  //           rethinking pavement helped to reduce vehicle noise in the
+  //           park:
+  //         </p>`,
+  //   position: { x: 300, y: 100, z: -300 }
+  // },
   {
     id: "tip-maintenance",
     title: "WORK WITH MAINTENANCE CREWS",

@@ -26,7 +26,7 @@
     {
       id: 1,
       text: "The relative strength of soundwaves which we perceive as loudness or volume is the definition of:",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-2.png",
+      backgroundImage: "/images/quiz-bg-2.png",
       correctAnswer: "d",
       options: [
         { key: "a", text: "Frequency" },
@@ -38,7 +38,7 @@
     {
       id: 2,
       text: "If a sound goes from 20 decibels to 40 decibels, how many times greater would be the perceived change in loudness to people?",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-3.png",
+      backgroundImage: "/images/quiz-bg-3.png",
       correctAnswer: "b",
       options: [
         { key: "a", text: "2x louder" },
@@ -50,7 +50,7 @@
     {
       id: 3,
       text: "The impacts of road noise can extend of one mile into a forest.",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-4.png",
+      backgroundImage: "/images/quiz-bg-4.png",
       correctAnswer: "a",
       options: [
         { key: "a", text: "True", isCorrect: true },
@@ -60,7 +60,7 @@
     {
       id: 4,
       text: "A soundscape is defined as:",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-5.png",
+      backgroundImage: "/images/quiz-bg-5.png",
       correctAnswer: "a",
       options: [
         { key: "a", text: "The human, or animal, perception of all combined acoustic resources.", isCorrect: true },
@@ -72,7 +72,7 @@
     {
       id: 5,
       text: "A spectrogram is a visual representation of acoustic measurements. Which of the following is not an axis of a spectrogram?",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-2.png",
+      backgroundImage: "/images/quiz-bg-2.png",
       correctAnswer: "a",
       options: [
         { key: "a", text: "Movement", isCorrect: true },
@@ -84,7 +84,7 @@
     {
       id: 6,
       text: "Masking is defined as:",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-4.png",
+      backgroundImage: "/images/quiz-bg-4.png",
       correctAnswer: "b",
       options: [
         { key: "a", text: "The composition of the natural sound conditions in a park that exist in the absence of any human-made noise." },
@@ -96,7 +96,7 @@
     {
       id: 7,
       text: "Which of the following animal behaviors are affected by human-caused noise?",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-3.png",
+      backgroundImage: "/images/quiz-bg-3.png",
       correctAnswer: "e",
       options: [
         { key: "a", text: "Mating" },
@@ -109,7 +109,7 @@
     {
       id: 8,
       text: "Research shows that human-caused noise affects ground-squirrels by:",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-4.png",
+      backgroundImage: "/images/quiz-bg-4.png",
       correctAnswer: "b",
       options: [
         { key: "a", text: "Waking them up from their hibernation" },
@@ -121,7 +121,7 @@
     {
       id: 9,
       text: "True or false: Bats spend more time foraging near roads because insects have a harder time detecting them.",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-5.png",
+      backgroundImage: "/images/quiz-bg-5.png",
       correctAnswer: "b",
       options: [
         { key: "a", text: "True" },
@@ -131,7 +131,7 @@
     {
       id: 10,
       text: "Airplane and traffic noise have which of the following physiological effects on people?",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-2.png",
+      backgroundImage: "/images/quiz-bg-2.png",
       correctAnswer: "d",
       options: [
         { key: "a", text: "Increased stress hormones" },
@@ -144,7 +144,7 @@
     {
       id: 11,
       text: "True or false: Human-caused noise may impact visitors perceptions of the aesthetic quality of a landscape.",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-3.png",
+      backgroundImage: "/images/quiz-bg-3.png",
       correctAnswer: "a",
       options: [
         { key: "a", text: "True", isCorrect: true },
@@ -154,7 +154,7 @@
     {
       id: 12,
       text: "Fill in the blank: ____ % of Americans say that one of the most important reasons for preserving the national parks is to provide opportunities to experience natural peace and the sounds of nature.",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-4.png",
+      backgroundImage: "/images/quiz-bg-4.png",
       correctAnswer: "b",
       options: [
         { key: "a", text: "53%" },
@@ -166,7 +166,7 @@
     {
       id: 13,
       text: "Fill in the blank. Human-caused noise reduces a person or animals _______. This can impact animals' ability to communicate with others of their own species, find prey, and detect predators.",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-5.png",
+      backgroundImage: "/images/quiz-bg-5.png",
       correctAnswer: "a",
       options: [
         { key: "a", text: "Listening area", isCorrect: true },
@@ -178,7 +178,7 @@
     {
       id: 14,
       text: "Education and interpretation can be used to:",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-2.png",
+      backgroundImage: "/images/quiz-bg-2.png",
       correctAnswer: "a",
       options: [
         { key: "a", text: "Influence visitor behaviors to reduce human-caused noise.", isCorrect: true },
@@ -190,7 +190,7 @@
     {
       id: 15,
       text: "Which one of the following is not a tip for managing soundscapes",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-3.png",
+      backgroundImage: "/images/quiz-bg-3.png",
       correctAnswer: "d",
       options: [
         { key: "a", text: "Use quiet technology" },
@@ -202,7 +202,7 @@
     {
       id: 16,
       text: "\"A science-based decision making process where managers set desired conditions, create indicators and standards of quality, and use science-based approaches to measure change and efficacy of management actions/\" is the definition of:",
-      backgroundImage: "/src/lib/assets/images/quiz-bg-4.png",
+      backgroundImage: "/images/quiz-bg-4.png",
       correctAnswer: "b",
       options: [
         { key: "a", text: "Synergy cycling" },
@@ -216,8 +216,8 @@
   // Computed values
   $: currentQuestion = questions[currentQuestionIndex];
   $: currentBackground = quizStarted
-    ? (currentQuestion?.backgroundImage || "/src/lib/assets/images/quiz-bg-1.png")
-    : "/src/lib/assets/images/quiz-bg-1.png";
+    ? (currentQuestion?.backgroundImage || "/images/quiz-bg-1.png")
+    : "/images/quiz-bg-1.png";
   $: isCurrentQuestionAnswered = answeredQuestions.has(currentQuestionIndex);
   $: progressPercentage = quizStarted && !quizCompleted
     ? ((answeredQuestions.size) / questions.length) * 100
@@ -697,7 +697,7 @@
     top:0;
     left:0;
     width: 32px;
-    height:73 px;
+    height:73px;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -6,7 +6,7 @@
           <img
             height="408"
             loading="lazy"
-            src="src/lib/assets/images/bg-stars@2x.jpg"
+            src="/images/bg-stars@2x.jpg"
           />
           <div class="container">
             <header class="page-header">
@@ -46,7 +46,7 @@
                   width="350"
                   height="90"
                   loading="lazy"
-                  src="src/lib/assets/images/drum@2x.png"
+                  src="/images/drum@2x.png"
                   alt=""
                 />
                 <figcaption class="image__caption">
@@ -60,7 +60,7 @@
                   width="350"
                   height="90"
                   loading="lazy"
-                  src="src/lib/assets/images/cricket@2x.png"
+                  src="/images/cricket@2x.png"
                   alt=""
                 />
                 <figcaption class="image__caption">
@@ -104,7 +104,7 @@
           <div class="sound-effects">
             <div class="sound-effect sound-effect--ear">
               <div class="sound-effect__icon">
-                <img loading="lazy" src="src/lib/assets/icons/icon-ear.svg" />
+                <img loading="lazy" src="/icons/icon-ear.svg" />
               </div>
               <button class="sound-effect__button">
                 <span class="play"><i class="icon-volume-up"></i>Listen</span>
@@ -124,7 +124,7 @@
               <div class="sound-effect__icon">
                 <img
                   loading="lazy"
-                  src="src/lib/assets/icons/icon-volcano.svg"
+                  src="/icons/icon-volcano.svg"
                 />
               </div>
               <button class="sound-effect__button">
@@ -133,7 +133,7 @@
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="83" src="src/lib/assets/audio/Uau_HAL.mp3"></audio>
+              <audio id="83" src="/audio/Uau_HAL.mp3"></audio>
               <div class="sound-effect__title">
                 <strong>Volcano <br />crater</strong>
                 <em>(Haleakala National Park)</em>
@@ -143,7 +143,7 @@
               <div class="sound-effect__icon">
                 <img
                   loading="lazy"
-                  src="src/lib/assets/icons/icon-leaves.svg"
+                  src="/icons/icon-leaves.svg"
                 />
               </div>
               <button class="sound-effect__button">
@@ -152,7 +152,7 @@
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="68" src="src/lib/assets/audio/WindRustlingLeaves.mp3"
+              <audio id="68" src="/audio/WindRustlingLeaves.mp3"
               ></audio>
               <div class="sound-effect__title">
                 <strong>Leaves <br />rustling</strong>
@@ -163,7 +163,7 @@
               <div class="sound-effect__icon">
                 <img
                   loading="lazy"
-                  src="src/lib/assets/icons/icon-cricket.svg"
+                  src="/icons/icon-cricket.svg"
                 />
               </div>
               <button class="sound-effect__button">
@@ -172,7 +172,7 @@
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="70" src="src/lib/assets/audio/crickets.mp3"></audio>
+              <audio id="70" src="/audio/crickets.mp3"></audio>
               <div class="sound-effect__title">
                 <strong>Crickets <br />at 5m</strong>
                 <em>(Zion National Park)</em>
@@ -180,7 +180,7 @@
             </div>
             <div class="sound-effect sound-effect--speech">
               <div class="sound-effect__icon">
-                <img loading="lazy" src="src/lib/assets/icons/icon-lips.svg" />
+                <img loading="lazy" src="/icons/icon-lips.svg" />
               </div>
               <button class="sound-effect__button">
                 <span class="play"><i class="icon-volume-up"></i>Listen</span>
@@ -201,7 +201,7 @@
               <div class="sound-effect__icon">
                 <img
                   loading="lazy"
-                  src="src/lib/assets/icons/icon-motorcycle.svg"
+                  src="/icons/icon-motorcycle.svg"
                 />
               </div>
               <button class="sound-effect__button">
@@ -210,7 +210,7 @@
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="72" src="/src/lib/assets/audio/motorcycle.mp3"></audio>
+              <audio id="72" src="/audio/motorcycle.mp3"></audio>
               <div class="sound-effect__title">
                 <strong>Motorcycle <br />at 30m</strong>
                 <em>(Yellowstone National Park)</em>
@@ -220,7 +220,7 @@
               <div class="sound-effect__icon">
                 <img
                   loading="lazy"
-                  src="src/lib/assets/icons/icon-thunder.svg"
+                  src="/icons/icon-thunder.svg"
                 />
               </div>
               <button class="sound-effect__button">
@@ -229,7 +229,7 @@
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="74" src="src/lib/assets/audio/Featured_Thunder.mp3"
+              <audio id="74" src="/audio/Featured_Thunder.mp3"
               ></audio>
               <div class="sound-effect__title">
                 <strong>Thunder</strong> <em>(Arches National Park)</em>
@@ -240,7 +240,7 @@
             </div>
             <div class="sound-effect sound-effect--jet">
               <div class="sound-effect__icon">
-                <img loading="lazy" src="src/lib/assets/icons/icon-jet.svg" />
+                <img loading="lazy" src="/icons/icon-jet.svg" />
               </div>
               <button class="sound-effect__button">
                 <span class="play"><i class="icon-volume-up"></i>Listen</span>
@@ -248,7 +248,7 @@
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="75" src="src/lib/assets/audio/military-jet.mp3"
+              <audio id="75" src="/audio/military-jet.mp3"
               ></audio>
               <div class="sound-effect__title">
                 <strong>Military jet <br />at 100m AGL</strong>
@@ -262,7 +262,7 @@
               <div class="sound-effect__icon">
                 <img
                   loading="lazy"
-                  src="src/lib/assets/icons/icon-cannon.svg"
+                  src="/icons/icon-cannon.svg"
                 />
               </div>
               <button class="sound-effect__button">
@@ -299,7 +299,7 @@
 
       <div
         class="section--4"
-        style="background-image: url(src/lib/assets/images/bg-aurora@2x.png)"
+        style="background-image: url(/images/bg-aurora@2x.png)"
       >
        <header class="section-header section-header--purple">
           <div class="container">
@@ -336,7 +336,7 @@
                   <div>
                     <img
                       loading="lazy"
-                      src="src/lib/assets/icons/icon-music.svg"
+                      src="/icons/icon-music.svg"
                       width="60"
                       height="60"
                     /> <span class="symbol">�</span> 100
@@ -347,7 +347,7 @@
                   <div>
                     <img
                       loading="lazy"
-                      src="src/lib/assets/icons/icon-music.svg"
+                      src="/icons/icon-music.svg"
                       width="60"
                       height="60"
                     /> <span class="symbol">�</span> 2
@@ -360,7 +360,7 @@
                   <div>
                     <img
                       loading="lazy"
-                      src="src/lib/assets/icons/icon-music.svg"
+                      src="/icons/icon-music.svg"
                       width="60"
                       height="60"
                     /> <span class="symbol">�</span> 1000
@@ -371,7 +371,7 @@
                   <div>
                     <img
                       loading="lazy"
-                      src="src/lib/assets/icons/icon-music.svg"
+                      src="/icons/icon-music.svg"
                       width="60"
                       height="60"
                     /> <span class="symbol">�</span> 4
@@ -384,7 +384,7 @@
                   <div>
                     <img
                       loading="lazy"
-                      src="src/lib/assets/icons/icon-music.svg"
+                      src="/icons/icon-music.svg"
                       width="60"
                       height="60"
                     /> <span class="symbol">�</span> 10000
@@ -395,7 +395,7 @@
                   <div>
                     <img
                       loading="lazy"
-                      src="src/lib/assets/icons/icon-music.svg"
+                      src="/icons/icon-music.svg"
                       width="60"
                       height="60"
                     /> <span class="symbol">�</span> 8
@@ -430,7 +430,7 @@
 
       <div
         class="section--5"
-        style="background-image: url(src/lib/assets/images/bg-car@2x.png)"
+        style="background-image: url(/images/bg-car@2x.png)"
       >
         <div class="section-title"><span>How Sounds Travel</span></div>
         <header class="section-header section-header--gold">
@@ -459,7 +459,7 @@
                 width="430"
                 height="302"
                 loading="lazy"
-                src="src/lib/assets/images/noise-level@2x.png"
+                src="/images/noise-level@2x.png"
               />
             </div>
             <div class="callout__note">
@@ -480,7 +480,7 @@
                 width="430"
                 height="275"
                 loading="lazy"
-                src="src/lib/assets/images/road-noise@2x.png"
+                src="/images/road-noise@2x.png"
               />
             </div>
             <div class="callout__note">
@@ -534,7 +534,7 @@
                       width="180"
                       height="105"
                       loading="lazy"
-                      src="src/lib/assets/images/zion@2x.png"
+                      src="/images/zion@2x.png"
                     />
                     <div class="keyword__callout__content">
                       Zion National Park has different <span class="special"
@@ -558,7 +558,7 @@
                       width="73"
                       height="85"
                       class="stopwatch"
-                      src="src/lib/assets/images/stopwatch@2x.png"
+                      src="/images/stopwatch@2x.png"
                     />
                     <div class="keyword__callout__content">
                       In a transportation<br /> corridor, the noise free<br />
@@ -631,7 +631,7 @@
           data-parent="physics-of-sound"
           data-target="spectrogram"
           ><img
-            src="src/lib/assets/icons/arrow-down.svg"
+            src="/icons/arrow-down.svg"
             width="22"
             height="11"
             alt=""

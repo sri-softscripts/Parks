@@ -6,14 +6,14 @@
           width="407"
           height="469"
           class="hero"
-          src="/src/lib/assets/images/img.png"
+          src="/images/img.png"
           alt=""
         />
         <img
           width="407"
           height="527"
           class="hero"
-          src="/src/lib/assets/images/img2.png"
+          src="/images/img2.png"
           alt=""
         />
       </div>

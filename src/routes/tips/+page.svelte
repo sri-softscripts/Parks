@@ -154,7 +154,6 @@
   }
 
   function addHotspots() {
-    // Clear existing hotspots
     hotspotMeshes.forEach(m => scene.remove(m));
     hotspotMeshes = [];
 
@@ -224,7 +223,7 @@
       {#if !showViewer}
 <div class="overlay-360" style="display: {showViewer ? 'none' : 'flex'}">
   <div class="overlay-content" on:click={enter360}>
-    <img loading="lazy" src="/src/lib/assets/icons/icon-360.svg" alt="360" width="100">
+    <img loading="lazy" src="/icons/icon-360.svg" alt="360" width="100">
     <span>360<sup>0</sup> Experience</span>
   </div>
 </div>
@@ -256,7 +255,7 @@
           </div>
           <div class="content-wrapper">
             <div class="back-to-panolens close-icon" on:click={closePanel}>
-              <img width="16" src="/src/lib/assets/icons/closeX.svg" alt="">
+              <img width="16" src="/icons/closeX.svg" alt="">
             </div>
             <div class="upper-content">
               <h2>{item.title}</h2>
@@ -274,14 +273,14 @@
             <div class="lower-content">
               <div class="third back back-to-panolens">
                 <button class="btn-pano-close" on:click={closePanel}>
-                  <img loading="lazy" src="/src/lib/assets/icons/back-360.svg" alt="">
+                  <img loading="lazy" src="/icons/back-360.svg" alt="">
                   Back to 360° <br>Experience
                 </button>
               </div>
               <div class="third">
                 <button class="progress-button" on:click={prev}>
                   <div class="control">
-                    <img loading="lazy" src="/src/lib/assets/icons/arrow-left.svg" alt="">
+                    <img loading="lazy" src="/icons/arrow-left.svg" alt="">
                   </div>
                   <div class="img">
                     <img loading="lazy" src={tipsHotspots[(activeIndex-1+tipsHotspots.length)%tipsHotspots.length].thumbnail} alt="">
@@ -291,7 +290,7 @@
               <div class="third">
                 <button class="progress-button" on:click={next}>
                   <div class="control">
-                    <img loading="lazy" src="/src/lib/assets/icons/arrow-right.svg" alt="">
+                    <img loading="lazy" src="/icons/arrow-right.svg" alt="">
                   </div>
                   <div class="img">
                     <img loading="lazy" src={tipsHotspots[(activeIndex+1)%tipsHotspots.length].thumbnail} alt="">
@@ -346,13 +345,13 @@
           <div class="summary-footer">
             <div class="third back back-to-panolens">
               <button class="btn-pano-close">
-                <img loading="lazy" src="/src/lib/assets/icons/back-360.svg" alt="">
+                <img loading="lazy" src="/icons/back-360.svg" alt="">
                 Back to 360° <br>Experience
               </button>
             </div>
             <div class="third">
               <button class="close-summary">
-                <img loading="lazy" src="/src/lib/assets/icons/close_white_icon.svg" alt="">
+                <img loading="lazy" src="/icons/close_white_icon.svg" alt="">
                 <span>close</span>
               </button>
             </div>
@@ -426,7 +425,7 @@
     z-index: 0;
     pointer-events: none;
     color: #ffffff;
-    /* background: url(/assets/images/tip-gradient.png) no-repeat center top; */
+    /* background: url(/images/tip-gradient.png) no-repeat center top; */
    /*  background-color: #ccc;  */
     /*  background-size: 100% auto;  */
     }
@@ -605,7 +604,7 @@
             position: absolute;
             left: -28px;
             top: 30px;
-            /* background: url(/assets/images/quote-icon@2x.png) no-repeat center center; */
+            /* background: url(/images/quote-icon@2x.png) no-repeat center center; */
             background-size: cover; }
       .tips .info-panel .content-wrapper .lower-content {
         position: absolute;

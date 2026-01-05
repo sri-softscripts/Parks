@@ -1,7 +1,7 @@
 <section id="introduction" class="">
   <div
     class="page-inner"
-    style="background-image: url(src/lib/assets/images/bg-intro.png)"
+    style="background-image: url(/images/bg-intro.png)"
   >
     <div class="page-content">
       <div class="container">
@@ -100,7 +100,7 @@
           data-parent="introduction"
           data-target="physics-of-sound"
           ><img
-            src="/src/lib/assets/icons/arrow-down.svg"
+            src="/icons/arrow-down.svg"
             width="22"
             height="11"
             alt=""
