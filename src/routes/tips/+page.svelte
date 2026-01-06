@@ -35,6 +35,17 @@
     showViewer = true;
   }
 
+let showSummary = false;
+
+function toggleSummary() {
+  showSummary = !showSummary;
+}
+
+function closeSummary() {
+  showSummary = false;
+}
+
+
   onMount(() => {
     // Initialize texture loader
     textureLoader = new THREE.TextureLoader();
@@ -198,7 +209,10 @@
   const prev = () =>
     (activeIndex =
       (activeIndex - 1 + tipsHotspots.length) % tipsHotspots.length);
-  const closePanel = () => (activeIndex = -1);
+  const closePanel = () => {
+  activeIndex = -1;
+  showSummary = false;
+};
 
   onDestroy(() => {
     // Cleanup animation frame
@@ -272,11 +286,13 @@
                 {@html item.content}
               </div>
             </div>
-            <div class="content-col">
-              <div class="content-quote">
-                {item.highlight}
+            {#if item.highlight}
+              <div class="content-col">
+                <div class="content-quote">
+                  {item.highlight}
+                </div>
               </div>
-            </div>
+            {/if}
           </div>
           <div class="lower-content">
             <div class="third back back-to-panolens">
@@ -321,62 +337,70 @@
         </div>
       </div>
 
-      <!-- Summary Panel (static, not part of 360 viewer) -->
-      <div class="summary-pannel">
-        <div class="button-summary"><span>SUMMARY OF TIPS</span></div>
-        <div class="summary-wrap">
-          <div class="summary-container">
-            <div class="summary-header">SUMMARY: TIPS AT A GLANCE</div>
-            <div class="summary-content">
-              <div class="summary-lists-wrap">
-                <div class="summary-lists">
-                  <div class="list">
-                    <span>1</span>Use quiet technology
-                  </div>
-                  <div class="list">
-                    <span>2</span>Work with maintenance crews
-                  </div>
-                  <div class="list">
-                    <span>3</span>Follow management-by-objectives frameworks for
-                    more effective soundscape management
-                  </div>
-                  <div class="list">
-                    <span>4</span>Use education and interpretation for reducing
-                    noise emissions and mitigating impacts
-                  </div>
-                </div>
-                <div class="summary-lists">
-                  <div class="list">
-                    <span>5</span>Engage visitors to experience and learn about
-                    sounds and highlight the importance of soundscape management
-                  </div>
-                  <div class="list">
-                    <span>6</span>Use zoning to focus limited resources on key
-                    areas
-                  </div>
-                  <div class="list">
-                    <span>7</span>Consider site design
-                  </div>
-                </div>
+    <div
+    class="summary-pannel
+      {showSummary ? 'active toTop' : ''}"
+  >
+    <!-- Summary Toggle Button -->
+    <div
+      class="button-summary {showSummary ? 'active' : ''}"
+      on:click={toggleSummary}
+    >
+      <span>SUMMARY OF TIPS</span>
+    </div>
+
+    <div class="summary-wrap">
+      <div class="summary-container">
+        <div class="summary-header">
+          SUMMARY: TIPS AT A GLANCE
+        </div>
+
+        <div class="summary-content">
+          <div class="summary-lists-wrap">
+            <div class="summary-lists">
+              <div class="list"><span>1</span>Use quiet technology</div>
+              <div class="list"><span>2</span>Work with maintenance crews</div>
+              <div class="list">
+                <span>3</span>Follow management-by-objectives frameworks
+              </div>
+              <div class="list">
+                <span>4</span>Use education and interpretation
               </div>
             </div>
-          </div>
-          <div class="summary-footer">
-            <div class="third back back-to-panolens">
-              <button class="btn-pano-close">
-                <img loading="lazy" src="/icons/back-360.svg" alt="" />
-                Back to 360° <br />Experience
-              </button>
-            </div>
-            <div class="third">
-              <button class="close-summary">
-                <img loading="lazy" src="/icons/close_white_icon.svg" alt="" />
-                <span>close</span>
-              </button>
+
+            <div class="summary-lists">
+              <div class="list">
+                <span>5</span>Engage visitors with soundscapes
+              </div>
+              <div class="list">
+                <span>6</span>Use zoning effectively
+              </div>
+              <div class="list">
+                <span>7</span>Consider site design
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Footer Buttons -->
+      <div class="summary-footer">
+        <div class="third back">
+          <button class="btn-pano-close" on:click={closeSummary}>
+            <img src="/icons/back-360.svg" alt="" />
+            Back to 360° <br />Experience
+          </button>
+        </div>
+
+        <div class="third">
+          <button class="close-summary" on:click={closeSummary}>
+            <img src="/icons/close_white_icon.svg" alt="" />
+            <span>close</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
     </div>
   </section>
 {/if}

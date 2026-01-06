@@ -415,6 +415,7 @@
     max-width: 670px;
     margin: 0 auto;
     pointer-events: none;
+    
   }
 
   .page-title {
@@ -424,6 +425,7 @@
     text-transform: uppercase;
     text-align: center;
     letter-spacing: 0.1em;
+    color:#000;
   }
 
   .sub-title {
@@ -433,6 +435,7 @@
     letter-spacing: 1px;
     text-align: center;
     font-weight: bold;
+    color:#000;
   }
 
   .page-blurb {

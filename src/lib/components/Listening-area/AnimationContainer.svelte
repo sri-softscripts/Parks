@@ -27,7 +27,7 @@
     }
     
     // Create and play new audio
-    const audioPath = `/src/lib/assets/audio/${audioName}.mp3`;
+    const audioPath = `/audio/${audioName}.mp3`;
     audioElement = new Audio(audioPath);
     audioElement.volume = 0.7; // Adjust volume as needed
     audioElement.play().catch(error => {

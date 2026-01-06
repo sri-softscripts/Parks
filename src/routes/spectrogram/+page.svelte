@@ -11,16 +11,4 @@
        <SpectrogramOne />
       </section>
 
-       <section
-        id="spectrogram-noise"
-        class="spectrogram-page"
-      >
-       <Spectrogramtwo />
-      </section>
-
-      <section
-        id="spectrogram-masking"
-        class="spectrogram-page"
-      >
-       <Spectrogramthree />
-      </section>
+     

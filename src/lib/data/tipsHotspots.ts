@@ -36,27 +36,27 @@ export const tipsHotspots: TipHotspot[] = [
       </p>`,
        position: { x: -200, y: Math.sin(0) * 100, z: -200 }
   },
-  {
-    id: "tip-maintenance",
-    title: "WORK WITH MAINTENANCE CREWS",
-    thumbnail: "/images/thumb-tractor.webp",
-    image: "/images/large-maintenance@2x.jpg",
-    highlight: "We implement grounds work using 'Future Leaders' in the youth program on weekends to give the visitors and neighbors a break from the noise. We have found a little planning allows us to get the 'noisy' work completed during the weekdays. We have also replaced mowers, weed-wackers, leaf blowers, and chain saws with battery powered equipment. This has really helped with not only noise polution, but reducing our carbon footprint as well.",
-    content: `<p>
-        Maintenance equipment, such as a leaf blower, lawn mowers, chain
-        saws, and other types of equipment can generate noise in park
-        settings. Maintenance and facilities crews can consider sheduling
-        louder activities during more appropriate times of the day or
-        week. Similar to transportation, quiet technology can also be used
-        to reduce noise emissions.
-      </p>
-      <p>
-        Douglas Law from Salem Maritime/Saugus Iron Works National
-        Historic Sites explains how minor changes to maintenance schedules
-        and equipment can improve soundscape conditions:
-      </p>`,
-    position: { x: -100, y: Math.sin(Math.PI/3) * 140, z: -100 }
-  },
+  // {
+  //   id: "tip-maintenance",
+  //   title: "WORK WITH MAINTENANCE CREWS",
+  //   thumbnail: "/images/thumb-tractor.webp",
+  //   image: "/images/large-maintenance@2x.jpg",
+  //   highlight: "We implement grounds work using 'Future Leaders' in the youth program on weekends to give the visitors and neighbors a break from the noise. We have found a little planning allows us to get the 'noisy' work completed during the weekdays. We have also replaced mowers, weed-wackers, leaf blowers, and chain saws with battery powered equipment. This has really helped with not only noise polution, but reducing our carbon footprint as well.",
+  //   content: `<p>
+  //       Maintenance equipment, such as a leaf blower, lawn mowers, chain
+  //       saws, and other types of equipment can generate noise in park
+  //       settings. Maintenance and facilities crews can consider sheduling
+  //       louder activities during more appropriate times of the day or
+  //       week. Similar to transportation, quiet technology can also be used
+  //       to reduce noise emissions.
+  //     </p>
+  //     <p>
+  //       Douglas Law from Salem Maritime/Saugus Iron Works National
+  //       Historic Sites explains how minor changes to maintenance schedules
+  //       and equipment can improve soundscape conditions:
+  //     </p>`,
+  //   position: { x: -100, y: Math.sin(Math.PI/3) * 140, z: -100 }
+  // },
   {
     id: "tip-zoning",
     title: "USE ZONING",
@@ -76,7 +76,7 @@ export const tipsHotspots: TipHotspot[] = [
         which reflect the spatial and temporal aspects of zoning.
         (Stack et al., 2011)
       </p>`,
-    position: { x: -300, y: 20, z: 50 }
+    position: { x: -300, y: 100, z: 50 }
   },
   {
     id: "tip-framework",
@@ -128,7 +128,7 @@ export const tipsHotspots: TipHotspot[] = [
         management-by-objectives frameworks for over XX years.
         According to Dr. Newman:
       </p>`,
-    position: { x: 100, y: Math.sin(4*Math.PI/3) * 140, z: 100 }
+    position: { x: 100, y: Math.sin(3*Math.PI/3) * 100, z: 100 }
     
   },
   {
@@ -167,10 +167,6 @@ export const tipsHotspots: TipHotspot[] = [
         things like visitor-caused sounds, but can also help
         visitors cope with noises that are present but hard to
         manage. (Taff et al., 2014)
-      </p>
-      <p>
-        [Lorem ipsum name] talks about how education is in Muir
-        Woods National Monument:
       </p>
       <p>
         Dr. Derrick Taff explains the role of education in

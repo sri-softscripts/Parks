@@ -48,7 +48,7 @@ export function getActiveCalloutId(maskVisibility: VisibilityState): string {
 }
 
 export function getAudioToPlay(maskVisibility: VisibilityState): string {
-  if (maskVisibility.mask1) return '';
+  if (maskVisibility.mask1) return 'fox';
   if (maskVisibility.mask2) return '';
   if (maskVisibility.mask3) return '';
   if (maskVisibility.mask4) return '';
