@@ -70,12 +70,14 @@
       >
         <img 
           loading="lazy" 
-          src="/src/lib/assets/images/la-mask-{maskIndex}.png" 
+          src="/images/la-mask-{maskIndex}.png" 
           alt="Background mask {maskIndex}"
           style="width: 100%; height: 100%; object-fit: cover;"
         />
       </div>
-    {/each}
+    {/each}  
+
+
   </div>
 
   <!-- Planes -->
@@ -87,7 +89,7 @@
       >
         <img 
           loading="lazy" 
-          src="/src/lib/assets/images/la-plane-{planeIndex}.png" 
+          src="/images/la-plane-{planeIndex}.png" 
           alt="Airplane {planeIndex}"
         />
       </div>

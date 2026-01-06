@@ -6,9 +6,9 @@
   import Scrubber from './Scrubber.svelte';
   
   let currentStep = 0;
-  let scrubValue = 7; 
+  let scrubValue = 0; 
   $: currentStepValue = STEPS[currentStep];
-  $: showHeader = scrubValue === 7;
+  $: showHeader = scrubValue === 0;
   function handleScrubberChange(event: CustomEvent<{ step: number; value: number }>) {
     console.log('Scrubber change:', event.detail);
     currentStep = event.detail.step;
@@ -57,7 +57,7 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="page-footer">
+  <!-- <footer class="page-footer">
     <div class="container">
       <button
         class="button button-down move-to-next"
@@ -77,7 +77,7 @@
         />
       </button>
     </div>
-  </footer>
+  </footer> -->
 
   
 </div>
