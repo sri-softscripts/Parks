@@ -25,7 +25,7 @@
                         <div class="spectrogram-button-icon">
                           <img
                             loading="lazy"
-                            src="src/lib/assets/icons/icon-forest.svg"
+                            src="/icons/icon-forest.svg"
                             alt=""
                           />
                         </div>
@@ -40,7 +40,7 @@
                         <div class="spectrogram-button-icon">
                           <img
                             loading="lazy"
-                            src="src/lib/assets/icons/icon-desert.svg"
+                            src="/icons/icon-desert.svg"
                             alt=""
                           />
                         </div>
@@ -55,7 +55,7 @@
                         <div class="spectrogram-button-icon">
                           <img
                             loading="lazy"
-                            src="src/lib/assets/icons/icon-lake.svg"
+                            src="/icons/icon-lake.svg"
                             alt=""
                           />
                         </div>
@@ -75,7 +75,7 @@
                         <div class="spectrogram-button-icon">
                           <img
                             loading="lazy"
-                            src="src/lib/assets/icons/icon-boat.svg"
+                            src="/icons/icon-boat.svg"
                             alt=""
                           />
                         </div>
@@ -90,7 +90,7 @@
                         <div class="spectrogram-button-icon">
                           <img
                             loading="lazy"
-                            src="src/lib/assets/icons/icon-car.svg"
+                            src="/icons/icon-car.svg"
                             alt=""
                           />
                         </div>
@@ -105,7 +105,7 @@
                         <div class="spectrogram-button-icon">
                           <img
                             loading="lazy"
-                            src="src/lib/assets/icons/icon-plane.svg"
+                            src="/icons/icon-plane.svg"
                             alt=""
                           />
                         </div>
@@ -120,7 +120,7 @@
                         <div class="spectrogram-button-icon">
                           <img
                             loading="lazy"
-                            src="src/lib/assets/icons/icon-thunder.svg"
+                            src="/icons/icon-thunder.svg"
                             alt=""
                           />
                         </div>
@@ -135,7 +135,7 @@
                         <div class="spectrogram-button-icon">
                           <img
                             loading="lazy"
-                            src="src/lib/assets/icons/icon-visitors.svg"
+                            src="/icons/icon-visitors.svg"
                             alt=""
                           />
                         </div>
@@ -220,7 +220,7 @@
               data-parent="spectrogram-masking"
               data-target="functional-effects"
               ><img
-                src="/src/lib/assets/icons/arrow-down.svg"
+                src="/icons/arrow-down.svg"
                 width="22"
                 height="11"
                 alt=""

@@ -44,8 +44,8 @@
     // Initialize texture loader
     textureLoader = new THREE.TextureLoader();
     bgTextures = {
-      animals: textureLoader.load("/images/functional-effect-bg.png"),
-      humans: textureLoader.load("/images/listening-background.jpg")
+      animals: textureLoader.load("/images/animal-background.webp"),
+      humans: textureLoader.load("/images/human-background.webp")
     };
   
     // Setup resize handler

@@ -5,6 +5,7 @@
         <div class="image-wrapper">
           <img
             height="408"
+            width="100%"
             loading="lazy"
             src="/images/bg-stars@2x.jpg"
           />

@@ -241,7 +241,7 @@
     display: block;
     height: 12px;
     width: 13px;
-    background: url("/src/lib/assets/icons/yellow-arrow.svg");
+    background: url("/icons/yellow-arrow.svg");
     position: absolute;
     right: -20px;
     top: 50%;

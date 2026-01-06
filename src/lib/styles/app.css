@@ -3648,13 +3648,15 @@ figure.image {
         color: #83971f; }
 
 .spectrogram-page #spectrogram-section-1 {
-  background-image: url(/src/lib/assets/images/spectrum1.png); }
+  /* background-image: url(/src/lib/assets/images/spectrum1.png);  */
+}
   .spectrogram-page #spectrogram-section-1 .spectrogram-header h2 {
     color: #b9d54b; 
   }
 
 .spectrogram-page #spectrogram-section-2 {
-  background-image: url(/src/lib/assets/images/spectrum2.png); }
+  /* background-image: url(/src/lib/assets/images/spectrum2.png); */
+ }
   .spectrogram-page #spectrogram-section-2 .spectrogram-header h2 {
     color: #E2D6C0; }
   .spectrogram-page #spectrogram-section-2 .spectrogram-action .spectrogram-container .spectrogram-buttons .spectrogram-button .spectrogram-button-icon {

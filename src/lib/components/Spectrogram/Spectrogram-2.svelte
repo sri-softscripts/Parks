@@ -20,7 +20,7 @@
                         <div class="spectrogram-button-icon">
                           <img
                             loading="lazy"
-                            src="src/lib/assets/icons/icon-boat.svg"
+                            src="/icons/icon-boat.svg"
                             alt=""
                           />
                         </div>
@@ -34,7 +34,7 @@
                         <div class="spectrogram-button-icon">
                           <img
                             loading="lazy"
-                            src="src/lib/assets/icons/icon-car.svg"
+                            src="/icons/icon-car.svg"
                             alt=""
                           />
                         </div>
@@ -48,7 +48,7 @@
                         <div class="spectrogram-button-icon">
                           <img
                             loading="lazy"
-                            src="src/lib/assets/icons/icon-plane.svg"
+                            src="/icons/icon-plane.svg"
                             alt=""
                           />
                         </div>
@@ -62,7 +62,7 @@
                         <div class="spectrogram-button-icon">
                           <img
                             loading="lazy"
-                            src="src/lib/assets/icons/icon-thunder.svg"
+                            src="/icons/icon-thunder.svg"
                             alt=""
                           />
                         </div>
@@ -76,7 +76,7 @@
                         <div class="spectrogram-button-icon">
                           <img
                             loading="lazy"
-                            src="src/lib/assets/icons/icon-visitors.svg"
+                            src="/icons/icon-visitors.svg"
                             alt=""
                           />
                         </div>
