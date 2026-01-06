@@ -348,7 +348,6 @@ function closeSummary() {
     >
       <span>SUMMARY OF TIPS</span>
     </div>
-
     <div class="summary-wrap">
       <div class="summary-container">
         <div class="summary-header">
