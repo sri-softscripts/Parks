@@ -84,12 +84,33 @@
           <div class="spectrogram-container">
             <h3>Choose an environment</h3>
             <div class="spectrogram-buttons">
-              <div data-name="Forest" class="spectrogram-button" on:click={() => playSound('Forest')}>
+              <div data-name="Forest" class="spectrogram-button" >
                 <div class="spectrogram-button-icon">
                   <img loading="lazy" src="/icons/icon-forest.svg" alt="Forest icon">
                 </div>
                 <div class="spectrogram-button-text">Forest</div>
               </div>
+              
+              <div data-name="Desert" class="spectrogram-button" >
+                <div class="spectrogram-button-icon">
+                  <img loading="lazy" src="icons/icon-desert.svg" alt="Desert icon">
+                </div>
+                <div class="spectrogram-button-text">Desert</div>
+              </div>
+              <div data-name="Lake" class="spectrogram-button">
+                <div class="spectrogram-button-icon">
+                  <img loading="lazy" src="/icons/icon-lake.svg" alt="Lake icon">
+                </div>
+                <div class="spectrogram-button-text">Lake</div>
+              </div>  
+              
+                            <!-- <div data-name="Forest" class="spectrogram-button" on:click={() => playSound('Forest')}>
+                <div class="spectrogram-button-icon">
+                  <img loading="lazy" src="/icons/icon-forest.svg" alt="Forest icon">
+                </div>
+                <div class="spectrogram-button-text">Forest</div>
+              </div>
+              
               <div data-name="Desert" class="spectrogram-button" on:click={() => playSound('Desert')}>
                 <div class="spectrogram-button-icon">
                   <img loading="lazy" src="icons/icon-desert.svg" alt="Desert icon">
@@ -101,7 +122,7 @@
                   <img loading="lazy" src="/icons/icon-lake.svg" alt="Lake icon">
                 </div>
                 <div class="spectrogram-button-text">Lake</div>
-              </div>                                                                
+              </div>  -->
             </div>
           </div>
         </div>                                                               
