@@ -345,9 +345,6 @@
 
 
 <style>
-
-
-  /* 360 Overlay */
   .overlay-360 {
     position: absolute;
     top: 76px;
