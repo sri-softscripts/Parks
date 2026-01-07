@@ -83,7 +83,7 @@
         <div class="spectrogram-action">
           <div class="spectrogram-container">
             <h3>Choose an environment</h3>
-            <div class="spectrogram-buttons">
+            <!-- <div class="spectrogram-buttons">
               <div data-name="Forest" class="spectrogram-button" >
                 <div class="spectrogram-button-icon">
                   <img loading="lazy" src="/icons/icon-forest.svg" alt="Forest icon">
@@ -102,9 +102,9 @@
                   <img loading="lazy" src="/icons/icon-lake.svg" alt="Lake icon">
                 </div>
                 <div class="spectrogram-button-text">Lake</div>
-              </div>  
+              </div>   -->
               
-                            <!-- <div data-name="Forest" class="spectrogram-button" on:click={() => playSound('Forest')}>
+                            <div data-name="Forest" class="spectrogram-button" on:click={() => playSound('Forest')}>
                 <div class="spectrogram-button-icon">
                   <img loading="lazy" src="/icons/icon-forest.svg" alt="Forest icon">
                 </div>
@@ -122,7 +122,7 @@
                   <img loading="lazy" src="/icons/icon-lake.svg" alt="Lake icon">
                 </div>
                 <div class="spectrogram-button-text">Lake</div>
-              </div>  -->
+              </div> 
             </div>
           </div>
         </div>                                                               
