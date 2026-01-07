@@ -60,7 +60,7 @@
   });
 
   // Initialize Three.js when showViewer becomes true
-  $: if (showViewer && container && bgTextures && !renderer) {
+  $: if (container && bgTextures && !renderer) {
     initScene();
   }
 
@@ -240,14 +240,17 @@
 
 
 
-{#if !showViewer}
-<div class="overlay-360" style="display: {showViewer ? 'none' : 'flex'}">
-  <div class="overlay-content" on:click={enter360}>
+
+<div
+  class="overlay-360 {showViewer ? 'hidden' : ''}"
+  on:click={enter360}
+>
+  <div class="overlay-content">
     <img loading="lazy" src="/icons/icon-360.svg" alt="360" width="100">
     <span>360<sup>0</sup> Experience</span>
   </div>
 </div>
-{:else}
+
 
 <div class="page-header">
                 <h1 class="page-title">Functional Effects</h1>
@@ -271,7 +274,7 @@
   </div>
 
   <div bind:this={container} class="viewer"></div>
-{/if}
+
 
 
 {#if activeIndex > -1}
@@ -355,9 +358,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 1000000;
     cursor: pointer;
   }
+  .overlay-360.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
 
   .overlay-content {
     text-align: center;
