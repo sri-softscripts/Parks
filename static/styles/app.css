@@ -3495,7 +3495,7 @@ figure.image {
         height: 10px;
         margin-right: 5px;
         vertical-align: middle;
-        background: url(/web/20250123202129im_/http://www.parks.hikercompany.com/assets/images/audio-icon.svg) no-repeat center center;
+        /* background: url(http://www.parks.hikercompany.com/assets/images/audio-icon.svg) no-repeat center center; */
         background-size: cover; }
     .spectrogram-page .spectrogram-tips__item-img {
       display: inline-block;

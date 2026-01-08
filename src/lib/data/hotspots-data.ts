@@ -9,6 +9,7 @@ export type AnimalHotspot = {
   citation: string;
   behaviors: {
     name: string;
+    class: string;
     icon: string;
     active: boolean;
   }[];
@@ -26,6 +27,7 @@ export type HumanHotspot = {
   effects: {
     name: string;
     icon: string;
+    class: string;
     active: boolean;
   }[];
 };
@@ -47,20 +49,23 @@ export const animalHotspots: AnimalHotspot[] = [
   //     { name: 'Predator Avoidance', icon: '/icons/icon-predatory-avoidance.svg', active: false }
   //   ]
   // },
+
+
+  
   {
     id: 'bat',
     position: { x: 360, y: 50, z: 20 },
     rotation: { x: 0, y: 0, z: 0 },
     image: '/images/button-bat@2x.jpg',
-    thumbnail: '/images/thumb-bat.svg',
+    thumbnail: '/images/thumb-bat.svg',    
     title: 'Bats',
     description: 'Gleaning bats avoid hunting in areas with road noise.',
     citation: '(Brumm 2004)',
     behaviors: [
-      { name: 'Mating', icon: '/icons/icon-mating.svg', active: false },
-      { name: 'Habitat Patterns', icon: '/icons/icon-habitat-pattern.svg', active: false },
-      { name: 'Hunting', icon: '/icons/icon-hunting.svg', active: true },
-      { name: 'Predator Avoidance', icon: '/icons/icon-predatory-avoidance.svg', active: false }
+      { name: 'Mating', icon: '/icons/icon-mating.svg', class:'icon-mating', active: false },
+      { name: 'Habitat Patterns', icon: '/icons/icon-habitat-pattern.svg', class:'icon-habitat-pattern', active: false },
+      { name: 'Hunting', icon: '/icons/icon-hunting.svg', class:'icon-hunting', active: true },
+      { name: 'Predator Avoidance', icon: '/icons/icon-predatory-avoidance.svg', class:'icon-predator-avoidance', active: false }
     ]
   },
   {
@@ -73,10 +78,10 @@ export const animalHotspots: AnimalHotspot[] = [
     description: 'Tree squirrels in noisy areas spend less time foraging for food, and more time on the look out for predators —resulting in reduced food intake.',
     citation: '(Francis et al., 2009)',
     behaviors: [
-      { name: 'Mating', icon: '/icons/icon-mating.svg', active: false },
-      { name: 'Habitat Patterns', icon: '/icons/icon-habitat-pattern.svg', active: false },
-      { name: 'Hunting', icon: '/icons/icon-hunting.svg', active: false },
-      { name: 'Predator Avoidance', icon: '/icons/icon-predatory-avoidance.svg', active: true }
+      { name: 'Mating', icon: '/icons/icon-mating.svg', class:'icon-mating',  active: false },
+      { name: 'Habitat Patterns', icon: '/icons/icon-habitat-pattern.svg', class:'icon-habitat-patterns',  active: false },
+      { name: 'Hunting', icon: '/icons/icon-hunting.svg', class:'icon-hunting',  active: false },
+      { name: 'Predator Avoidance', icon: '/icons/icon-predatory-avoidance.svg', class:'icon-predator-avoidance',  active: true }
     ]
   },
   {
@@ -89,10 +94,10 @@ export const animalHotspots: AnimalHotspot[] = [
     description: 'Songbirds show greater nest desertion and abandonment within 100 m of off-road vehicle trails.',
     citation: '(Barton & Holmes, 2007)',
     behaviors: [
-      { name: 'Mating', icon: '/icons/icon-mating.svg', active: false },
-      { name: 'Habitat Patterns', icon: '/icons/icon-habitat-pattern.svg', active: true },
-      { name: 'Hunting', icon: '/icons/icon-hunting.svg', active: false },
-      { name: 'Predator Avoidance', icon: '/icons/icon-predatory-avoidance.svg', active: false }
+      { name: 'Mating', icon: '/icons/icon-mating.svg', class:'icon-mating',  active: false },
+      { name: 'Habitat Patterns', icon: '/icons/icon-habitat-pattern.svg', class:'icon-habitat-patterns',  active: true },
+      { name: 'Hunting', icon: '/icons/icon-hunting.svg', class:'icon-hunting',  active: false },
+      { name: 'Predator Avoidance', icon: '/icons/icon-predatory-avoidance.svg', class:'icon-predator-avoidance',  active: false }
     ]
   },
   {
@@ -105,10 +110,10 @@ export const animalHotspots: AnimalHotspot[] = [
     description: 'The endangered Sonoran pronghorn avoids noisy areas created by military jets.',
     citation: '(Brumm 2004)',
     behaviors: [
-      { name: 'Mating', icon: '/icons/icon-mating.svg', active: false },
-      { name: 'Habitat Patterns', icon: '/icons/icon-habitat-pattern.svg', active: true },
-      { name: 'Hunting', icon: '/icons/icon-hunting.svg', active: false },
-      { name: 'Predator Avoidance', icon: '/icons/icon-predatory-avoidance.svg', active: false }
+      { name: 'Mating', icon: '/icons/icon-mating.svg', class:'icon-mating',  active: false },
+      { name: 'Habitat Patterns', icon: '/icons/icon-habitat-pattern.svg', class:'icon-habitat-patterns',  active: true },
+      { name: 'Hunting', icon: '/icons/icon-hunting.svg', class:'icon-hunting',  active: false },
+      { name: 'Predator Avoidance', icon: '/icons/icon-predatory-avoidance.svg', class:'icon-predator-avoidance',  active: false }
     ]
   }
 ];
@@ -124,8 +129,8 @@ export const humanHotspots: HumanHotspot[] = [
     description: 'Nature sounds can help facilitate recovery from psychological stress.',
     citation: '(Alvarsson et al., 2010)',
     effects: [
-      { name: 'Benefit', icon: '/icons/icon-benefit.svg', active: true },
-      { name: 'Negative Effect', icon: '/icons/icon-negative.svg', active: false }
+      { name: 'Benefit', icon: '/icons/icon-benefit.svg',class:'icon-benefit', active: true },
+      { name: 'Negative Effect', icon: '/icons/icon-negative.svg',class:'icon-negative', active: false }
     ]
   },
   {
@@ -138,8 +143,8 @@ export const humanHotspots: HumanHotspot[] = [
     description: 'Exposure to aircraft or road traffic noise can result have physiological impacts including high blood pressure, increased heart rate, and increased stress hormones.',
     citation: '(Babisch 2011)',
     effects: [
-      { name: 'Benefit', icon: '/icons/icon-benefit.svg', active: false },
-      { name: 'Negative Effect', icon: '/icons/icon-negative.svg', active: true }
+      { name: 'Benefit', icon: '/icons/icon-benefit.svg', class:'icon-benefit', active: false },
+      { name: 'Negative Effect', icon: '/icons/icon-negative.svg', class:'icon-negative', active: true }
     ]
   },
   {
@@ -152,8 +157,8 @@ export const humanHotspots: HumanHotspot[] = [
     description: 'One study found that helicopter noise interferes with the quality of the visitor experience and even affects the perceived aesthetic quality of landscapes.',
     citation: '(Weinzimmer et al., 2014)',
     effects: [
-      { name: 'Benefit', icon: '/icons/icon-benefit.svg', active: false },
-      { name: 'Negative Effect', icon: '/icons/icon-negative.svg', active: true }
+      { name: 'Benefit', icon: '/icons/icon-benefit.svg', class:'icon-benefit', active: false },
+      { name: 'Negative Effect', icon: '/icons/icon-negative.svg', class:'icon-negative', active: true }
     ]
   },
   {
@@ -166,9 +171,9 @@ export const humanHotspots: HumanHotspot[] = [
     description: '95% of Americans say one of the most important reasons for preserving national parks is to provide opportunities to experience natural peace and the sounds of nature.',
     citation: '(McDonald et al., 1995)',
     effects: [
-      { name: 'Benefit', icon: '/icons/icon-benefit.svg', active: true },
-      { name: 'Negative Effect', icon: '/icons/icon-negative.svg', active: false }
-    ]
+      { name: 'Benefit', icon: '/icons/icon-benefit.svg', class:'icon-benefit', active: true },
+      { name: 'Negative Effect', icon: '/icons/icon-negative.svg', class:'icon-negative', active: false }
+    ] 
   },
   {
     id: 'annoyance',
@@ -180,8 +185,8 @@ export const humanHotspots: HumanHotspot[] = [
     description: 'Park visitors reported that air tours, maintenance equipment, noisy visitors, loud talking, and other related sounds substantially detract from the quality of the visitor experience.',
     citation: '(Pilcher et al., 2009)',
     effects: [
-      { name: 'Benefit', icon: '/icons/icon-benefit.svg', active: false },
-      { name: 'Negative Effect', icon: '/icons/icon-negative.svg', active: true }
+      { name: 'Benefit', icon: '/icons/icon-benefit.svg', class:'icon-benefit', active: false },
+      { name: 'Negative Effect', icon: '/icons/icon-negative.svg', class:'icon-negative', active: true }
     ]
   },
   {
@@ -194,8 +199,8 @@ export const humanHotspots: HumanHotspot[] = [
     description: 'Noise has been shown to be more disturbing to visitors if it is loud, occurs in bursts (Bell et al., 2010), is unpredictable, or if it interferes with quiet activities such as bird watching.',
     citation: '(Miller et al., 2014)',
     effects: [
-      { name: 'Benefit', icon: '/icons/icon-benefit.svg', active: false },
-      { name: 'Negative Effect', icon: '/icons/icon-negative.svg', active: true }
+      { name: 'Benefit', icon: '/icons/icon-benefit.svg', class:'icon-benefit', active: false },
+      { name: 'Negative Effect', icon: '/icons/icon-negative.svg', class:'icon-negative', active: true }
     ]
   }
 ];

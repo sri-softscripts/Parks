@@ -21,6 +21,9 @@
     currentStep = initialStep >= 0 ? initialStep : 0;
     console.log('ListeningArea initialized:', { currentStep, scrubValue, currentStepValue });
   });
+
+
+  
 </script>
 
 <div class="page-inner">
@@ -84,14 +87,10 @@
 
 <!-- ListeningArea.svelte -->
 <style>
-  /* Listening Area Container */
-  :global(#listening-area) {
-    background: #000000;
-  }
+ 
    /* Fix animation container */
     :global(.animation-container) {
-      height: calc(140vh - 300px) !important;
-      min-height: 500px;
+      height: calc(100vh - 10px) !important;
       overflow: hidden;
     }
   
@@ -99,10 +98,10 @@
     background-image: url("/images/listening-background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: top;
+    background-position: center center;
     background-attachment: fixed;
     position: relative;
-    height: 100%;
+   
   }
   
   :global(#listening-area .page-inner) {
@@ -840,6 +839,15 @@
       -webkit-transform: scale(1.2, 1.2);
               transform: scale(1.2, 1.2);
       opacity: 0;
+    }
+  }
+
+  @media (min-height: 700px) {
+    :global(#listening-area #mate){
+      left:22%;
+    }
+    :global(#listening-area #predator){
+      left:90%;
     }
   }
 </style>

@@ -4,10 +4,18 @@
   import SpectrogramOne from '$lib/components/Spectrogram/Spectrogram-1.svelte';
   import Spectrogramtwo from '$lib/components/Spectrogram/Spectrogram-2.svelte';
   import Spectrogramthree from '$lib/components/Spectrogram/Spectrogram-3.svelte';
+  import { activeSpectrogram } from '$lib/components/Spectrogram/spectrogramStore';
 
   let currentSection = 1;
 
   function goToSection(sectionNumber: number) {
+    // Reset store to stop any running audio/visualizations
+    activeSpectrogram.set({
+      section: 0,
+      sound: '',
+      iframeSrc: ''
+    });
+    
     currentSection = sectionNumber;
     // Smooth scroll to top
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -39,6 +47,12 @@
     // Cleanup
     return () => {
       document.removeEventListener('click', handleButtonClick);
+      // Reset store when leaving the page entirely
+      activeSpectrogram.set({
+        section: 0,
+        sound: '',
+        iframeSrc: ''
+      });
     };
   });
 </script>

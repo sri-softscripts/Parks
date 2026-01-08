@@ -4,7 +4,7 @@
     import {
     animalHotspots,
     humanHotspots
-  } from "$lib/data/hotspots-data.ts";
+  } from "$lib/data/hotspots-data";
 
   let container: HTMLDivElement;
   let selectedCategory: "animals" | "humans" = "animals";
@@ -43,10 +43,14 @@
   onMount(() => {
     // Initialize texture loader
     textureLoader = new THREE.TextureLoader();
-    bgTextures = {
-      animals: textureLoader.load("/images/animal-background.webp"),
-      humans: textureLoader.load("/images/human-background.webp")
-    };
+bgTextures = {
+  animals: textureLoader.load("/images/animal-background.webp", tex => {
+    tex.colorSpace = THREE.SRGBColorSpace;
+  }),
+  humans: textureLoader.load("/images/human-background.webp", tex => {
+    tex.colorSpace = THREE.SRGBColorSpace;
+  })
+};
   
     // Setup resize handler
     resizeHandler = () => {
@@ -170,10 +174,10 @@
 
     hotspots.forEach((hotspot, i) => {
       const plane = new THREE.Mesh(
-        new THREE.PlaneGeometry(120, 120),
+        new THREE.PlaneGeometry(170, 155),
         new THREE.MeshBasicMaterial({ 
           map: new THREE.TextureLoader().load(hotspot.thumbnail), 
-          transparent: true 
+          transparent: true
         })
       );
 
@@ -294,8 +298,10 @@
           <h3>Affected Animal Behavior:</h3>
           <ul>
             {#each item.behaviors as b}
-              <li class="icon-{b.name.toLowerCase().replace(/\s/g,'-')} {b.active ? 'active' : ''}">
-                <img loading="lazy" src={b.icon} alt="">{b.name}
+              <li class="{b.class} {b.active ? 'active' : ''}">
+                <div class="icon-inner-div">
+                <img loading="lazy" src={b.icon} alt="">
+                </div>{b.name}
               </li>
             {/each}
           </ul>
@@ -303,8 +309,9 @@
           <h3>Effects on Humans:</h3>
           <ul>
             {#each item.effects as e}
-              <li class="{e.active ? 'active' : ''}">
-                <img loading="lazy" src={e.icon} alt="">{e.name}
+              <li class="{e.class} {e.active ? 'active' : ''}">
+                <div class="icon-inner-div">
+                <img loading="lazy" src={e.icon} alt=""></div>{e.name}
               </li>
             {/each}
           </ul>
@@ -322,7 +329,7 @@
               <img loading="lazy" src="/icons/arrow-left.svg" alt="">
             </div>
             <div class="img">
-              <img loading="lazy" src={hotspots[(activeIndex-1+hotspots.length)%hotspots.length].thumbnail} alt="">
+              <img loading="lazy" src={hotspots[(activeIndex-1+hotspots.length)%hotspots.length].image} alt="">
             </div>
           </button>
         </div>
@@ -332,7 +339,7 @@
               <img loading="lazy" src="/icons/arrow-right.svg" alt="">
             </div>
             <div class="img">
-              <img loading="lazy" src={hotspots[(activeIndex+1)%hotspots.length].thumbnail} alt="">
+              <img loading="lazy" src={hotspots[(activeIndex+1)%hotspots.length].image} alt="">
             </div>
           </button>
         </div>
@@ -400,7 +407,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   cursor: grab;
 }
 
@@ -411,7 +418,7 @@
   /* Page header */
   .page-header {
     position: absolute;
-    top: 10%;
+    top: 130px;
     left: 0;
     right: 0;
     z-index: 5000;
@@ -509,8 +516,25 @@
     width: 26px;
     height: 26px;
   }
-  /* Info panel */
   .info-panel {
+position: absolute;
+    top: 106px;
+    left: 30px;
+    /* transform: translate(-50%, -50%); */
+    width: calc(100% - 60px);
+    height: calc(100% - 136px);
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    display: flex;
+    transition: opacity 0.3s ease;
+}
+
+
+  /* Info panel */
+  /* .info-panel {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -524,10 +548,10 @@
     z-index: 10000;
     display: flex;
     transition: opacity 0.3s ease;
-  }
+  } */
 .photo-wrapper {
-    width: 782px;
-    height: 580px;
+    width: 64%;
+    height: 100%;
     flex-shrink: 0;
     background: #f5f5f5;
   }
@@ -539,8 +563,8 @@
   }
 
   .content-wrapper {
-    width: 444px;
-    height: 580px;
+    width: 36%;
+    height: 100%;
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -551,7 +575,7 @@
   .close-icon {
     position: absolute;
     top: 20px;
-    right: 20px;
+    right: 40px;
     cursor: pointer;
     z-index: 10;
     width: 40px;
@@ -592,7 +616,7 @@
   .upper-content p {
     font-size: 16px;
     line-height: 1.6;
-    margin-bottom: 30px;
+    margin-bottom: 80px;
     color: #666;
   }
 
@@ -617,6 +641,8 @@
     padding: 0;
     margin: 0;
     flex-wrap: wrap;
+    width:100%;
+    justify-content: flex-start;
   }
 
   .upper-content ul.humans {
@@ -668,14 +694,58 @@
     color: #D8400B;
   }
 
+
+
   .upper-content ul li img {
-    width: 60px;
-    height: 60px;
-    padding: 12px;
+    width: 30px;
+    height: 30px;
+    /* padding: 12px;
     background: #E0E0E0;
     border-radius: 50%;
-    transition: all 0.3s;
+    transition: all 0.3s; */
   }
+
+    .icon-inner-div{
+      border-radius: 60%;
+    background-color: #E0E0E0;
+    transition: all 0.3s;
+    padding: 12px;
+  }
+
+
+  .upper-content ul li.active.icon-mating .icon-inner-div {
+    background: #D8400B;
+  }
+
+  .upper-content ul li.active.icon-habitat-patterns .icon-inner-div {
+    background: #2970C0;
+  }
+
+  .upper-content ul li.active.icon-hunting .icon-inner-div {
+    background: #FFB300;
+  }
+
+  .upper-content ul li.active.icon-predator-avoidance .icon-inner-div {
+    background: #509917;
+  }
+
+  .upper-content ul li.active.icon-benefit .icon-inner-div {
+    background: #509917;
+  }
+
+  .upper-content ul li.active.icon-negative .icon-inner-div {
+    background: #D8400B;
+  }
+
+          /* .info-panel .content-wrapper .upper-content ul li.active.icon-benefit {
+            color: #509917;
+            background-color: #509917; }
+         .info-panel .content-wrapper .upper-content ul li.active.icon-negative {
+            color: #D8400B;
+            background-color: #D8400B; } */
+
+
+/* 
 
   .upper-content ul li.active.icon-mating img {
     background: #D8400B;
@@ -699,18 +769,20 @@
 
   .upper-content ul li.active.icon-negative img {
     background: #D8400B;
-  }
+  } */
 
   /* Navigation buttons */
   .lower-content {
     display: flex;
-    gap: 20px;
+    /* gap: 20px; */
     margin-top: 20px;
-    height: 100px;
+    height: 135px;
+    justify-content: flex-end;
+    margin-right:-29px;
   }
 
   .third {
-    flex: 1;
+    /* flex: 1; */
     height: 100%;
   }
 
@@ -733,12 +805,14 @@
   .btn-pano-close {
     background: #C5C5C5;
     color: #333;
+    border-radius:0;
     flex-direction: column;
     gap: 10px;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
     text-align: center;
+    width:150px;
   }
 
   .btn-pano-close:hover {
@@ -753,7 +827,9 @@
   .progress-button {
     background: transparent;
     position: relative;
-    border: 2px solid #E0E0E0;
+   /* border: 2px solid #E0E0E0; */
+   border-radius:0;
+   width:150px;
   }
 
   .progress-button:hover {
@@ -766,34 +842,36 @@
 
   .progress-button .control {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 35px;
-    height: 35px;
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 50%;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    /* width: 35px;
+    height: 35px; */
+    height:100%;
+    width:100%;
+    background: rgba(0, 0, 0, 0.6);
+    /* border-radius: 50%;*/
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; 
     z-index: 2;
     transition: background 0.3s;
   }
 
-  .progress-button .control:hover {
+  /* .progress-button .control:hover {
     background: rgba(0, 0, 0, 0.9);
-  }
+  } */
 
-  .progress-button .control:first-child {
+  /* .progress-button .control:first-child {
     left: 10px;
   }
 
   .progress-button .control:last-child {
     right: 10px;
-  }
+  } */
 
   .progress-button .control img {
-    width: 18px;
-    height: 18px;
+    width: 36px;
+    height: 36px;
   }
 
   .progress-button .img {
@@ -834,26 +912,4 @@
   }
 }
 
-
 </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

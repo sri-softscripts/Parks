@@ -12,5 +12,11 @@ export const activeSpectrogram = writable<SpectrogramState>({
   iframeSrc: ''
 });
 
-
-
+// Optional: Helper function to reset the store
+export function resetSpectrogram() {
+  activeSpectrogram.set({
+    section: null,
+    sound: null,
+    iframeSrc: ''
+  });
+}

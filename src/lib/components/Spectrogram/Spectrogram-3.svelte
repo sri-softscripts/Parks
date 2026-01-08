@@ -1,9 +1,13 @@
 <script>
+  import { onDestroy } from 'svelte';
   import { activeSpectrogram } from './spectrogramStore';
   
   let currentEnvironment = '';
   let currentNoise = '';
   let isLoading = false;
+  let iframeSrc = '';
+  let iframeElement;
+  let unsubscribe;
   
   // Mapping for environment names to sound file prefixes
   const environmentPrefix = {
@@ -21,10 +25,8 @@
     'Visitors': 'Visitors'
   };
   
-  let iframeSrc = '';
-  
   // Subscribe to the store
-  activeSpectrogram.subscribe(value => {
+  unsubscribe = activeSpectrogram.subscribe(value => {
     // Only show iframe if this section is active
     if (value.section === 3) {
       iframeSrc = value.iframeSrc;
@@ -32,6 +34,10 @@
       iframeSrc = '';
       currentEnvironment = '';
       currentNoise = '';
+      // Clear iframe when not active
+      if (iframeElement) {
+        iframeElement.src = 'about:blank';
+      }
     }
   });
   
@@ -71,6 +77,25 @@
       isLoading = false;
     }, 1000);
   }
+  
+  // Clean up when component is destroyed
+  onDestroy(() => {
+    // Unsubscribe from store
+    if (unsubscribe) unsubscribe();
+    
+    // Clear iframe
+    if (iframeElement) {
+      iframeElement.src = 'about:blank';
+      iframeElement = null;
+    }
+    
+    // Reset store if this component was active
+    activeSpectrogram.set({
+      section: 0,
+      sound: '',
+      iframeSrc: ''
+    });
+  });
 </script>
 
 <div class="page-inner">
@@ -198,6 +223,7 @@
         <div class="spectrogram-set" style="height: 600px;">
           {#if iframeSrc}
             <iframe 
+              bind:this={iframeElement}
               src={iframeSrc}
               style="width: 120%; height: 100%; border: none;"
               title="3D Sonogram Visualizer"
