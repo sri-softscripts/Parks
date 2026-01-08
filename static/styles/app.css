@@ -3520,7 +3520,7 @@ figure.image {
   background-position:  top !important;
   background-repeat: no-repeat !important;
   background-size: contain !important;
-  background-color: #000000 !important;
+  background-color: #141414 !important;
   color: #ffffff;
   margin-bottom: 10px !important; 
 }
@@ -3670,7 +3670,7 @@ figure.image {
     color: #B7A486; }
 
 .spectrogram-page #spectrogram-section-3 {
-  background-image: url(/images/spectrum3.png); }
+  /* background-image: url(/images/spectrum3.png);*/ } 
   .spectrogram-page #spectrogram-section-3 .spectrogram-header h2 {
     color: #EDBB3E; }
   .spectrogram-page #spectrogram-section-3 .spectrogram-action .spectrogram-container .spectrogram-buttons .spectrogram-button .spectrogram-button-icon {
