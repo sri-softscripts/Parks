@@ -10,6 +10,10 @@
   let selectedCategory: "animals" | "humans" = "animals";
   let activeIndex = -1;
   let showViewer = false;
+let hoveredMesh: THREE.Mesh | null = null;
+let labelX = 0;
+let labelY = 0;
+
   
   // Three.js variables
   let scene: THREE.Scene;
@@ -76,6 +80,7 @@ bgTextures = {
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1100);
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
     container.appendChild(renderer.domElement);
 
     // Sphere
@@ -134,6 +139,23 @@ bgTextures = {
       }
     };
 
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+const mouseHoverHandler = (e: MouseEvent) => {
+  mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+  const hits = raycaster.intersectObjects(hotspotMeshes);
+
+  hoveredMesh = hits.length ? (hits[0].object as THREE.Mesh) : null;
+};
+
+window.addEventListener("mousemove", mouseHoverHandler);
+
+
+
     // Add event listeners
     container.addEventListener("mousedown", mouseDownHandler);
     window.addEventListener("mousemove", mouseMoveHandler);
@@ -141,11 +163,20 @@ bgTextures = {
     window.addEventListener("click", clickHandler);
   }
 
+  function updateLabelPosition(mesh: THREE.Mesh) {
+  const vector = mesh.position.clone();
+  vector.project(camera);
+
+  labelX = (vector.x * 0.5 + 0.5) * window.innerWidth;
+  labelY = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+}
+
   function cleanupEventListeners() {
     if (mouseDownHandler) container.removeEventListener("mousedown", mouseDownHandler);
     if (mouseMoveHandler) window.removeEventListener("mousemove", mouseMoveHandler);
     if (mouseUpHandler) window.removeEventListener("mouseup", mouseUpHandler);
     if (clickHandler) window.removeEventListener("click", clickHandler);
+
   }
 
   function animate() {
@@ -164,35 +195,67 @@ bgTextures = {
     camera.lookAt(0, 0, 0);
     
     if (renderer && scene && camera) {
+hotspotMeshes.forEach(mesh => {
+  const mat = mesh.material as THREE.MeshBasicMaterial;
+  
+
+  if (mesh === hoveredMesh) {
+    mat.opacity = 0.95;
+    updateLabelPosition(mesh);
+  } else {
+    mat.opacity = 1;
+    
+  }
+});
+
+
       renderer.render(scene, camera);
     }
   }
 
-  function addHotspots() {
-    hotspotMeshes.forEach(m => scene.remove(m));
-    hotspotMeshes = [];
+function addHotspots() {
+  // Remove old hotspots
+  hotspotMeshes.forEach(mesh => {
+    scene.remove(mesh);
+    mesh.geometry.dispose();
+    (mesh.material as THREE.Material).dispose();
+  });
+  hotspotMeshes = [];
 
-    hotspots.forEach((hotspot, i) => {
-      const plane = new THREE.Mesh(
-        new THREE.PlaneGeometry(170, 155),
-        new THREE.MeshBasicMaterial({ 
-          map: new THREE.TextureLoader().load(hotspot.thumbnail), 
-          transparent: true
-        })
-      );
-
-      plane.position.set(
-        hotspot.position.x,
-        hotspot.position.y,
-        hotspot.position.z
-      );
-      plane.lookAt(0, 0, 0);
-      plane.userData.index = i;
-
-      scene.add(plane);
-      hotspotMeshes.push(plane);
+  hotspots.forEach((hotspot, i) => {
+    // Load texture with correct color space
+    const texture = textureLoader.load(hotspot.thumbnail, tex => {
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
     });
-  }
+
+    const material = new THREE.MeshBasicMaterial({
+      map: texture,
+      transparent: true
+    });
+
+    const geometry = new THREE.PlaneGeometry(170, 155);
+
+    const plane = new THREE.Mesh(geometry, material);
+
+    // Position hotspot
+    plane.position.set(
+      hotspot.position.x,
+      hotspot.position.y,
+      hotspot.position.z
+    );
+
+    // Make plane face the center of the sphere
+    plane.lookAt(0, 0, 0);
+
+    // Store index for raycasting
+    plane.userData.index = i;
+
+    scene.add(plane);
+    hotspotMeshes.push(plane);
+  });
+}
+
 
   // Update sphere texture when category changes
   $: if (scene && sphere && bgTextures) {
@@ -276,6 +339,15 @@ bgTextures = {
     </div>
   </div>
   </div>
+{#if hoveredMesh}
+  <div
+    class="hotspot-text"
+    style="top:{labelY}px; left:{labelX}px"
+  >
+    {hotspots[hoveredMesh.userData.index].title}
+  </div>
+{/if}
+
 
   <div bind:this={container} class="viewer"></div>
 
@@ -352,6 +424,25 @@ bgTextures = {
 
 
 <style>
+
+.hotspot-text {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  pointer-events: none;
+  z-index: 9999;
+  white-space: nowrap;
+}
+
+.hotspot-text {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+
   .overlay-360 {
     position: absolute;
     top: 76px;

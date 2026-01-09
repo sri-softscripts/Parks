@@ -33,22 +33,22 @@ export type HumanHotspot = {
 };
 
 export const animalHotspots: AnimalHotspot[] = [
-  // {
-  //   id: 'frog',
-  //   position: { x: 360, y: 50, z: 20 },
-  //   rotation: { x: 0, y: 0, z: 0 },
-  //   image: '/images/frog@2x.jpg',
-  //   thumbnail: '/images/button-frog@2x.jpg',
-  //   title: 'Frogs',
-  //   description: 'Female frogs exposed to traffic noise have more difficulty locating the male\'s signal.',
-  //   citation: '(Brumm 2004)',
-  //   behaviors: [
-  //     { name: 'Mating', icon: '/icons/icon-mating.svg', active: true },
-  //     { name: 'Habitat Patterns', icon: '/icons/icon-habitat-pattern.svg', active: false },
-  //     { name: 'Hunting', icon: '/icons/icon-hunting.svg', active: false },
-  //     { name: 'Predator Avoidance', icon: '/icons/icon-predatory-avoidance.svg', active: false }
-  //   ]
-  // },
+  {
+    id: 'frog',
+    position: { x: 0, y: 100, z: -400 },
+    rotation: { x: 0, y: 0, z: 0 },
+    image: '/images/frog@2x.jpg',
+    thumbnail: '/images/thumb-frog.png',
+    title: 'Frogs',
+    description: 'Female frogs exposed to traffic noise have more difficulty locating the male\'s signal.',
+    citation: '(Brumm 2004)',
+    behaviors: [
+      { name: 'Mating', icon: '/icons/icon-mating.svg', class:'icon-mating', active: true },
+      { name: 'Habitat Patterns', icon: '/icons/icon-habitat-pattern.svg', class:'icon-habitat-pattern', active: false },
+      { name: 'Hunting', icon: '/icons/icon-hunting.svg', class:'icon-hunting', active: false },
+      { name: 'Predator Avoidance', icon: '/icons/icon-predatory-avoidance.svg', class:'icon-predator-avoidance', active: false }
+    ]
+  },
 
 
   
@@ -105,7 +105,7 @@ export const animalHotspots: AnimalHotspot[] = [
     position: { x: -300, y: 65, z: 350 },
     rotation: { x: 0, y: 0, z: 0 },
     image: '/images/pronghorn.jpeg',
-    thumbnail: '/images/thumb-pornghorn.webp',
+    thumbnail: '/icons/thumb-pronghorn.svg',
     title: 'Pronghorn',
     description: 'The endangered Sonoran pronghorn avoids noisy areas created by military jets.',
     citation: '(Brumm 2004)',
