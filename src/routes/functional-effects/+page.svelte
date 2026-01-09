@@ -391,7 +391,7 @@ function addHotspots() {
         {/if}
       </div>
       <div class="lower-content">
-        <div class="third back back-to-panolens">
+        <div class="third back-to-panolens">
           <button class="btn-pano-close" on:click={closePanel}>
             <img loading="lazy" src="/icons/back-360.svg" alt=""> Back to 360° Experience
           </button>
@@ -671,7 +671,7 @@ position: absolute;
     transition: opacity 0.3s ease;
   } */
 .photo-wrapper {
-    width: 64%;
+    width: 67%;
     height: 100%;
     flex-shrink: 0;
     background: #f5f5f5;
@@ -684,9 +684,9 @@ position: absolute;
   }
 
   .content-wrapper {
-    width: 36%;
+    width: 33%;
     height: 100%;
-    padding: 30px;
+/* padding:30px; */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -722,6 +722,7 @@ position: absolute;
     flex: 1;
     overflow-y: auto;
     padding-right: 10px;
+    padding:50px 30px 40px 50px;
   }
 
   .upper-content h2 {
@@ -758,7 +759,7 @@ position: absolute;
   .upper-content ul {
     list-style: none;
     display: flex;
-    gap: 15px;
+    gap: 25px;
     padding: 0;
     margin: 0;
     flex-wrap: wrap;
@@ -899,7 +900,7 @@ position: absolute;
     margin-top: 20px;
     height: 135px;
     justify-content: flex-end;
-    margin-right:-29px;
+    /* margin-right:-29px; */
   }
 
   .third {

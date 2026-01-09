@@ -7,6 +7,11 @@
   let activeIndex = -1;
   let showViewer = false;
 
+  let hoveredMesh: THREE.Mesh | null = null;
+let labelX = 0;
+let labelY = 0;
+
+
   // Three.js variables
   let scene: THREE.Scene;
   let camera: THREE.PerspectiveCamera;
@@ -75,14 +80,10 @@ function closeSummary() {
 
     // Scene setup
     scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      1,
-      1100
-    );
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1100);
     renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
     container.appendChild(renderer.domElement);
 
     // Sphere
@@ -141,12 +142,37 @@ function closeSummary() {
       }
     };
 
+
+    const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+const mouseHoverHandler = (e: MouseEvent) => {
+  mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+  raycaster.setFromCamera(mouse, camera);
+  const hits = raycaster.intersectObjects(hotspotMeshes);
+
+  hoveredMesh = hits.length ? (hits[0].object as THREE.Mesh) : null;
+};
+
+window.addEventListener("mousemove", mouseHoverHandler);
+
+
     // Add event listeners
     container.addEventListener("mousedown", mouseDownHandler);
     window.addEventListener("mousemove", mouseMoveHandler);
     window.addEventListener("mouseup", mouseUpHandler);
     window.addEventListener("click", clickHandler);
   }
+
+    function updateLabelPosition(mesh: THREE.Mesh) {
+  const vector = mesh.position.clone();
+  vector.project(camera);
+
+  labelX = (vector.x * 0.5 + 0.5) * window.innerWidth;
+  labelY = (-vector.y * 0.5 + 0.5) * window.innerHeight;
+}
 
   function cleanupEventListeners() {
     if (mouseDownHandler)
@@ -173,38 +199,89 @@ function closeSummary() {
     camera.lookAt(0, 0, 0);
 
     if (renderer && scene && camera) {
+hotspotMeshes.forEach(mesh => {
+  const mat = mesh.material as THREE.MeshBasicMaterial;
+  
+
+  if (mesh === hoveredMesh) {
+    mat.color.setRGB(0.8, 0.8, 0.8);
+    updateLabelPosition(mesh);
+  } else {
+     mat.color.setRGB(1, 1, 1);
+    
+  }
+});
+
+
       renderer.render(scene, camera);
     }
   }
 
   function addHotspots() {
-    hotspotMeshes.forEach((m) => scene.remove(m));
+      hotspotMeshes.forEach(mesh => {
+    scene.remove(mesh);
+    mesh.geometry.dispose();
+    (mesh.material as THREE.Material).dispose();
+  });
     hotspotMeshes = [];
 
-    // Add new hotspots
-    tipsHotspots.forEach((hotspot, i) => {
-      const plane = new THREE.Mesh(
-        new THREE.PlaneGeometry(120, 120),
-        new THREE.MeshBasicMaterial({
-          map: new THREE.TextureLoader().load(hotspot.thumbnail),
-          transparent: true,
-        })
-      );
+    // // Add new hotspots
+    // tipsHotspots.forEach((hotspot, i) => {
+    //   const plane = new THREE.Mesh(
+    //     new THREE.PlaneGeometry(120, 120),
+    //     new THREE.MeshBasicMaterial({
+    //       map: new THREE.TextureLoader().load(hotspot.thumbnail),
+    //       transparent: true,
+    //     })
+    //   );
 
-      // Position the hotspot
-      plane.position.set(
-        hotspot.position.x,
-        hotspot.position.y,
-        hotspot.position.z
-      );
+    //   // Position the hotspot
+    //   plane.position.set(
+    //     hotspot.position.x,
+    //     hotspot.position.y,
+    //     hotspot.position.z
+    //   );
 
-      // Make it face the camera
-      plane.lookAt(0, 0, 0);
-      plane.userData.index = i;
+    //   // Make it face the camera
+    //   plane.lookAt(0, 0, 0);
+    //   plane.userData.index = i;
 
-      scene.add(plane);
-      hotspotMeshes.push(plane);
+    //   scene.add(plane);
+    //   hotspotMeshes.push(plane);
+    // });
+
+      tipsHotspots.forEach((hotspot, i) => {
+    // Load texture with correct color space
+    const texture = textureLoader.load(hotspot.thumbnail, tex => {
+      tex.colorSpace = THREE.SRGBColorSpace;
+      tex.needsUpdate = true;
     });
+
+    const material = new THREE.MeshBasicMaterial({
+      map: texture,
+      transparent: true
+    });
+
+    const geometry = new THREE.PlaneGeometry(170, 155);
+
+    const plane = new THREE.Mesh(geometry, material);
+
+    // Position hotspot
+    plane.position.set(
+      hotspot.position.x,
+      hotspot.position.y,
+      hotspot.position.z
+    );
+
+    // Make plane face the center of the sphere
+    plane.lookAt(0, 0, 0);
+
+    // Store index for raycasting
+    plane.userData.index = i;
+
+    scene.add(plane);
+    hotspotMeshes.push(plane);
+  });
   }
 
   // Navigation functions
@@ -248,14 +325,17 @@ function closeSummary() {
   });
 </script>
 
-{#if !showViewer}
-  <div class="overlay-360" style="display: {showViewer ? 'none' : 'flex'}">
-    <div class="overlay-content" on:click={enter360}>
-      <img loading="lazy" src="/icons/icon-360.svg" alt="360" width="100" />
-      <span>360<sup>0</sup> Experience</span>
-    </div>
+
+<div
+  class="overlay-360 {showViewer ? 'hidden' : ''}"
+  on:click={enter360}
+>
+  <div class="overlay-content">
+    <img loading="lazy" src="/icons/icon-360.svg" alt="360" width="100">
+    <span>360<sup>0</sup> Experience</span>
   </div>
-{:else}
+</div>
+
   <div class="page-header">
     <h1 class="page-title">Tips</h1>
     <div class="sub-title">FOR MANAGING SOUNDSCAPES</div>
@@ -267,8 +347,17 @@ function closeSummary() {
       </p>
     </div>
   </div>
-  <div bind:this={container} class="viewer"></div>
+
+  {#if hoveredMesh}
+  <div
+    class="hotspot-text"
+    style="top:{labelY}px; left:{labelX}px"
+  >
+    {tipsHotspots[hoveredMesh.userData.index].id}
+  </div>
 {/if}
+  <div bind:this={container} class="viewer"></div>
+
 
 {#if activeIndex > -1}
   {@const item = tipsHotspots[activeIndex]}
@@ -284,6 +373,7 @@ function closeSummary() {
           </div>
           <div class="upper-content">
             <h2>{item.title}</h2>
+<div class="tips-full-col">
             <div class="content-row">
               <div class="content-col">
                 {@html item.content}
@@ -296,13 +386,13 @@ function closeSummary() {
                 </div>
               </div>
             {/if}
+</div>
           </div>
           <div class="lower-content">
-            <div class="third back back-to-panolens">
-              <button class="btn-pano-close" on:click={closePanel}>
-                <img loading="lazy" src="/icons/back-360.svg" alt="" />
-                Back to 360° <br />Experience
-              </button>
+            <div class="third back-to-panolens">
+          <button class="btn-pano-close" on:click={closePanel}>
+            <img loading="lazy" src="/icons/back-360.svg" alt=""> Back to 360° Experience
+          </button>
             </div>
             <div class="third">
               <button class="progress-button" on:click={prev}>
@@ -315,7 +405,7 @@ function closeSummary() {
                     src={tipsHotspots[
                       (activeIndex - 1 + tipsHotspots.length) %
                         tipsHotspots.length
-                    ].thumbnail}
+                    ].image}
                     alt=""
                   />
                 </div>
@@ -330,7 +420,7 @@ function closeSummary() {
                   <img
                     loading="lazy"
                     src={tipsHotspots[(activeIndex + 1) % tipsHotspots.length]
-                      .thumbnail}
+                      .image}
                     alt=""
                   />
                 </div>
@@ -408,8 +498,7 @@ function closeSummary() {
 {/if}
 
 <style>
-  /* 360 Overlay */
-  .overlay-360 {
+   .overlay-360 {
     position: absolute;
     top: 76px;
     left: 0;
@@ -417,11 +506,32 @@ function closeSummary() {
     height: calc(100% - 76px);
     background: rgba(0, 0, 0, 0.9);
     display: flex;
-    align-items: center !important;
-    justify-content: center !important;
-    z-index: -1;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000000;
     cursor: pointer;
   }
+  .overlay-360.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hotspot-text {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  pointer-events: none;
+  z-index: 10;
+  /* white-space: nowrap; */
+}
+
+.hotspot-text {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
 
   .overlay-content {
     text-align: center;
@@ -471,21 +581,23 @@ function closeSummary() {
     cursor: grabbing;
   }
 
+  /* Page header */
   .page-header {
     position: absolute;
-    height: auto;
-    top: 10%;
+    top: 130px;
     left: 0;
     right: 0;
-    margin: auto;
-    z-index: 1;
+    z-index: 5000;
+    color: white;
+    max-width: 670px;
+    margin: 0 auto;
     pointer-events: none;
-    color: #ffffff;
+    
     /* background: url(/images/tip-gradient.png) no-repeat center top; */
     /*  background-color: #ccc;  */
     /*  background-size: 100% auto;  */
   }
-  .page-header .page-title {
+  .page-title {
     font-size: 52px;
     letter-spacing: 0.1em;
     margin: 0 0 39px;
@@ -495,7 +607,7 @@ function closeSummary() {
     margin: 0px;
     text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.16);
   }
-  .page-header .sub-title {
+ .sub-title {
     font-size: 15px;
     font-weight: bold;
     letter-spacing: 1px;
@@ -513,7 +625,7 @@ function closeSummary() {
     margin: 0 auto;
     text-align: center;
   }
-  .tips .info-panel {
+ /* .info-panel {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -533,68 +645,108 @@ function closeSummary() {
 
     color: #000;
     border-radius: 3px;
+  } */
+
+
+    .info-panel {
+position: absolute;
+    top: 106px;
+    left: 30px;
+    /* transform: translate(-50%, -50%); */
+    width: calc(100% - 60px);
+    height: calc(100% - 136px);
+    background: white;
+    /* border-radius: 8px; */
+    overflow: hidden;
+      box-shadow:
+    0 0 0 30px rgba(0, 0, 0, 0.75),
+    0 20px 50px rgba(0, 0, 0, 0.5);
+        /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);  */
+    z-index: 10000;
+    display: flex;
+    transition: opacity 0.3s ease;
+}
+.tips-full-col{
+  display:flex;
+  gap:15px;
+}
+
+.photo-wrapper {
+    width: 40%;
+    height: 100%;
+    flex-shrink: 0;
+    background: #f5f5f5;
   }
 
-  .tips .info-panel .photo-wrapper {
-    width: 571px;
-    height: 580px;
+    .photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-  .tips .info-panel .content-wrapper {
-    width: 655px;
-    height: 580px;
+  .content-wrapper {
+    width: 60%;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
     position: relative;
+    background: white;
   }
-  .tips .info-panel .content-wrapper .close-icon {
+  .close-icon {
     position: absolute;
-    line-height: 1;
-    width: 16px;
-    right: 37px;
-    top: 37px;
+    top: 20px;
+    right: 40px;
     cursor: pointer;
     z-index: 10;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f5f5;
+    border-radius: 50%;
+    transition: background 0.3s;
   }
-  .tips .info-panel .content-wrapper .close-icon img {
-    display: block;
+
+  .close-icon:hover {
+    background: #e0e0e0;
   }
-  .tips .info-panel .content-wrapper .upper-content {
-    position: relative;
-    padding: 60px 60px 30px;
-    height: calc(100% - 170px);
+
+  .close-icon img {
+    width: 16px;
+    height: 16px;
+  }
+  .upper-content {
+    flex: 1;
     overflow-y: auto;
+    padding-right: 10px;
   }
-  .tips .info-panel .content-wrapper .upper-content h2 {
-    font-family: "Coda";
-    font-size: 1.875em;
+  .upper-content h2 {
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #333;
+    text-transform: uppercase;
     padding-bottom: 10px;
-    border-bottom: 1px solid #c5c5c5;
-    color: #575757;
-    text-transform: uppercase;
-    margin: 0px 0px 20px;
+    border-bottom: 2px solid #C5C5C5;
+    font-family: 'Coda', sans-serif;
   }
-  .tips .info-panel .content-wrapper .upper-content h3 {
-    font-size: 0.875em;
-    line-height: 1.35714em;
-    font-weight: 700;
-    color: #575757;
-    text-transform: uppercase;
-    margin: 0px 0px 20px;
+
+  .upper-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 80px;
+    color: #666;
   }
-  .tips .info-panel .content-wrapper .upper-content p {
-    font-size: 0.875em;
-    line-height: 1.35714em;
-    font-weight: 400;
-    margin: 0px 0px 20px;
-  }
-  .tips .info-panel .content-wrapper .upper-content p em {
+.info-panel .content-wrapper .upper-content p em {
     font-weight: 300;
   }
-  .tips .info-panel .content-wrapper .upper-content ol li {
+.info-panel .content-wrapper .upper-content ol li {
     margin-bottom: 20px;
     font-size: 0.875em;
     line-height: 1.35714em;
     font-weight: 400;
   }
-  .tips .info-panel .content-wrapper .upper-content ul {
+.info-panel .content-wrapper .upper-content ul {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -694,35 +846,20 @@ function closeSummary() {
     background: url(/icons/quote.svg) no-repeat center center;
     background-size: cover;
   }
-  .tips .info-panel .content-wrapper .lower-content {
-    position: absolute;
-    bottom: 20px;
-    padding: 0px;
-    margin: 0px;
-    display: -webkit-box;
-    display: -ms-flexbox;
+ .lower-content {
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    width: 100%;
-    background: #e5e5e5;
-    -webkit-box-pack: end;
-    -ms-flex-pack: end;
+    /* gap: 20px; */
+    margin-top: 20px;
+    height: 135px;
     justify-content: flex-end;
+    margin-right:-29px;
   }
-  .tips .info-panel .content-wrapper .lower-content .third {
-    position: relative;
-    display: block;
-    width: 148px;
-    height: 134px;
-    overflow: hidden;
+
+  .third {
+    /* flex: 1; */
+    height: 100%;
   }
-  .tips .info-panel .content-wrapper .lower-content .third.back {
+  /* .tips .info-panel .content-wrapper .lower-content .third.back {
     cursor: pointer;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -734,8 +871,8 @@ function closeSummary() {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-  }
-  .tips .info-panel .content-wrapper .lower-content .third.back button {
+  } */
+  /* .tips .info-panel .content-wrapper .lower-content .third.back button {
     cursor: pointer;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -759,64 +896,101 @@ function closeSummary() {
     text-align: center;
     outline: 0px;
     border: 0px;
-  }
-  .tips .info-panel .content-wrapper .lower-content .third.back button img {
+  } */
+  /* .tips .info-panel .content-wrapper .lower-content .third.back button img {
     width: 20px;
     height: 18px;
     margin-bottom: 10px;
-  }
-  .tips
-    .info-panel
-    .content-wrapper
-    .lower-content
-    .third
-    button.progress-button {
-    display: block;
-    position: relative;
+  } */
+     .btn-pano-close,
+  .progress-button {
     width: 100%;
     height: 100%;
-    padding: 0px;
-    margin: 0px;
-    border: 0px;
-    outline: 0px;
-  }
-  .tips
-    .info-panel
-    .content-wrapper
-    .lower-content
-    .third
-    button.progress-button
-    .control {
-    position: absolute;
-    display: -webkit-box;
-    display: -ms-flexbox;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+    border-radius: 5px;
+  }
+
+    .btn-pano-close {
+    background: #C5C5C5;
+    color: #333;
+    border-radius:0;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    width:150px;
+  }
+
+  .btn-pano-close:hover {
+    background: #B0B0B0;
+  }
+
+  .btn-pano-close img {
+    width: 24px;
+    height: 22px;
+  }
+
+  .progress-button {
+    background: transparent;
+    position: relative;
+   /* border: 2px solid #E0E0E0; */
+   border-radius:0;
+   width:150px;
+  }
+
+
+
+  .progress-button:hover {
+    border-color: #C5C5C5;
+  }
+
+  .progress-button:hover .img {
+    transform: scale(1.05);
+  }
+.progress-button .control {
+    position: absolute;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    /* width: 35px;
+    height: 35px; */
+    height:100%;
+    width:100%;
+    background: rgba(0, 0, 0, 0.6);
+    /* border-radius: 50%;*/
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    z-index: 2;
+    transition: background 0.3s;
+  }
+   .progress-button .control img {
+    width: 36px;
+    height: 36px;
+  }
+
+    .progress-button .img {
     width: 100%;
     height: 100%;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
+    transition: transform 0.3s;
   }
-  .tips
-    .info-panel
-    .content-wrapper
-    .lower-content
-    .third
-    button.progress-button
-    .control
-    img {
-    position: relative;
-    display: block;
-    width: 16px;
-    height: 33px;
-  }
+
+  /* Hotspot scaling */
+.mesh-hover {
+  transform: scale(1.2);
+  transition: transform 0.2s;
+}
+
+
   .tips .info-panel.panel-new {
     background: transparent;
     overflow: visible;

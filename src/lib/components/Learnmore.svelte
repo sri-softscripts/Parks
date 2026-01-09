@@ -21,7 +21,7 @@
           <div class="content-wrap">
             <h2 class="line">{section.title}</h2>
             {#each section.paragraphs as paragraph}
-              <p>{@html paragraph}</p>
+              <p class="content-para">{@html paragraph}</p>
             {/each}
           </div>
         {/each}
@@ -131,3 +131,10 @@
           </footer>
   </div>
 </section>
+
+
+<style>
+  .content-para{
+    padding-left:35px;
+  }
+</style>

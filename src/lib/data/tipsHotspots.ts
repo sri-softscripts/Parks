@@ -16,7 +16,7 @@ export interface TipHotspot {
 
 export const tipsHotspots: TipHotspot[] = [
   {
-    id: "tip-tech",
+    id: "tech",
     title: "USE QUIET TECHNOLOGY",
     thumbnail: "/images/thumb-tips-technology.webp",
     image: "/images/christina-silo@2x.png",
@@ -34,31 +34,31 @@ export const tipsHotspots: TipHotspot[] = [
         she is implementing techniques like this to reduce over-snow
         vehicle noise:
       </p>`,
-       position: { x: -200, y: Math.sin(0) * 100, z: -200 }
+       position: { x: 50, y: 100, z: -400 }
   },
-  // {
-  //   id: "tip-maintenance",
-  //   title: "WORK WITH MAINTENANCE CREWS",
-  //   thumbnail: "/images/thumb-tractor.webp",
-  //   image: "/images/large-maintenance@2x.jpg",
-  //   highlight: "We implement grounds work using 'Future Leaders' in the youth program on weekends to give the visitors and neighbors a break from the noise. We have found a little planning allows us to get the 'noisy' work completed during the weekdays. We have also replaced mowers, weed-wackers, leaf blowers, and chain saws with battery powered equipment. This has really helped with not only noise polution, but reducing our carbon footprint as well.",
-  //   content: `<p>
-  //       Maintenance equipment, such as a leaf blower, lawn mowers, chain
-  //       saws, and other types of equipment can generate noise in park
-  //       settings. Maintenance and facilities crews can consider sheduling
-  //       louder activities during more appropriate times of the day or
-  //       week. Similar to transportation, quiet technology can also be used
-  //       to reduce noise emissions.
-  //     </p>
-  //     <p>
-  //       Douglas Law from Salem Maritime/Saugus Iron Works National
-  //       Historic Sites explains how minor changes to maintenance schedules
-  //       and equipment can improve soundscape conditions:
-  //     </p>`,
-  //   position: { x: -100, y: Math.sin(Math.PI/3) * 140, z: -100 }
-  // },
   {
-    id: "tip-zoning",
+    id: "maintenance",
+    title: "WORK WITH MAINTENANCE CREWS",
+    thumbnail: "/images/thumb-tractor.webp",
+    image: "/images/large-maintenance@2x.jpg",
+    highlight: "We implement grounds work using 'Future Leaders' in the youth program on weekends to give the visitors and neighbors a break from the noise. We have found a little planning allows us to get the 'noisy' work completed during the weekdays. We have also replaced mowers, weed-wackers, leaf blowers, and chain saws with battery powered equipment. This has really helped with not only noise polution, but reducing our carbon footprint as well.",
+    content: `<p>
+        Maintenance equipment, such as a leaf blower, lawn mowers, chain
+        saws, and other types of equipment can generate noise in park
+        settings. Maintenance and facilities crews can consider sheduling
+        louder activities during more appropriate times of the day or
+        week. Similar to transportation, quiet technology can also be used
+        to reduce noise emissions.
+      </p>
+      <p>
+        Douglas Law from Salem Maritime/Saugus Iron Works National
+        Historic Sites explains how minor changes to maintenance schedules
+        and equipment can improve soundscape conditions:
+      </p>`,
+     position: { x: 360, y: 50, z: 20 }
+  },
+  {
+    id: "zoning",
     title: "USE ZONING",
     thumbnail: "/icons/thumb-cathedral-grove.svg",
     image: "/images/large-zoning@2x.jpg",
@@ -76,10 +76,10 @@ export const tipsHotspots: TipHotspot[] = [
         which reflect the spatial and temporal aspects of zoning.
         (Stack et al., 2011)
       </p>`,
-    position: { x: -300, y: 100, z: 50 }
+     position: { x: 0, y: -175, z: -400 }
   },
   {
-    id: "tip-framework",
+    id: "framework",
     title: "FOLLOW MANAGEMENT-BY-OBJECTIVES FRAMEWORK",
     thumbnail: "/icons/thumb-framework.svg",
     image: "/images/large-framework@2x.png",
@@ -128,11 +128,11 @@ export const tipsHotspots: TipHotspot[] = [
         management-by-objectives frameworks for over XX years.
         According to Dr. Newman:
       </p>`,
-    position: { x: 100, y: Math.sin(3*Math.PI/3) * 100, z: 100 }
+    position: { x: -400, y: 85, z: 60 }
     
   },
   {
-    id: "tip-engage",
+    id: "engage",
     title: "ENGAGE VISITORS",
     thumbnail: "/images/thumb-tips-white-bird.webp",
     image: "/images/large-engage@2x.png",
@@ -152,10 +152,10 @@ export const tipsHotspots: TipHotspot[] = [
         visitors on the Trail of the Cedars to enjoy the natural
         sounds of the trail.
       </p>`,
-    position: { x: 150, y: 80, z: -380 }
+    position: { x: -300, y: 65, z: 350 }
   },
   {
-    id: "tip-education",
+    id: "education",
     title: "USE EDUCATION AND INTERPRETATION",
     thumbnail: "/images/thumb-man.webp",
     image: "/images/large-education@2x.png",
@@ -172,6 +172,6 @@ export const tipsHotspots: TipHotspot[] = [
         Dr. Derrick Taff explains the role of education in
         Sequoia National Park:
       </p>`,
-    position: { x: -150, y: -90, z: -280 }
+    position: { x: -320, y: -90, z: -280 }
   }
 ];
