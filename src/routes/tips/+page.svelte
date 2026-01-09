@@ -49,7 +49,10 @@ function closeSummary() {
   onMount(() => {
     // Initialize texture loader
     textureLoader = new THREE.TextureLoader();
-    bgTexture = textureLoader.load("/images/tips-background.webp"); // Update with your image path
+    // bgTexture = textureLoader.load("/images/tips-background.webp"); // Update with your image path
+     bgTexture = textureLoader.load("/images/tips-background.webp", tex => {
+    tex.colorSpace = THREE.SRGBColorSpace;
+  })
 
     // Setup resize handler
     resizeHandler = () => {
@@ -63,7 +66,7 @@ function closeSummary() {
   });
 
   // Initialize Three.js when showViewer becomes true
-  $: if (showViewer && container && bgTexture && !renderer) {
+  $: if (container && bgTexture && !renderer) {
     initScene();
   }
 

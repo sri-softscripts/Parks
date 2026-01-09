@@ -132,8 +132,8 @@
               title="3D Sonogram Visualizer"
             ></iframe>
           {:else}
-            <div style="width: 100%; height: 100%; background: #141414; display: flex; align-items: center; justify-content: center; color: white;">
-              Select a noise to view the Spectrogram
+            <div style="width: 70%; height: 70%; background: #141414; display: flex; align-items: center; justify-content: center;margin-left:20%;">
+              <img src="/images/Spectrum2.png">
             </div>
           {/if}
           

@@ -200,10 +200,10 @@ hotspotMeshes.forEach(mesh => {
   
 
   if (mesh === hoveredMesh) {
-    mat.opacity = 0.95;
+    mat.color.setRGB(0.8, 0.8, 0.8);
     updateLabelPosition(mesh);
   } else {
-    mat.opacity = 1;
+     mat.color.setRGB(1, 1, 1);
     
   }
 });
@@ -344,7 +344,7 @@ function addHotspots() {
     class="hotspot-text"
     style="top:{labelY}px; left:{labelX}px"
   >
-    {hotspots[hoveredMesh.userData.index].title}
+    {hotspots[hoveredMesh.userData.index].id}
   </div>
 {/if}
 
@@ -355,7 +355,8 @@ function addHotspots() {
 
 {#if activeIndex > -1}
   {@const item = hotspots[activeIndex]}
-  <div class="info-panel {selectedCategory}" id={item.id} rel={item.id}>
+<div class="info-background">
+    <div class="info-panel {selectedCategory}" id={item.id} rel={item.id}>
     <div class="photo-wrapper">
       <img loading="lazy" src={item.image} alt={item.title}>
     </div>
@@ -418,6 +419,7 @@ function addHotspots() {
       </div>
     </div>
   </div>
+</div>
 {/if}
 
 
@@ -429,13 +431,13 @@ function addHotspots() {
   position: fixed;
   transform: translate(-50%, -50%);
   font-weight: 700;
-  font-size: 20px;
+  font-size: 16px;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #ffffff;
   pointer-events: none;
-  z-index: 9999;
-  white-space: nowrap;
+  z-index: 10;
+  /* white-space: nowrap; */
 }
 
 .hotspot-text {
@@ -607,6 +609,31 @@ function addHotspots() {
     width: 26px;
     height: 26px;
   }
+
+  /* .info-background{
+    position:absolute;
+    background-color: #000;
+    top:76px;
+height: 100%;
+width:100%;
+z-index:9999;
+  } */
+
+
+    /* .info-background {
+position: absolute;
+    top: 76px;
+
+    width: 100%;
+    height: calc(100% - 76px);
+    background: #000;
+
+    z-index: 9999;
+} */
+
+
+  
+
   .info-panel {
 position: absolute;
     top: 106px;
@@ -615,9 +642,12 @@ position: absolute;
     width: calc(100% - 60px);
     height: calc(100% - 136px);
     background: white;
-    border-radius: 8px;
+    /* border-radius: 8px; */
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      box-shadow:
+    0 0 0 30px rgba(0, 0, 0, 0.75),
+    0 20px 50px rgba(0, 0, 0, 0.5);
+        /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);  */
     z-index: 10000;
     display: flex;
     transition: opacity 0.3s ease;
@@ -800,7 +830,7 @@ position: absolute;
       border-radius: 60%;
     background-color: #E0E0E0;
     transition: all 0.3s;
-    padding: 12px;
+    padding: 11px 12px;
   }
 
 

@@ -2219,8 +2219,17 @@ Fonts
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */ }
 
-.icon-volume-up:before {
-  content: '\e800'; }
+.icon-volume-up::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-image: url("/icons/Icon_Audio.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 
 /* '' */
 .icon-attention:before {
@@ -2232,7 +2241,16 @@ Fonts
 
 /* '' */
 .icon-pause-circled:before {
-  content: '\e803'; }
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background-image: url("/icons/Icon_Pause.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
 
 /* '' */
 .icon-three-arrows:before, .rangeslider__handle:before {
@@ -2652,7 +2670,7 @@ figure.image {
       margin-bottom: 0px; }
 
 #introduction .container {
-  padding: 60px 60px; }
+  padding: 95px 60px; }
 
 #introduction .page-content {
   -webkit-box-align: end;
@@ -2976,7 +2994,9 @@ figure.image {
         #physics-of-sound .sound-effect__button.playing .pause {
           display: block; }
       #physics-of-sound .sound-effect__button .pause {
-        display: none; }
+        display: none;
+       align-items: center;
+      }
         #physics-of-sound .sound-effect__button .pause i {
           margin-right: 3px;
           margin-left: -3px; }
@@ -3141,7 +3161,7 @@ figure.image {
     margin-bottom: -50px; }
     #physics-of-sound .section-title span {
       display: inline-block;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.796);
       position: relative;
       z-index: 10;
       -webkit-box-shadow: 0 0 64px 105px rgba(0, 0, 0, 0.7);
@@ -3151,7 +3171,7 @@ figure.image {
     #physics-of-sound .section-title:before, #physics-of-sound .section-title:after {
       content: '';
       display: block;
-      background-image: url("/images/signal-black-background-wave-neon_RT.webp");
+      background-image: url("/icons/NL_soundwave_white@2x.png");
       height: 500px;
       width: 50%;
       position: absolute;
@@ -3525,7 +3545,7 @@ figure.image {
   margin-bottom: 10px !important; 
 }
 
-  .spectrogram-page .spectrogram-section:after {
+  .spectrogram-page .spectrogram-section:after{
     content: "";
     display: block;
     position: absolute;
@@ -3533,7 +3553,7 @@ figure.image {
     height: calc(100% - 200px);
     left: 0px;
     top: 120px;
-    /* background: url(/images/shadow.png) repeat-x left top; */
+    background: url(/images/shadow.png) repeat-x left top;
 
    /* CRITICAL: Add the image URL to the list of background images */
   background-image: linear-gradient(to bottom, transparent, #141414);
@@ -3542,9 +3562,7 @@ figure.image {
   background-position: top center, top center;
   background-size: cover, cover;
   background-repeat: no-repeat; 
-  
-  /* Fallback color if the image fails to load */
-  background-color: #141414;
+ 
 
   /* Set the container size */
   height:350px;
@@ -3560,18 +3578,75 @@ figure.image {
     /* background: #141414; */
     z-index: 1; 
   }
-  .spectrogram-page .spectrogram-section:before {
+  .spectrogram-page #spectrogram-section-1:before {
     content: "";
     display: block;
     position: absolute;
     width: 100%;
-    /* height: calc(100% - 278px); */
+    height: calc(80% - 108px);
     height: 278px;
-    background: url(/images/Background.webp) no-repeat center center;
+    background: url(/images/Background.webp) no-repeat;
     left: 0px;
-    top: 1px;
+    top: 0px;
     /* background: #141414; */
-    z-index: 1; }
+    z-index: 0;
+  background-size: cover;
+  background-position:center 30%;
+  }
+   .spectrogram-page #spectrogram-section-2:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+  
+    height: 278px;
+    background: url(/images/car.png) no-repeat;
+    left: 0px;
+    top: 0px;
+    /* background: #141414; */
+    z-index: 0;
+  background-size: cover !important;
+  background-position:center center;
+  }
+   .spectrogram-page #spectrogram-section-3:before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+   
+    height: 278px;
+    background: url(/images/luminious-tents.png) no-repeat;
+    left: 0px;
+    top: 0px;
+    /* background: #141414; */
+    z-index: 0;
+  background-size: cover !important;
+  background-position:center 60%;
+  }
+.spectrogram-page #spectrogram-section-1::after,.spectrogram-page #spectrogram-section-2::after,.spectrogram-page #spectrogram-section-3::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 160px; /* height of shadow fade */
+  z-index: 1;
+  pointer-events: none;
+
+  /* Shadow / mask effect */
+  background: linear-gradient(
+  to bottom,
+  rgba(20, 20, 20, 0) 0%,
+  rgba(20, 20, 20, 0.6) 70%,
+  rgba(20, 20, 20, 1) 100%
+);
+}
+.spectrogram-page #spectrogram-section-2::after{
+  height: 160px;
+}
+.spectrogram-page #spectrogram-section-3::after{
+  height: 158px;
+}
+
   .spectrogram-page .spectrogram-section .container {
     position: relative;
     z-index: 2; }
@@ -3654,8 +3729,16 @@ figure.image {
     color: #b9d54b; 
   }
 
+  #spectrogram-section-2::before{
+    
+    background-image: url(/images/car.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
 .spectrogram-page #spectrogram-section-2 {
-  /* background-image: url(/images/spectrum2.png); */
+  
  }
   .spectrogram-page #spectrogram-section-2 .spectrogram-header h2 {
     color: #E2D6C0; }

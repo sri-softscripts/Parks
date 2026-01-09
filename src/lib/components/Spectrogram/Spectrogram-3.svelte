@@ -229,11 +229,11 @@
               title="3D Sonogram Visualizer"
             ></iframe>
           {:else}
-            <div style="width: 100%; height: 100%; background: #141414; display: flex; align-items: center; justify-content: center; color: white;">
+            <div style="width: 70%; height: 70%; background: #141414; display: flex; align-items: center; justify-content: center;margin-left:20%;">
               {#if !currentEnvironment}
-                Select an environment first
+               <img src="/images/spectrum3.png">
               {:else if !currentNoise}
-                Now select a noise to experience masking
+                <img src="/images/spectrum3.png">
               {:else}
                 Loading...
               {/if}

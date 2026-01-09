@@ -101,7 +101,7 @@
     background-position: center center;
     background-attachment: fixed;
     position: relative;
-   
+   height: auto;
   }
   
   :global(#listening-area .page-inner) {
@@ -842,12 +842,67 @@
     }
   }
 
+  /* Media query for taller browsers - scale down content to fit without scrolling */
   @media (min-height: 700px) {
+    /* Override animation container height to scale properly */
+    :global(.animation-container) {
+      height: calc(100vh - 00px) !important;
+    }
+    
+    :global(#listening-area .page-header) {
+      top: 20px;
+    }
+    
+    :global(#listening-area .page-header .page-title) {
+      font-size: 42px;
+      margin: 0 0 5px;
+    }
+    
+    :global(#listening-area .page-header .page-blurb) {
+      font-size: 14px;
+      line-height: 20px;
+    }
+    
+    :global(#listening-area .page-bottom) {
+      padding-bottom: 25px;
+      top:80%;
+    }
+    
+   
+    
+    :global(#listening-area .bg-masks-slider) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    
+    :global(#listening-area .bg-masks-slider img) {
+      max-height: 100%;
+      width: 85%;
+      object-fit: contain;
+    }
+    
+    :global(#listening-area .distance) {
+      margin: 0 auto 15px;
+      top:-100%;
+    }
+    
+    :global(#listening-area .hotspot) {
+      transform: translate(-50%, -50%) scale(0.85);
+    }
+    
     :global(#listening-area #mate){
-      left:22%;
+      left:21%;
     }
     :global(#listening-area #predator){
-      left:90%;
+      left:92%;
     }
+      :global(#listening-area .animation-container) {
+        top:-120px;
+      }
+      :global(#listening-area .scrubber){
+        top:-90%;
+      }
   }
 </style>
