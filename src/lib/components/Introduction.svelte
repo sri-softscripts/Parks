@@ -9,7 +9,7 @@
       (entries, obs) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            bgUrl = '/images/bg-intro.png'; // load the actual image
+            bgUrl = '/images/bg-intro.webp'; // load the actual image
             obs.disconnect(); // stop observing after loading
           }
         });
