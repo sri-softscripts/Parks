@@ -1,10 +1,12 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
+    
   import * as THREE from "three";
     import {
     animalHotspots,
     humanHotspots
   } from "$lib/data/hotspots-data";
+
 
   let container: HTMLDivElement;
   let selectedCategory: "animals" | "humans" = "animals";
@@ -338,7 +340,9 @@ function addHotspots() {
       <label for="switch_right">Effects on humans <img src="/icons/icon-humans.svg" alt=""></label>
     </div>
   </div>
+  
   </div>
+  
 {#if hoveredMesh}
   <div
     class="hotspot-text"
@@ -350,6 +354,7 @@ function addHotspots() {
 
 
   <div bind:this={container} class="viewer"></div>
+  
 
 
 
@@ -419,7 +424,9 @@ function addHotspots() {
       </div>
     </div>
   </div>
+  
 </div>
+
 {/if}
 
 

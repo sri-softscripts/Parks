@@ -159,7 +159,7 @@
             ></iframe>
           {:else}
             <div style="width: 80%; height: 80%; background: #141414; display: flex; justify-content: center; margin:0 auto;">
-              <img src="/images/spectrum1.png">
+              <!-- <img src="/images/spectrum1.png"> -->
             </div>
           {/if}
           

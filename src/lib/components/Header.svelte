@@ -1,54 +1,14 @@
-<!-- <script>
-  import { page } from '$app/stores';
-
-  const menu = [
-    { href: '/', label: 'Introduction' },
-    { href: '/physics-of-sound', label: 'Physics of Sound' },
-    { href: '/spectrogram', label: 'Spectrogram' },
-    { href: '/functional-effects', label: 'Functional Effects' },
-    { href: '/listening-area', label: 'Listening Area' },
-    { href: '/tips', label: 'Tips' },
-    { href: '/review', label: 'Review' },
-    { href: '/learn-more', label: 'Learn More' }
-  ];
-</script>
-
-<header class="site-header">
-  <div class="site-header__inner">
-    
-    <a class="branding" href="/">
-      <img
-        src="/images/logo@2x.png"
-        alt="National Park Service logo"
-        loading="lazy"
-      />
-      <p>
-        National Park Service
-        <small>In partnership with Penn State University</small>
-      </p>
-    </a>
-
-
-    <nav class="site-header__menu" aria-label="Main navigation">
-      <ul class="navbar-nav">
-        {#each menu as item}
-          <li
-            class="navbar-nav__item"
-            class:is-active={$page.url.pathname === item.href}
-          >
-            <a href={item.href}>
-              {item.label}
-            </a>
-          </li>
-        {/each}
-      </ul>
-    </nav>
-  </div>
-</header> -->
-
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
+  import { fly } from 'svelte/transition';
+
+  // Track which pages should have animation
+  const animatedPages = ['spectrogram', 'physics-of-sound', 'functional-effects'];
+  
+  // Store to control animation
+  let shouldAnimate = false;
+  let currentPage = $page.url.pathname;
 
   const menu = [
     { slug: "", label: "Introduction" },
@@ -60,6 +20,35 @@
     { slug: "review", label: "Review" },
     { slug: "learn-more", label: "Learn More" },
   ];
+
+  async function handleNavigation(slug: string) {
+    const targetPath = `/${slug}`;
+    
+    // Check if target page should have animation
+    const isAnimatedPage = animatedPages.includes(slug);
+    
+    if (isAnimatedPage) {
+      // Reset scroll and trigger animation
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Add a small delay for scroll
+      await new Promise(resolve => setTimeout(resolve, 200));
+      
+      // Navigate
+      goto(targetPath);
+      
+      // Add animation class to body or specific element
+      document.body.classList.add('page-transition-animated');
+      
+      // Remove class after animation completes
+      setTimeout(() => {
+        document.body.classList.remove('page-transition-animated');
+      }, 900); // Match animation duration
+    } else {
+      // Standard navigation for non-animated pages
+      goto(targetPath);
+    }
+  }
 </script>
 
 <header class="site-header">
@@ -84,7 +73,8 @@
           >
             <a
               href={`/${item.slug}`}
-              on:click|preventDefault={() => goto(`/${item.slug}`)}
+              on:click|preventDefault={() => handleNavigation(item.slug)}
+              class={animatedPages.includes(item.slug) ? 'animated-page-link' : ''}
             >
               {item.label}
             </a>
@@ -95,8 +85,25 @@
   </div>
 </header>
 
+<!-- Add this CSS for animations -->
 <style>
-  /* --- styles unchanged from your original --- */
+  /* Animation for specific pages */
+  .page-transition-animated main > * {
+    animation: pageFlyIn 600ms ease-out 300ms both;
+  }
+
+  @keyframes pageFlyIn {
+    0% {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Existing styles... */
   .site-header {
     z-index: 1000;
     background-color: #ffffff;

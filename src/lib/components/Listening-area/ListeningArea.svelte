@@ -5,6 +5,9 @@
   import DistanceIndicators from './DistanceIndicators.svelte';
   import Scrubber from './Scrubber.svelte';
   
+  import Footer from '$lib/components/Footer.svelte';
+
+  
   let currentStep = 0;
   let scrubValue = 0; 
   $: currentStepValue = STEPS[currentStep];
@@ -59,29 +62,7 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
-  <!-- <footer class="page-footer">
-    <div class="container">
-      <button
-        class="button button-down move-to-next"
-        type="button"
-        name="button"
-        data-parent="listening-area"
-        data-target="tips"
-        on:click={() => {
-          console.log('Navigate to next section');
-        }}
-      >
-        <img
-          src="/src/lib/assets/icons/arrow-down.svg"
-          width="22"
-          height="11"
-          alt="Next section"
-        />
-      </button>
-    </div>
-  </footer> -->
-
+  <Footer nextPage="/tips" />
   
 </div>
 
