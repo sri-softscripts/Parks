@@ -29,10 +29,39 @@ onload = () => {
 	
 	const myCanvas = document.getElementById('myCanvas');
 	
+	// Make audio globally accessible
+	window.myAudio = myAudio;
+	
 	// Add event listener properly
 	myAudio.addEventListener('play', () => {
 		console.log('Audio playing, starting visualization...');
 		spec3D.start(myAudio, myCanvas);
+		// Notify parent about playback state
+		window.parent.postMessage({ type: 'playbackState', isPlaying: true }, '*');
+	});
+	
+	myAudio.addEventListener('pause', () => {
+		// Notify parent about playback state
+		window.parent.postMessage({ type: 'playbackState', isPlaying: false }, '*');
+	});
+	
+	// Listen for play/pause commands from parent
+	window.addEventListener('message', (event) => {
+		if (event.data && event.data.type === 'audioControl') {
+			if (event.data.action === 'play') {
+				myAudio.play();
+				window.parent.postMessage({ 
+					type: 'audioControlResponse', 
+					isPlaying: true 
+				}, '*');
+			} else if (event.data.action === 'pause') {
+				myAudio.pause();
+				window.parent.postMessage({ 
+					type: 'audioControlResponse', 
+					isPlaying: false 
+				}, '*');
+			}
+		}
 	});
 	
 	// Also try to start immediately if audio is already playing
