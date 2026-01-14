@@ -351,27 +351,75 @@
   }
   
   :global(#listening-area .hotspot__ring) {
-    border-radius: 30px;
-    height: 50px;
-    width: 50px;
-    -webkit-animation: pulsate 1s ease-out;
-            animation: pulsate 1s ease-out;
-    -webkit-animation-iteration-count: infinite;
-            animation-iteration-count: infinite;
+  border-radius: 30px;
+  height: 50px;
+  width: 50px;
+  -webkit-animation: pulsate 2s ease-out;
+          animation: pulsate 2s ease-out;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  opacity: 0;
+  position: absolute;
+  border-width: 1px;
+  border-style: solid;
+}
+
+/* First ring - no delay */
+:global(#listening-area .hotspot__ring:nth-child(1)) {
+  animation-delay: 0s;
+}
+
+/* Second ring - 0.5s delay */
+:global(#listening-area .hotspot__ring:nth-child(2)) {
+  animation-delay: 0.5s;
+}
+
+/* Third ring - 1s delay */
+:global(#listening-area .hotspot__ring:nth-child(3)) {
+  animation-delay: 1s;
+}
+
+:global(#listening-area .hotspot__ring--white) {
+  border-color: #ffffff;
+}
+
+:global(#listening-area .hotspot__ring--gold) {
+  border-color: #ffe385;
+  border-width: 3px;
+}
+
+/* Adjust the pulsate animation for smoother multiple rings */
+@-webkit-keyframes pulsate {
+  0% {
+    -webkit-transform: scale(0.1, 0.1);
+            transform: scale(0.1, 0.1);
     opacity: 0;
-    position: absolute;
-    border-width: 1px;
-    border-style: solid;
   }
-  
-  :global(#listening-area .hotspot__ring--white) {
-    border-color: #ffffff;
+  30% {
+    opacity: 1;
   }
-  
-  :global(#listening-area .hotspot__ring--gold) {
-    border-color: #ffe385;
-    border-width: 3px;
+  100% {
+    -webkit-transform: scale(1.5, 1.5);
+            transform: scale(1.5, 1.5);
+    opacity: 0;
   }
+}
+
+@keyframes pulsate {
+  0% {
+    -webkit-transform: scale(0.1, 0.1);
+            transform: scale(0.1, 0.1);
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1.5, 1.5);
+            transform: scale(1.5, 1.5);
+    opacity: 0;
+  }
+}
   
   :global(#listening-area .hotspot__indicator) {
     width: 50px;
