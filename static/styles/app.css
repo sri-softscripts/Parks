@@ -3472,10 +3472,11 @@ figure.image {
 .spectrogram-page .spectrogram-tips {
   position: absolute;
   left: 40px;
-  top: 300px;
+  top: 600px;
   width: 300px;
   z-index: 21;
-  display: none; }
+  display: none;
+ }
   .spectrogram-page .spectrogram-tips__item {
     background: #000000;
     border: 1px solid #A3A3A3;
@@ -3494,7 +3495,7 @@ figure.image {
       width: 22px;
       height: 22px;
       font-size: 0px;
-      background: url(/web/20250123202129im_/http://www.parks.hikercompany.com/assets/images/close-tip.svg) no-repeat center center;
+      background: url(/icons/close-circle-white.svg) no-repeat center center;
       background-size: cover;
       text-decoration: none; }
     .spectrogram-page .spectrogram-tips__item .listen-tip {
