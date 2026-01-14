@@ -1,4 +1,3 @@
-
 <script lang="ts">
   import type { Hotspot } from './types';
   
@@ -9,6 +8,15 @@
   $: isHighlighted = currentStepValue === hotspot.highlightAt;
   $: isVisible = currentStepValue >= hotspot.showAt;
   $: showCallout = activeCalloutId === hotspot.id;
+  
+  // Hide pulse for Mountain Lion from step 75 onward
+  // Hide pulse for Red Fox from step 100 onward
+  $: hidePulse = 
+    (hotspot.id === 'predator' && currentStepValue >= 75) ||
+    (hotspot.id === 'mate' && currentStepValue >= 100);
+    
+  // Hover only works in step 0
+  $: allowHover = currentStepValue === 0;
 </script>
 
 <div
@@ -16,12 +24,25 @@
   class="hotspot"
   style="opacity: {isVisible ? 1 : 0.3}; transition: opacity 0.3s ease;"
 >
-  <div class="hotspot__indicator">
-    <div 
-      class="hotspot__ring"
-      class:hotspot__ring--gold={isHighlighted}
-      class:hotspot__ring--white={!isHighlighted}
-    ></div>
+  <div class="hotspot__indicator" class:no-hover={!allowHover}>
+    {#if !hidePulse}
+      <!-- Multiple rings for ripple effect -->
+      <div 
+        class="hotspot__ring"
+        class:hotspot__ring--gold={isHighlighted}
+        class:hotspot__ring--white={!isHighlighted}
+      ></div>
+      <div 
+        class="hotspot__ring"
+        class:hotspot__ring--gold={isHighlighted}
+        class:hotspot__ring--white={!isHighlighted}
+      ></div>
+      <div 
+        class="hotspot__ring"
+        class:hotspot__ring--gold={isHighlighted}
+        class:hotspot__ring--white={!isHighlighted}
+      ></div>
+    {/if}
     <div class="hotspot__indicator-image">
       <img
         loading="lazy"
