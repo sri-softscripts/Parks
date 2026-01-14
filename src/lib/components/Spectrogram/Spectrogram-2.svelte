@@ -1,12 +1,15 @@
 <script>
   import { onDestroy } from 'svelte';
   import { activeSpectrogram } from './spectrogramStore';
-  
+  import Footer from '$lib/components/Footer.svelte';
   let currentSound = '';
   let isLoading = false;
   let iframeSrc = '';
   let iframeElement;
   let unsubscribe;
+  let showTips = false;
+  let currentTips = [];
+  let isPlaying = true;
   
   const soundFiles = {
     'Boat': '/audio/Boat.mp3',
@@ -16,13 +19,70 @@
     'Visitors': '/audio/Visitors.mp3'
   };
   
+  // Define tips for each noise
+  const noiseTips = {
+    'Boat': [
+      {
+        id: 1,
+        image: '/images/placeholder.png', // You can replace this later
+        alt: 'boat noise',
+        text: 'Boat engine noise has a consistent low-frequency rumble that can travel long distances over water.',
+        hasListenButton: false
+      }
+    ],
+    'Car': [
+      {
+        id: 2,
+        image: '/images/placeholder.png', // You can replace this later
+        alt: 'car noise',
+        text: 'Traffic noise typically shows a mix of engine rumbles and tire friction sounds across multiple frequencies.',
+        hasListenButton: false
+      }
+    ],
+    'Airplane': [
+      {
+        id: 3,
+        image: '/images/placeholder.png', // You can replace this later
+        alt: 'airplane noise',
+        text: 'Airplane noise often has a Doppler effect - rising in pitch as it approaches, then falling as it moves away.',
+        hasListenButton: false
+      }
+    ],
+    'Thunder': [
+      {
+        id: 4,
+        image: '/images/placeholder.png', // You can replace this later
+        alt: 'thunder noise',
+        text: 'Thunder produces powerful low-frequency waves that can mask many other natural and human-made sounds.',
+        hasListenButton: false
+      }
+    ],
+    'Visitors': [
+      {
+        id: 5,
+        image: '/images/placeholder.png', // You can replace this later
+        alt: 'visitor noise',
+        text: 'Human conversation creates complex overlapping frequencies that can significantly impact natural soundscapes.',
+        hasListenButton: false
+      }
+    ]
+  };
+  
   // Subscribe to the store
   unsubscribe = activeSpectrogram.subscribe(value => {
     // Only show iframe if this section is active
     if (value.section === 2) {
       iframeSrc = value.iframeSrc;
+      // Show tips for the current sound
+      if (value.sound && noiseTips[value.sound]) {
+        currentTips = noiseTips[value.sound];
+        showTips = true;
+        isPlaying = true;
+      }
     } else {
       iframeSrc = '';
+      showTips = false;
+      currentTips = [];
       // Clear iframe when not active
       if (iframeElement) {
         iframeElement.src = 'about:blank';
@@ -33,6 +93,7 @@
   function playSound(soundName) {
     currentSound = soundName;
     isLoading = true;
+    showTips = false; // Hide tips while loading
     
     const soundPath = soundFiles[soundName];
     const newSrc = `/ChromeAnalyzer/index.html?sound=${encodeURIComponent(soundPath)}`;
@@ -47,13 +108,120 @@
     // Give it a moment to load
     setTimeout(() => {
       isLoading = false;
+      isPlaying = true;
+      // Show tips after loading
+      currentTips = noiseTips[soundName] || [];
+      showTips = true;
     }, 1000);
+  }
+  
+  function togglePlayPause() {
+    if (!iframeElement || !iframeElement.contentWindow) return;
+    
+    // Toggle the playing state first
+    isPlaying = !isPlaying;
+    
+    try {
+      // Access the iframe's audio element and toggle play/pause
+      const iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
+      
+      // Method 1: Try to get audio element directly
+      const audioElements = iframeDoc.getElementsByTagName('audio');
+      if (audioElements.length > 0) {
+        const audio = audioElements[0];
+        if (isPlaying) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
+        return;
+      }
+      
+      // Method 2: Try to execute play/pause in iframe context
+      iframeElement.contentWindow.postMessage({
+        action: isPlaying ? 'play' : 'pause',
+        type: 'audioControl'
+      }, '*');
+      
+      // Method 3: Try to trigger play/pause via the spec3D object
+      if (iframeElement.contentWindow.spec3D && iframeElement.contentWindow.spec3D.audioContext) {
+        if (isPlaying) {
+          iframeElement.contentWindow.spec3D.audioContext.resume();
+        } else {
+          iframeElement.contentWindow.spec3D.audioContext.suspend();
+        }
+      }
+      
+    } catch (error) {
+      console.error('Error controlling iframe audio:', error);
+      // If we can't control the iframe audio, revert the state
+      isPlaying = !isPlaying;
+    }
+  }
+  
+  function closeTips() {
+    showTips = false;
+  }
+  
+  // Listen for messages from iframe about playback state
+  function handleMessage(event) {
+    // Check if message is from our ChromeAnalyzer
+    if (event.data && event.data.type === 'playbackState') {
+      isPlaying = event.data.isPlaying;
+    }
+    
+    // Handle audio control responses
+    if (event.data && event.data.type === 'audioControlResponse') {
+      isPlaying = event.data.isPlaying;
+    }
+  }
+  
+  // Add message listener when component mounts
+  if (typeof window !== 'undefined') {
+    window.addEventListener('message', handleMessage);
+  }
+  
+  // Function to check iframe audio state periodically
+  function checkIframeAudioState() {
+    if (!iframeElement || !iframeElement.contentWindow || !showTips) return;
+    
+    try {
+      const iframeDoc = iframeElement.contentDocument || iframeElement.contentWindow.document;
+      const audioElements = iframeDoc.getElementsByTagName('audio');
+      
+      if (audioElements.length > 0) {
+        const audio = audioElements[0];
+        // Update our state to match iframe audio state
+        if (isPlaying !== !audio.paused) {
+          isPlaying = !audio.paused;
+        }
+      }
+    } catch (error) {
+      // Cross-origin errors expected, ignore
+    }
+  }
+  
+  // Set up interval to check audio state
+  let audioCheckInterval;
+  
+  // Watch for iframe loading
+  $: if (iframeElement && showTips) {
+    clearInterval(audioCheckInterval);
+    audioCheckInterval = setInterval(checkIframeAudioState, 500);
   }
   
   // Clean up when component is destroyed
   onDestroy(() => {
     // Unsubscribe from store
     if (unsubscribe) unsubscribe();
+    
+    // Remove message listener
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('message', handleMessage);
+    }
+    
+    // Clear interval
+    clearInterval(audioCheckInterval);
     
     // Clear iframe
     if (iframeElement) {
@@ -72,6 +240,43 @@
 
 <div class="page-inner">
   <div class="page-content">
+    <!-- Dynamic tips section for noise - inline style overrides CSS display: none -->
+    <div class="spectrogram-tips" id="spectrogram-section-2-tips" style="display: {showTips ? 'block' : 'none'};">
+      {#if showTips && currentTips.length > 0}
+        {#each currentTips as tip}
+          <div class="spectrogram-tips__item">
+            <a href="#" class="close-tip" on:click|preventDefault={closeTips}>Close</a>
+            <div class="spectrogram-tips__item-img">
+              <img loading="lazy" src={tip.image} alt={tip.alt}>
+            </div>    
+            <div class="spectrogram-tips__item-text">
+              {tip.text}
+              <br><br>
+              <div class="tip-controls">
+                <button 
+                  class="play-pause-tip" 
+                  on:click|preventDefault={togglePlayPause}
+                  style="background-color: {isPlaying ? '#FF0000' : '#FF931E'};"
+                >
+                  {#if isPlaying}
+                    <span class="pause" style="display: flex; align-items: center; gap: 6px;">
+                      <i class="icon-pause-circled" style="font-size: 14px;"></i>
+                      Pause
+                    </span>
+                  {:else}
+                    <span class="play" style="display: flex; align-items: center; gap: 6px;">
+                      <i class="icon-volume-up" style="font-size: 14px;"></i>
+                      Listen
+                    </span>
+                  {/if}
+                </button>
+              </div>
+            </div>
+          </div>
+        {/each}
+      {/if}
+    </div>
+    
     <div class="spectrogram-section" id="spectrogram-section-2">
       <div class="container">
         <div class="spectrogram-header">
@@ -175,3 +380,48 @@
     </div>
   </div>
 </div>
+<div style="background-color: #ffffff; color:#000000;">
+<Footer nextPage="/functional-effects" hikerColor="#000000" textColor="#000000" />
+</div>
+<style>
+  .play-pause-tip {
+    display: inline-flex;
+    align-items: center;
+    border: none;
+    color: #FFFFFF;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    line-height: 12px;
+    padding: 5px 15px;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .play-pause-tip:hover {
+    opacity: 0.9;
+  }
+  
+  .play-pause-tip i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .tip-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  /* Ensure icons are properly aligned */
+  .icon-pause-circled:before,
+  .icon-volume-up:before {
+    vertical-align: middle;
+  }
+</style>
