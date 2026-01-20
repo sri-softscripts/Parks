@@ -202,7 +202,7 @@ hotspotMeshes.forEach(mesh => {
   
 
   if (mesh === hoveredMesh) {
-    mat.color.setRGB(0.8, 0.8, 0.8);
+    mat.color.setRGB(0.7, 0.7, 0.7);
     updateLabelPosition(mesh);
   } else {
      mat.color.setRGB(1, 1, 1);
@@ -617,30 +617,6 @@ function addHotspots() {
     height: 26px;
   }
 
-  /* .info-background{
-    position:absolute;
-    background-color: #000;
-    top:76px;
-height: 100%;
-width:100%;
-z-index:9999;
-  } */
-
-
-    /* .info-background {
-position: absolute;
-    top: 76px;
-
-    width: 100%;
-    height: calc(100% - 76px);
-    background: #000;
-
-    z-index: 9999;
-} */
-
-
-  
-
   .info-panel {
 position: absolute;
     top: 106px;
@@ -654,29 +630,12 @@ position: absolute;
       box-shadow:
     0 0 0 30px rgba(0, 0, 0, 0.75),
     0 20px 50px rgba(0, 0, 0, 0.5);
-        /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);  */
+    /* box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);  */
     z-index: 10000;
     display: flex;
     transition: opacity 0.3s ease;
 }
 
-
-  /* Info panel */
-  /* .info-panel {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 1226px;
-    height: 580px;
-    background: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    z-index: 10000;
-    display: flex;
-    transition: opacity 0.3s ease;
-  } */
 .photo-wrapper {
     width: 67%;
     height: 100%;
@@ -693,7 +652,6 @@ position: absolute;
   .content-wrapper {
     width: 33%;
     height: 100%;
-/* padding:30px; */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -828,10 +786,6 @@ position: absolute;
   .upper-content ul li img {
     width: 30px;
     height: 30px;
-    /* padding: 12px;
-    background: #E0E0E0;
-    border-radius: 50%;
-    transition: all 0.3s; */
   }
 
     .icon-inner-div{
@@ -866,53 +820,20 @@ position: absolute;
     background: #D8400B;
   }
 
-          /* .info-panel .content-wrapper .upper-content ul li.active.icon-benefit {
-            color: #509917;
-            background-color: #509917; }
-         .info-panel .content-wrapper .upper-content ul li.active.icon-negative {
-            color: #D8400B;
-            background-color: #D8400B; } */
-
-
-/* 
-
-  .upper-content ul li.active.icon-mating img {
-    background: #D8400B;
-  }
-
-  .upper-content ul li.active.icon-habitat-patterns img {
-    background: #2970C0;
-  }
-
-  .upper-content ul li.active.icon-hunting img {
-    background: #FFB300;
-  }
-
-  .upper-content ul li.active.icon-predator-avoidance img {
-    background: #509917;
-  }
-
-  .upper-content ul li.active.icon-benefit img {
-    background: #509917;
-  }
-
-  .upper-content ul li.active.icon-negative img {
-    background: #D8400B;
-  } */
-
   /* Navigation buttons */
   .lower-content {
     display: flex;
-    /* gap: 20px; */
     margin-top: 20px;
-    height: 135px;
+    /* height: 135px; */
+    height:20.5%;
+    width:100%;
     justify-content: flex-end;
-    /* margin-right:-29px; */
   }
 
   .third {
     /* flex: 1; */
     height: 100%;
+    width: 100%;
   }
 
   .btn-pano-close,
@@ -941,7 +862,8 @@ position: absolute;
     font-weight: 700;
     text-transform: uppercase;
     text-align: center;
-    width:150px;
+    /* width:150px; */
+    width:100%;
   }
 
   .btn-pano-close:hover {
@@ -956,9 +878,9 @@ position: absolute;
   .progress-button {
     background: transparent;
     position: relative;
-   /* border: 2px solid #E0E0E0; */
    border-radius:0;
-   width:150px;
+   /* width:150px; */
+   width:100%;
   }
 
   .progress-button:hover {
@@ -971,32 +893,15 @@ position: absolute;
 
   .progress-button .control {
     position: absolute;
-    /* top: 50%; */
-    /* transform: translateY(-50%); */
-    /* width: 35px;
-    height: 35px; */
     height:100%;
     width:100%;
     background: rgba(0, 0, 0, 0.6);
-    /* border-radius: 50%;*/
     display: flex;
     align-items: center;
     justify-content: center; 
     z-index: 2;
     transition: background 0.3s;
   }
-
-  /* .progress-button .control:hover {
-    background: rgba(0, 0, 0, 0.9);
-  } */
-
-  /* .progress-button .control:first-child {
-    left: 10px;
-  }
-
-  .progress-button .control:last-child {
-    right: 10px;
-  } */
 
   .progress-button .control img {
     width: 36px;

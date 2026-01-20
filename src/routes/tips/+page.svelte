@@ -204,7 +204,7 @@ hotspotMeshes.forEach(mesh => {
   
 
   if (mesh === hoveredMesh) {
-    mat.color.setRGB(0.8, 0.8, 0.8);
+    mat.color.setRGB(0.7, 0.7, 0.7);
     updateLabelPosition(mesh);
   } else {
      mat.color.setRGB(1, 1, 1);
@@ -655,7 +655,7 @@ position: absolute;
     /* transform: translate(-50%, -50%); */
     width: calc(100% - 60px);
     height: calc(100% - 136px);
-    background: white;
+    /* background: white; */
     /* border-radius: 8px; */
     overflow: hidden;
       box-shadow:
@@ -665,17 +665,107 @@ position: absolute;
     z-index: 10000;
     display: flex;
     transition: opacity 0.3s ease;
+ background: rgba(0, 0, 0, 0.75);
 }
 .tips-full-col{
   display:flex;
   gap:15px;
 }
 
+#zoning .photo-wrapper {
+width:47%;
+}
+  #zoning .content-wrapper {
+  width:53%;
+    }
+
+
+    #framework .photo-wrapper{
+       position:absolute;
+      top:0;
+      left:0;
+      width: 60%; 
+      z-index: inherit;
+    }
+
+
+
+
+    #framework .content-wrapper{
+      width:58%;
+position:absolute;
+right:0;
+height: calc(100% - 30px);
+/* bottom:30px; */
+    }
+
+
+            #tech .photo-wrapper{
+       position:absolute;
+      top:0;
+      left:0;
+      width: 45%; 
+      z-index: inherit;
+    }
+
+    #tech .content-wrapper{
+      width:63%;
+position:absolute;
+right:0;
+height: calc(100% - 30px);
+/* bottom:30px; */
+    }
+
+
+
+
+            #education .photo-wrapper{
+       position:absolute;
+      top:0;
+      left:0;
+      width: 42%; 
+      z-index: inherit;
+    }
+
+    #education .content-wrapper{
+      width:66%;
+position:absolute;
+right:0;
+height: calc(100% - 30px);
+/* bottom:30px; */
+    }
+
+
+#education .content-wrapper::before ,
+ #tech .content-wrapper::before ,
+    #framework .content-wrapper::before {
+  content: "";
+  position: absolute;
+  left: -33px;          /* push arrow outside */
+  top: 80px;            /* vertical alignment */
+  width: 0;
+  height: 0;
+  border-top: 35px solid transparent;
+  border-bottom: 35px solid transparent;
+  border-right: 45px solid #fff; 
+  z-index: inherit;
+}
+#education.info-panel ,
+#tech.info-panel ,
+    #framework.info-panel{
+      left:0;
+    height: calc(100% - 106px);
+       width: calc(100% - 30px) !important;
+
+    }
+
 .photo-wrapper {
-    width: 40%;
+  position:relative;
+    /* width: 40%; */
     height: 100%;
     flex-shrink: 0;
-    background: #f5f5f5;
+    /* background: #f5f5f5; */
+          /* background: rgba(0, 0, 0, 0.75); */
   }
 
     .photo-wrapper img {
@@ -683,10 +773,13 @@ position: absolute;
     height: 100%;
     object-fit: cover;
   }
+
+
+
   .content-wrapper {
-    width: 60%;
+    /* width:53%; */
     height: 100%;
-    padding: 30px;
+    /* padding: 30px; */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -719,7 +812,7 @@ position: absolute;
   .upper-content {
     flex: 1;
     overflow-y: auto;
-    padding-right: 10px;
+padding: 30px;
   }
   .upper-content h2 {
     font-size: 30px;
@@ -850,9 +943,11 @@ position: absolute;
     display: flex;
     /* gap: 20px; */
     margin-top: 20px;
+    margin-bottom:20px;
     height: 135px;
     justify-content: flex-end;
-    margin-right:-29px;
+    /* margin-right:-29px; */
+    background-color: #e5e5e5;
   }
 
   .third {
@@ -1074,10 +1169,17 @@ position: absolute;
         display: inline-block;
         vertical-align: middle;
         font-family: 'FontAwesome'; }
+.summary-pannel .summary-wrap {
+  display:none;
 
-.summary-wrap {
+}
+
+/* don't remove this style */
+.summary-pannel.active .summary-wrap {
+  display:block !important;
   height: 580px;
-  background: #ffffff; }
+  background: #ffffff; 
+}
 
 .summary-container {
   padding: 60px;
