@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
+  import OptimizedImage from '$lib/components/OptimizedImage.svelte';
     
   import * as THREE from "three";
     import {
@@ -315,7 +316,7 @@ function addHotspots() {
   on:click={enter360}
 >
   <div class="overlay-content">
-    <img loading="lazy" src="/icons/icon-360.svg" alt="360" width="100">
+    <OptimizedImage src="/icons/icon-360.svg" loading="eager" alt="360" width={100}  height={100} priority={true} />
     <span>360<sup>0</sup> Experience</span>
   </div>
 </div>
@@ -367,7 +368,12 @@ function addHotspots() {
     </div>
     <div class="content-wrapper">
       <div class="back-to-panolens close-icon" on:click={closePanel}>
-        <img width="16" src="/icons/closeX.svg" alt="">
+        <OptimizedImage
+  src="/icons/closeX.svg"
+  alt=""
+  width={16}
+  height={16}
+/>
       </div>
       <div class="upper-content">
         <h2>{item.title}</h2>

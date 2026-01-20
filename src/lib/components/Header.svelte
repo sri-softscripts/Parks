@@ -105,7 +105,7 @@
 
   /* Existing styles... */
   .site-header {
-    z-index: 1000;
+    z-index: 100000;
     background-color: #ffffff;
   }
 

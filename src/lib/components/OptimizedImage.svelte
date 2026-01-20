@@ -1,46 +1,47 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  
+
   export let src: string;
-  export let alt: string = '';
+  export let alt = '';
   export let width: number | undefined;
   export let height: number | undefined;
-  export let className: string = '';
+  export let className = '';
   export let loading: 'lazy' | 'eager' = 'lazy';
-  export let priority: boolean = false;
-  
-  let imageSrc = src;
+  export let priority = false;
+
   let imageSrcSet = '';
   let sizes = '';
-  
+
+  // fallback values (prevents CLS)
+  const FALLBACK_WIDTH = 800;
+  const FALLBACK_HEIGHT = 600;
+
+  $: imgWidth = width ?? FALLBACK_WIDTH;
+  $: imgHeight = height ?? FALLBACK_HEIGHT;
+
   onMount(() => {
-    // Only generate srcset for images in static folder
     if (src.startsWith('/images/')) {
       const breakpoints = [320, 640, 768, 1024, 1280, 1536];
       imageSrcSet = breakpoints
         .map(bp => `${src}?width=${bp} ${bp}w`)
         .join(', ');
-      
+
       sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw';
     }
-    
-    // If priority is true, use eager loading
-    if (priority) {
-      loading = 'eager';
-    }
+
+    if (priority) loading = 'eager';
   });
 </script>
 
 <img
-  {src}
-  {alt}
-  {width}
-  {height}
-  {loading}
+  src={src}
+  alt={alt}
+  width={imgWidth}
+  height={imgHeight}
+  loading={loading}
   class={className}
   srcset={imageSrcSet || undefined}
-  {sizes}
+  sizes={sizes || undefined}
   decoding="async"
   fetchpriority={priority ? 'high' : 'auto'}
-  on:error={(e) => console.error('Image failed to load:', src)}
 />

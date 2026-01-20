@@ -91,12 +91,12 @@ export const tipsHotspots: TipHotspot[] = [
         a five-step process. Here is how:
       </p>
       <ol class="list">
-        <li>
+        <li style="margin-bottom:40px;">
           <strong>Establish management objectives</strong><br />
           These broad narrative statements describe the desired
           conditions of park resources and experiences.
         </li>
-        <li>
+        <li style="margin-bottom:40px;">
           <strong>Identify indicators and thresholds</strong><br />
           Indicators are measurable and manageable variables that
           relate to your management objectives. Thresholds are the
@@ -104,19 +104,19 @@ export const tipsHotspots: TipHotspot[] = [
           managers to understand how observed conditions related to
           management objectives.
         </li>
-        <li>
+        <li style="margin-bottom:40px;">
           <strong>Monitor the indicators</strong><br />
           Gathering data from the indicators helps you describe current
           conditions and understand what needs to be done to achieve
           your managment objectives.
         </li>
-        <li>
+        <li style="margin-bottom:40px;">
           <strong>Implement management actions</strong><br />
           Armed with an understanding of current conditions and thresholds
           regarding the indicators, management can be enacted in an
           adaptive process to help achieve management goals.
         </li>
-        <li>
+        <li style="margin-bottom:40px;">
           <strong>Repeat steps 4 and 5</strong><br />
           Periodic monitoring will allow you to understand the effect of your
           management actions, and whether new or additional actions
