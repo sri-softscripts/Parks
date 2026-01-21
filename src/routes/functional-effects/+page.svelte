@@ -404,7 +404,7 @@ function addHotspots() {
       <div class="lower-content">
         <div class="third back-to-panolens">
           <button class="btn-pano-close" on:click={closePanel}>
-            <img loading="lazy" src="/icons/back-360.svg" alt=""> Back to 360° Experience
+            <img loading="lazy" src="/icons/back-360.svg" alt=""> <span class="back-flex-block"><span>Back to 360°</span><span>Experience</span></span>
           </button>
         </div>
         <div class="third">
@@ -931,6 +931,12 @@ position: absolute;
 .mesh-hover {
   transform: scale(1.2);
   transition: transform 0.2s;
+}
+
+
+.back-flex-block{
+  display:flex;
+  flex-direction: column;
 }
 
 /* Responsive adjustments */

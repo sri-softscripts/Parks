@@ -427,7 +427,7 @@
   :global(#review),
   :global(.review-section) {
     position: relative;
-    height: 200vh;
+    height: 100vh;
     width: 100vw;
   }
   :global(.page-inner),
