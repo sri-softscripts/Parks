@@ -14,7 +14,7 @@
 
   <!-- Legacy CSS (temporary) -->
   <link rel="stylesheet" href="/styles/app.css" />
-  <link rel="stylesheet" href="/styles/banner.css" />
+  <!-- <link rel="stylesheet" href="/styles/banner.css" /> -->
   <link rel="stylesheet" href="/styles/banner-styles.css" />
   <link rel="stylesheet" href="/styles/css.css" />
   <link rel="stylesheet" href="/styles/iconochive.css" />

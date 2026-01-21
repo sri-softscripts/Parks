@@ -208,7 +208,7 @@
         const mat = mesh.material as THREE.MeshBasicMaterial;
 
         if (mesh === hoveredMesh) {
-          mat.color.setRGB(0.7, 0.7, 0.7);
+          mat.color.setRGB(0.3, 0.3, 0.3);
           updateLabelPosition(mesh);
         } else {
           mat.color.setRGB(1, 1, 1);
@@ -775,7 +775,6 @@
     padding-bottom: 10px;
     border-bottom: 2px solid #c5c5c5;
     font-family: "Coda", sans-serif;
-    font-weight: normal;
   }
 
   .upper-content p {

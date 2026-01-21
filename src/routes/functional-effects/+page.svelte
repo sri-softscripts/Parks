@@ -203,7 +203,7 @@ hotspotMeshes.forEach(mesh => {
   
 
   if (mesh === hoveredMesh) {
-    mat.color.setRGB(0.7, 0.7, 0.7);
+    mat.color.setRGB(0.4, 0.4, 0.4);
     updateLabelPosition(mesh);
   } else {
      mat.color.setRGB(1, 1, 1);

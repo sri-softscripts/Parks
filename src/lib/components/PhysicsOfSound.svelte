@@ -1,11 +1,13 @@
+
 <script>
   import { goto } from "$app/navigation";
-  import { Align } from "@threlte/extras";
-  import Background from "three/src/renderers/common/Background.js";
-
+  import { onMount } from "svelte";
+  import Chart from 'chart.js/auto';
+  
   import Footer from '$lib/components/Footer.svelte';
 
   let exiting = false;
+  let chartInstance = null;
 
   async function handlePageTransition(event) {
     event.preventDefault();
@@ -16,6 +18,134 @@
     await new Promise((r) => setTimeout(r, 500));
 
     goto(url);
+  }
+
+  onMount(() => {
+    createChart();
+    setupAudioButtons();
+  });
+
+  function createChart() {
+    const canvas = document.getElementById("soundChart");
+    if (!canvas) return;
+    
+    if (chartInstance) {
+      chartInstance.destroy();
+    }
+    
+    chartInstance = new Chart(canvas.getContext("2d"), {
+      type: "line",
+      data: {
+        labels: [
+          "Threshold of human hearing",
+          "Volcano crater",
+          "Leaves rustling",
+          "Crickets at 5m",
+          "Casual speech at 5m",
+          "Motorcycle at 30m",
+          "Thunder",
+          "Military jet at 100m AGL",
+          "Cannon fire at 150m",
+        ],
+        datasets: [
+          {
+            data: [0, 20, 30, 45, 60, 85, 110, 130, 140],
+            backgroundColor: "rgba(160, 82, 45, 0.95)",
+            borderColor: "#FFA500",
+            borderWidth: 4,
+            pointRadius: 8,
+            pointBackgroundColor: "#FFA500",
+            pointBorderColor: "#FFA500",
+            pointHoverRadius: 10,
+            fill: true,
+            tension: 0.3,
+          },
+        ],
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: false },
+        },
+        scales: {
+          y: {
+            min: 0,
+            max: 150,
+            ticks: {
+              stepSize: 30,
+              color: "#ffffff",
+              callback: (value) => value + " dB",
+            },
+          },
+          x: {
+            ticks: { display: false },
+          },
+        },
+      },
+    });
+  }
+
+  function setupAudioButtons() {
+    const audioButtons = document.querySelectorAll(".sound-effect__button");
+
+    function setActiveButton(activeButton) {
+      audioButtons.forEach((btn) => {
+        if (btn === activeButton) {
+          btn.style.backgroundColor = "red";
+        } else {
+          btn.style.backgroundColor = "#FF931E";
+        }
+      });
+    }
+
+    audioButtons.forEach((button) => {
+      const playSpan = button.querySelector(".play");
+      const pauseSpan = button.querySelector(".pause");
+      const soundEffect = button.closest(".sound-effect");
+      const audio = soundEffect?.querySelector("audio");
+
+      if (!audio) return;
+
+      pauseSpan.style.display = "none";
+
+      button.addEventListener("click", function () {
+        if (audio.paused) {
+          document.querySelectorAll("audio").forEach((a) => {
+            a.pause();
+            a.currentTime = 0;
+          });
+
+          audioButtons.forEach((btn) => {
+            btn.querySelector(".play").style.display = "flex";
+            btn.querySelector(".pause").style.display = "none";
+          });
+
+          audio.play();
+          playSpan.style.display = "none";
+          pauseSpan.style.display = "flex";
+          pauseSpan.style.textAlign = "center";
+
+          setActiveButton(button);
+        } else {
+          audio.pause();
+          playSpan.style.display = "flex";
+          pauseSpan.style.display = "none";
+          button.style.backgroundColor = "#FF931E";
+        }
+      });
+
+      audio.addEventListener("ended", function () {
+        playSpan.style.display = "flex";
+        pauseSpan.style.display = "none";
+        button.style.backgroundColor = "#FF931E";
+      });
+    });
+
+    document.querySelectorAll(".sound-effect__warning").forEach((icon) => {
+      icon.setAttribute("title", "Warning: Sound above 85dB");
+    });
   }
 </script>
 
@@ -569,231 +699,8 @@
       </div>
     </div>
 
-
-
-
-
-<Footer nextPage="/spectrogram" />
-
+    <Footer nextPage="/spectrogram" />
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const ctx = document.getElementById("soundChart").getContext("2d");
-
-  // Chart code (unchanged)
-  const soundChart = new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: [
-        "Threshold of human hearing",
-        "Volcano crater",
-        "Leaves rustling",
-        "Crickets at 5m",
-        "Casual speech at 5m",
-        "Motorcycle at 30m",
-        "Thunder",
-        "Military jet at 100m AGL",
-        "Cannon fire at 150m",
-      ],
-      datasets: [
-        {
-          data: [0, 20, 30, 45, 60, 85, 110, 130, 140],
-          backgroundColor: "rgba(160, 82, 45, 0.95)",
-          borderColor: "#FFA500",
-          borderWidth: 4,
-          pointRadius: 8,
-          pointBackgroundColor: "#FFA500",
-          pointBorderColor: "#FFA500",
-          pointHoverRadius: 10,
-          fill: true,
-          tension: 0.3,
-        },
-      ],
-    },
-    options: {
-      responsive: false,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { enabled: false },
-      },
-      scales: {
-        y: {
-          min: 0,
-          max: 150,
-          ticks: {
-            stepSize: 30,
-            color: "#ffffff",
-            callback: (value) => value + " dB",
-          },
-        },
-        x: {
-          ticks: { display: false },
-        },
-      },
-    },
-  });
-
-  // Audio functionality
-  const audioButtons = document.querySelectorAll(".sound-effect__button");
-
-  // Function to handle red background
-  function setActiveButton(activeButton) {
-    audioButtons.forEach((btn) => {
-      if (btn === activeButton) {
-        btn.style.backgroundColor = "red";
-      } else {
-        btn.style.backgroundColor = "#FF931E";
-      }
-    });
-  }
-
-  audioButtons.forEach((button) => {
-    const playSpan = button.querySelector(".play");
-    const pauseSpan = button.querySelector(".pause");
-    const soundEffect = button.closest(".sound-effect");
-    const audio = soundEffect?.querySelector("audio");
-
-    if (!audio) return;
-
-    pauseSpan.style.display = "none";
-
-    button.addEventListener("click", function () {
-      if (audio.paused) {
-        // Pause all audios
-        document.querySelectorAll("audio").forEach((a) => {
-          a.pause();
-          a.currentTime = 0;
-        });
-
-        // Reset all play/pause spans
-        audioButtons.forEach((btn) => {
-          btn.querySelector(".play").style.display = "flex";
-          btn.querySelector(".pause").style.display = "none";
-        });
-
-        // Play current audio
-        audio.play();
-        playSpan.style.display = "none";
-        pauseSpan.style.display = "flex";
-        pauseSpan.style.textAlign = "center";
-
-        // Set red using function
-        setActiveButton(button);
-      } else {
-        audio.pause();
-        playSpan.style.display = "flex";
-        pauseSpan.style.display = "none";
-        button.style.backgroundColor = "#FF931E"; // reset
-      }
-    });
-
-    audio.addEventListener("ended", function () {
-      playSpan.style.display = "flex";
-      pauseSpan.style.display = "none";
-      button.style.backgroundColor = "#FF931E"; // reset
-    });
-  });
-
-  // Tooltip
-  document.querySelectorAll(".sound-effect__warning").forEach((icon) => {
-    icon.setAttribute("title", "Warning: Sound above 85dB");
-  });
-});
-</script>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const ctx = document.getElementById("soundChart").getContext("2d");
-
-      new Chart(ctx, {
-        type: "line",
-        data: {
-          datasets: [
-            {
-              data: [
-                { x: 1, y: 0 }, // hidden anchor on x-axis
-                { x: 2, y: 20 }, // first visible point (ear)
-                { x: 3, y: 30 },
-                { x: 4, y: 45 },
-                { x: 5, y: 60 },
-                { x: 6, y: 85 },
-                { x: 7, y: 105 },
-                { x: 8, y: 120 },
-                { x: 9, y: 130 },
-                { x: 10, y: 140 }, // last visible point
-              ],
-              backgroundColor: "rgba(160, 82, 45, 0.95)",
-              borderColor: "#FFA500",
-              borderWidth: 4,
-              pointRadius: 7,
-              pointBackgroundColor: "#FFA500",
-              pointBorderColor: "#FFA500",
-              fill: true,
-              tension: 0.3,
-              clip: false, // IMPORTANT
-            },
-          ],
-        },
-
-        options: {
-          responsive: false,
-          maintainAspectRatio: false,
-
-          plugins: {
-            legend: { display: false },
-            tooltip: { enabled: false },
-          },
-
-          scales: {
-            y: {
-              min: 0,
-              max: 150,
-              ticks: {
-                stepSize: 30,
-                color: "#ffffff",
-                callback: (v) => v + " dB",
-              },
-              title: {
-                display: true,
-                text: "Decibels (dB)",
-                color: "#ffffff",
-                font: { size: 16, weight: "bold" },
-              },
-              grid: { display: false },
-              border: {
-                display: true,
-                color: "#ffffff",
-                width: 2,
-              },
-            },
-
-            x: {
-              type: "linear",
-              min: 0, 
-              max: 11, 
-              ticks: { display: false },
-              grid: { display: false },
-              border: {
-                display: true,
-                color: "#ffffff",
-                width: 2,
-              },
-            },
-          },
-
-          animation: {
-            duration: 1600,
-            easing: "easeOutCubic",
-          },
-        },
-      });
-    });
-  </script>
 </section>
 
 <style>
@@ -826,5 +733,4 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 </style>
-
 
