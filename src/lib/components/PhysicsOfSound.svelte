@@ -1,4 +1,3 @@
-
 <script>
   import { goto } from "$app/navigation";
   import { onMount } from "svelte";
@@ -25,67 +24,171 @@
     setupAudioButtons();
   });
 
-  function createChart() {
-    const canvas = document.getElementById("soundChart");
-    if (!canvas) return;
-    
-    if (chartInstance) {
-      chartInstance.destroy();
+
+
+const axisTickPlugin = {
+  id: "axisTickPlugin",
+  afterDraw(chart) {
+    const { ctx, scales, chartArea } = chart;
+
+    const { left, bottom } = chartArea;
+    const tickSize = 10;
+
+    ctx.save();
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.lineWidth = 1;
+
+    /* ===== Y-AXIS TICKS (start EXACTLY from Y-axis, go RIGHT) ===== */
+    const yScale = scales.y;
+    if (yScale) {
+      yScale.ticks.forEach((_, i) => {
+        const y = yScale.getPixelForTick(i);
+
+        ctx.beginPath();
+        ctx.moveTo(left, y);                 
+        ctx.lineTo(left + tickSize, y);     
+        ctx.stroke();
+      });
     }
-    
-    chartInstance = new Chart(canvas.getContext("2d"), {
-      type: "line",
-      data: {
-        labels: [
-          "Threshold of human hearing",
-          "Volcano crater",
-          "Leaves rustling",
-          "Crickets at 5m",
-          "Casual speech at 5m",
-          "Motorcycle at 30m",
-          "Thunder",
-          "Military jet at 100m AGL",
-          "Cannon fire at 150m",
-        ],
-        datasets: [
-          {
-            data: [0, 20, 30, 45, 60, 85, 110, 130, 140],
-            backgroundColor: "rgba(160, 82, 45, 0.95)",
-            borderColor: "#FFA500",
-            borderWidth: 4,
-            pointRadius: 8,
-            pointBackgroundColor: "#FFA500",
-            pointBorderColor: "#FFA500",
-            pointHoverRadius: 10,
-            fill: true,
-            tension: 0.3,
-          },
-        ],
-      },
-      options: {
-        responsive: false,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: { enabled: false },
+
+    /* ===== X-AXIS TICKS (start EXACTLY from X-axis, go UP) ===== */
+    const xScale = scales.x;
+    if (xScale) {
+      xScale.ticks.forEach((_, i) => {
+        const x = xScale.getPixelForTick(i);
+
+        ctx.beginPath();
+        ctx.moveTo(x, bottom);               
+        ctx.lineTo(x, bottom - tickSize);    
+        ctx.stroke();
+      });
+    }
+
+    ctx.restore();
+  }
+};
+
+
+
+
+
+
+
+function createChart() {
+  const canvas = document.getElementById("soundChart");
+  if (!canvas) return;
+
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+
+  chartInstance = new Chart(canvas.getContext("2d"), {
+    type: "line",
+
+    plugins: [axisTickPlugin], 
+
+    data: {
+      labels: [
+        "Threshold of human hearing",
+        "Volcano crater",
+        "Leaves rustling",
+        "Crickets at 5m",
+        "Casual speech at 5m",
+        "Motorcycle at 30m",
+        "Thunder",
+        "Military jet at 100m AGL",
+        "Cannon fire at 150m",
+      ],
+      datasets: [
+        {
+          data: [0, 20, 30, 45, 60, 85, 110, 130, 140],
+          backgroundColor: "rgba(160, 82, 45, 0.95)",
+          borderColor: "#FFA500",
+          borderWidth: 3,
+          pointRadius: 5,
+          pointBackgroundColor: "#FFA500",
+          pointBorderColor: "#FFA500",
+          pointHoverRadius: 6,
+          fill: true,
+          tension: 0.3,
         },
-        scales: {
-          y: {
-            min: 0,
-            max: 150,
-            ticks: {
-              stepSize: 30,
-              color: "#ffffff",
-              callback: (value) => value + " dB",
+      ],
+    },
+    options: {
+      responsive: false,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: false },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          min: 0,
+          max: 150,
+          border: {
+            display: true,
+            color: "#ffffff",
+            width: 1,
+          },
+          grid: {
+            display: false,
+          },
+          ticks: {
+            stepSize: 30,
+            color: "#FFFFFF",
+            callback: (value) => value + " dB",
+            font: {
+              size: 11,
+              weight: "bold",
+            },
+            padding: 3,
+            z: 1,
+          },
+          title: {
+            display: true,
+            text: "Decibels (dB)",
+            color: "#FFFFFF",
+            font: {
+              size: 12,
+              weight: "bold",
+            },
+            padding: {
+              top: 5,
+              bottom: 10,
             },
           },
-          x: {
-            ticks: { display: false },
+        },
+        x: {
+          border: {
+            display: true,
+            color: "#ffffff",
+            width: 1,
           },
+          grid: {
+            display: false,
+          },
+          ticks: {
+            display: false,
+            z: 1,
+          },
+          offset: true,
         },
       },
-    });
-  }
+      layout: {
+        padding: {
+          left: -5,
+          right: 10,
+          top: 5,
+          bottom: 5,
+        },
+      },
+    },
+  });
+}
+
+
+
 
   function setupAudioButtons() {
     const audioButtons = document.querySelectorAll(".sound-effect__button");
@@ -733,4 +836,3 @@
     }
   }
 </style>
-

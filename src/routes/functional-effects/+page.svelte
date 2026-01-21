@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
   import OptimizedImage from '$lib/components/OptimizedImage.svelte';
+   import Footer from '$lib/components/Footer.svelte';
     
   import * as THREE from "three";
     import {
@@ -434,11 +435,17 @@ function addHotspots() {
 </div>
 
 {/if}
-
-
-
+<div class="footer-div-out">
+<Footer nextPage="/listening-area"  hikerColor="#000" textColor="#000"/>
+</div>
 
 <style>
+
+  .footer-div-out{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
 
 .hotspot-text {
   position: fixed;

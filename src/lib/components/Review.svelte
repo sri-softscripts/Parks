@@ -39,7 +39,7 @@
     {
       id: 2,
       text: "If a sound goes from 20 decibels to 40 decibels, how many times greater would be the perceived change in loudness to people?",
-      backgroundImage: "/images/quiz-bg-3.png",
+      backgroundImage: "/images/quiz-bg-2.png",
       correctAnswer: "b",
       options: [
         { key: "a", text: "2x louder" },
@@ -51,7 +51,7 @@
     {
       id: 3,
       text: "The impacts of road noise can extend of one mile into a forest.",
-      backgroundImage: "/images/quiz-bg-4.png",
+      backgroundImage: "/images/quiz-bg-2.png",
       correctAnswer: "a",
       options: [
         { key: "a", text: "True", isCorrect: true },
@@ -61,7 +61,7 @@
     {
       id: 4,
       text: "A soundscape is defined as:",
-      backgroundImage: "/images/quiz-bg-5.png",
+      backgroundImage: "/images/quiz-bg-2.png",
       correctAnswer: "a",
       options: [
         { key: "a", text: "The human, or animal, perception of all combined acoustic resources.", isCorrect: true },
@@ -73,7 +73,7 @@
     {
       id: 5,
       text: "A spectrogram is a visual representation of acoustic measurements. Which of the following is not an axis of a spectrogram?",
-      backgroundImage: "/images/quiz-bg-2.png",
+      backgroundImage: "/images/quiz-bg-3.png",
       correctAnswer: "a",
       options: [
         { key: "a", text: "Movement", isCorrect: true },
@@ -85,7 +85,7 @@
     {
       id: 6,
       text: "Masking is defined as:",
-      backgroundImage: "/images/quiz-bg-4.png",
+      backgroundImage: "/images/quiz-bg-3.png",
       correctAnswer: "b",
       options: [
         { key: "a", text: "The composition of the natural sound conditions in a park that exist in the absence of any human-made noise." },
@@ -110,7 +110,7 @@
     {
       id: 8,
       text: "Research shows that human-caused noise affects ground-squirrels by:",
-      backgroundImage: "/images/quiz-bg-4.png",
+      backgroundImage: "/images/quiz-bg-3.png",
       correctAnswer: "b",
       options: [
         { key: "a", text: "Waking them up from their hibernation" },
@@ -122,7 +122,7 @@
     {
       id: 9,
       text: "True or false: Bats spend more time foraging near roads because insects have a harder time detecting them.",
-      backgroundImage: "/images/quiz-bg-5.png",
+      backgroundImage: "/images/quiz-bg-4.png",
       correctAnswer: "b",
       options: [
         { key: "a", text: "True" },
@@ -132,7 +132,7 @@
     {
       id: 10,
       text: "Airplane and traffic noise have which of the following physiological effects on people?",
-      backgroundImage: "/images/quiz-bg-2.png",
+      backgroundImage: "/images/quiz-bg-4.png",
       correctAnswer: "d",
       options: [
         { key: "a", text: "Increased stress hormones" },
@@ -145,7 +145,7 @@
     {
       id: 11,
       text: "True or false: Human-caused noise may impact visitors perceptions of the aesthetic quality of a landscape.",
-      backgroundImage: "/images/quiz-bg-3.png",
+      backgroundImage: "/images/quiz-bg-4.png",
       correctAnswer: "a",
       options: [
         { key: "a", text: "True", isCorrect: true },
@@ -179,7 +179,7 @@
     {
       id: 14,
       text: "Education and interpretation can be used to:",
-      backgroundImage: "/images/quiz-bg-2.png",
+      backgroundImage: "/images/quiz-bg-5.png",
       correctAnswer: "a",
       options: [
         { key: "a", text: "Influence visitor behaviors to reduce human-caused noise.", isCorrect: true },
@@ -191,7 +191,7 @@
     {
       id: 15,
       text: "Which one of the following is not a tip for managing soundscapes",
-      backgroundImage: "/images/quiz-bg-3.png",
+      backgroundImage: "/images/quiz-bg-5.png",
       correctAnswer: "d",
       options: [
         { key: "a", text: "Use quiet technology" },
@@ -203,7 +203,7 @@
     {
       id: 16,
       text: "\"A science-based decision making process where managers set desired conditions, create indicators and standards of quality, and use science-based approaches to measure change and efficacy of management actions/\" is the definition of:",
-      backgroundImage: "/images/quiz-bg-4.png",
+      backgroundImage: "/images/quiz-bg-5.png",
       correctAnswer: "b",
       options: [
         { key: "a", text: "Synergy cycling" },
@@ -324,7 +324,7 @@
       {#if !quizStarted}
         <div class="welcome-screen">
           <div class="welcome-content">
-            <h1 class="welcome-title">Soundboard Quiz</h1>
+            <h1 class="welcome-title">SOUNDBOARD QUIZ</h1>
             <button class="start-button" on:click={startQuiz}>Start Quiz<span class="arrow-right">»</span></button>
           </div>
         </div>
@@ -350,6 +350,7 @@
         </div>
       
       {:else}
+      <div class="full-quiz-progress-con" >
         <!-- Quiz Screen -->
         <div class="quiz-container">
           <div class="question-text-container">
@@ -371,9 +372,9 @@
                   <!-- O/X Icons (only shown when question is answered) -->
                   {#if isCurrentQuestionAnswered}
                     {#if shouldShowOCircle(option.key)}
-                      <span class="feedback-icon correct-icon">O</span>
+                      <span class="feedback-icon correct-icon"><img loading="lazy" height="20" width="20" alt="" src="/icons/icon-benefit.svg"></span>
                     {:else if shouldShowXCross(option.key)}
-                      <span class="feedback-icon incorrect-icon">✕</span>
+                      <span class="feedback-icon incorrect-icon"><img loading="lazy" height="20" width="20" alt="" src="/icons/icon-negative.svg"></span>
                     {/if}
                   {/if}
                   </div>
@@ -403,17 +404,19 @@
             {/if}
           </div>
         
-          <!-- Progress Bar -->
+
+        </div>
+
+                  <!-- Progress Bar -->
           <div class="progress-container">
             <div class="progress-text">
-              {answeredQuestions.size}/{questions.length}
+              {answeredQuestions.size} of {questions.length}
             </div>
             <div class="progress-bar">
               <div class="progress-fill" style="width: {progressPercentage}%;"></div>
             </div>
           </div>
         </div>
-        
       {/if}
     </div>
     
@@ -424,14 +427,44 @@
 </section>
 
 <style>
-  :global(#review),
-  :global(.review-section) {
+
+  section .welcome-title{
+
+    color:#000;
+    font-family: sans-serif;
+    font-weight: 300;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom:25px;
+    font-size:45px;
+letter-spacing: 5px;
+
+
+  }
+
+  .option-item:has(.feedback-icon){
+  background: rgba(255, 255, 255, 0.5);
+
+  }
+
+.full-quiz-progress-con{
+
+  position: relative;
+  display:flex;
+  flex-direction: column;
+
+width:100%;
+justify-content: center;
+align-items: center;
+}
+
+#review,
+.review-section {
     position: relative;
-    height: 100vh;
+    height: calc(100vh - 76px);
     width: 100vw;
   }
-  :global(.page-inner),
-  :global(.page-content) {
+.page-inner,
+.page-content {
     height: 100%;
     width: 100%;
   }
@@ -458,7 +491,7 @@
   /* Welcome Screen */
   .welcome-screen {
     position: fixed;
-    top: 50%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 100;
@@ -477,17 +510,26 @@
   }
   .start-button {
     cursor: pointer;
-    border: 2px solid white;
-    background: transparent;
+    /* border: 2px solid white; */
+    border: none;
+    background: #2970C0;
     color: white;
-    padding: 15px 40px;
+    padding: 8px 30px;
     font-size: 1.2rem;
-    border-radius: 5px;
+    border-radius: 25px;
     display: inline-flex;
     align-items: center;
   }
   .arrow-right {
-    margin-left: 10px;
+     margin-left: 5px;
+   /* line-height: 34px;
+    font-size:34px;
+        display: inline-flex;
+    align-items: center;
+    justify-content: center; */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
   }
   
   /* Completion Screen - Properly centered */
@@ -564,10 +606,10 @@
   
   /* Quiz Screen */
   .quiz-container {
-    position: fixed;
+    /* position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
     z-index: 10000;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
     color: white;
@@ -642,6 +684,7 @@
     /* padding-left: 30px; */
     line-height: 1.5;
     border-left:24px solid transparent;
+    margin-left:20px;
    
   }
   
@@ -730,18 +773,19 @@
     border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 15px;
+    margin-top: 10px;
   }
   
   .next-button.enabled {
-    background: #FFD700;
+    background: #ffe385;
     color: #333;
   }
   
   .next-button.disabled,
   .finish-button.disabled {
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.5);
+    background: #ffe385;
+    color: #fff;
     cursor: not-allowed;
   }
   
@@ -753,10 +797,14 @@
   /* Progress */
   .progress-container {
     margin-top: 10px;
+    position: relative;
+    z-index: 400;
+        width: 80%;
+    max-width: 600px;
+
   }
   
   .progress-text {
-    text-align: center;
     font-weight: bold;
     color: white;
     margin-bottom: 5px;

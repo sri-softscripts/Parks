@@ -2,6 +2,7 @@
   import { onMount, onDestroy } from "svelte";
   import * as THREE from "three";
   import { tipsHotspots } from "$lib/data/tipsHotspots";
+     import Footer from '$lib/components/Footer.svelte';
 
   let container: HTMLDivElement;
   let activeIndex = -1;
@@ -464,10 +465,26 @@
         </div>
       </div>
     </div>
+
+
+
   </section>
 {/if}
 
+
+<div class="footer-div-out">
+<Footer nextPage="/review"  hikerColor="#fff" textColor="#fff"/>
+</div>
+
 <style>
+
+  .footer-div-out{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+
   .overlay-360 {
     position: absolute;
     top: 76px;
