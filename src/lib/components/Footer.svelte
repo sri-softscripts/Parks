@@ -8,6 +8,7 @@
   export let hikerLink = 'http://hikercompany.com/';
   export let hikerColor = '#fff'; // Default color for Hiker logo and text
   export let textColor = '#fff'; // Separate color for text if needed
+  export let  arrowDisplay = 'inline';
 // export let background = '#000';
   
 
@@ -49,6 +50,7 @@
       <!-- Arrow link to next page -->
       <a
         href={nextPage}
+        style="display: {arrowDisplay}"
         class="button button-down move-to-next"
         aria-label="Go to next page"
         on:click={handlePageTransition}

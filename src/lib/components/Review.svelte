@@ -1,6 +1,7 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  
+  import { onMount } from "svelte";
+  import Footer from "$lib/components/Footer.svelte";
+
   type Option = {
     key: string;
     text: string;
@@ -13,7 +14,7 @@
     backgroundImage: string;
     options: Option[];
     correctAnswer: string;
-    buttonColor:string;
+    buttonColor: string;
   };
   // Quiz state
   let quizStarted = false;
@@ -22,7 +23,7 @@
   let answeredQuestions = new Set<number>();
   let quizCompleted = false;
   let score = 0;
-  
+
   // Questions data
  const questions: Question[] = [
    {
@@ -231,19 +232,19 @@
    }
  ];
 
-  
   // Computed values
   $: currentQuestion = questions[currentQuestionIndex];
-$: currentBackground = quizCompleted
-  ? "/images/quiz-bg-6.png" 
-  : quizStarted
-    ? (currentQuestion?.backgroundImage || "/images/quiz-bg-1.png")
-    : "/images/quiz-bg-1.png";
+  $: currentBackground = quizCompleted
+    ? "/images/quiz-bg-6.png"
+    : quizStarted
+      ? currentQuestion?.backgroundImage || "/images/quiz-bg-1.png"
+      : "/images/quiz-bg-1.png";
   $: isCurrentQuestionAnswered = answeredQuestions.has(currentQuestionIndex);
-  $: progressPercentage = quizStarted && !quizCompleted
-    ? ((answeredQuestions.size) / questions.length) * 100
-    : 0;
-  
+  $: progressPercentage =
+    quizStarted && !quizCompleted
+      ? (answeredQuestions.size / questions.length) * 100
+      : 0;
+
   // Event handlers
   const startQuiz = (): void => {
     quizStarted = true;
@@ -255,101 +256,101 @@ $: currentBackground = quizCompleted
   };
 
   let showExplanationForOption: string | null = null;
-  let userAnswers: Record<number, string> = {}; 
-
+  let userAnswers: Record<number, string> = {};
 
   const handleAnswerSelect = (optionKey: string): void => {
-  if (isCurrentQuestionAnswered || quizCompleted) return;
-  
-  selectedAnswer = optionKey;
-  // Store user's answer
-  userAnswers[currentQuestion.id] = optionKey;
-  // Show explanation for the selected option
-  showExplanationForOption = optionKey;
-  
-  // Add current question to answered questions
-  const updatedSet = new Set(answeredQuestions);
-  updatedSet.add(currentQuestionIndex);
-  answeredQuestions = updatedSet;
-  
-  // Check if answer is correct
-  if (optionKey === currentQuestion.correctAnswer) {
-    score++;
-  }
-};
+    if (isCurrentQuestionAnswered || quizCompleted) return;
 
-  
-const nextQuestion = (): void => {
-  if (!isCurrentQuestionAnswered) return;
-  
-  if (currentQuestionIndex < questions.length - 1) {
-    currentQuestionIndex++;
-    selectedAnswer = null;
-    showExplanationForOption = null; // Reset explanation
-  }
-};
+    selectedAnswer = optionKey;
+    // Store user's answer
+    userAnswers[currentQuestion.id] = optionKey;
+    // Show explanation for the selected option
+    showExplanationForOption = optionKey;
 
-  
+    // Add current question to answered questions
+    const updatedSet = new Set(answeredQuestions);
+    updatedSet.add(currentQuestionIndex);
+    answeredQuestions = updatedSet;
+
+    // Check if answer is correct
+    if (optionKey === currentQuestion.correctAnswer) {
+      score++;
+    }
+  };
+
+  const nextQuestion = (): void => {
+    if (!isCurrentQuestionAnswered) return;
+
+    if (currentQuestionIndex < questions.length - 1) {
+      currentQuestionIndex++;
+      selectedAnswer = null;
+      showExplanationForOption = null; // Reset explanation
+    }
+  };
+
   const finishQuiz = (): void => {
     if (!isCurrentQuestionAnswered) return;
     quizCompleted = true;
   };
-  
-const retakeQuiz = (): void => {
-  quizStarted = false;
-  currentQuestionIndex = 0;
-  selectedAnswer = null;
-  answeredQuestions = new Set();
-  quizCompleted = false;
-  score = 0;
-  showExplanationForOption = null;
-  userAnswers = {}; // Reset user answers
-};
-  
+
+  const retakeQuiz = (): void => {
+    quizStarted = false;
+    currentQuestionIndex = 0;
+    selectedAnswer = null;
+    answeredQuestions = new Set();
+    quizCompleted = false;
+    score = 0;
+    showExplanationForOption = null;
+    userAnswers = {}; // Reset user answers
+  };
+
   // Check if option should show O icon (correct)
   const shouldShowOCircle = (optionKey: string): boolean => {
     if (!isCurrentQuestionAnswered) return false;
-    
+
     // Show O for correct answer (always when question is answered)
     return optionKey === currentQuestion.correctAnswer;
   };
-  
+
   // Check if option should show X icon (incorrect selected)
   const shouldShowXCross = (optionKey: string): boolean => {
     if (!isCurrentQuestionAnswered) return false;
-    
+
     // Show X for selected incorrect answer
-    return selectedAnswer === optionKey && optionKey !== currentQuestion.correctAnswer;
+    return (
+      selectedAnswer === optionKey &&
+      optionKey !== currentQuestion.correctAnswer
+    );
   };
-  
+
   // Get classes for option styling
   const getOptionClasses = (optionKey: string): string => {
     const classes = [];
-    
+
     if (isCurrentQuestionAnswered) {
       // Add answered class to disable clicking
-      classes.push('answered');
-      
+      classes.push("answered");
+
       // Add correct class for correct answer (always shown when answered)
       if (optionKey === currentQuestion.correctAnswer) {
-        classes.push('correct');
+        classes.push("correct");
       }
-      
+
       // Add incorrect class for selected incorrect answer
-      if (selectedAnswer === optionKey && optionKey !== currentQuestion.correctAnswer) {
-        classes.push('incorrect');
+      if (
+        selectedAnswer === optionKey &&
+        optionKey !== currentQuestion.correctAnswer
+      ) {
+        classes.push("incorrect");
       }
     }
-    
-    return classes.join(' ');
+
+    return classes.join(" ");
   };
-  
+
   onMount(() => {
-    console.log('Review component mounted with', questions.length, 'questions');
+    console.log("Review component mounted with", questions.length, "questions");
   });
-
-
-
 </script>
 
 <section id="review" class="review-section">
@@ -357,201 +358,248 @@ const retakeQuiz = (): void => {
     <div class="page-content">
       <!-- Background -->
       <div class="background-container">
-        <div class="background-image" style="background-image: url('{currentBackground}');"></div>
-        
+        <div
+          class="background-image"
+          style="background-image: url('{currentBackground}');"
+        ></div>
       </div>
-      
+
       <!-- Welcome Screen -->
       {#if !quizStarted}
         <div class="welcome-screen">
           <div class="welcome-content">
             <h1 class="welcome-title">SOUNDBOARD QUIZ</h1>
-            <button class="start-button" on:click={startQuiz}>Start Quiz<span class="arrow">»</span>
-</button>
+            <button class="start-button" on:click={startQuiz}
+              >Start Quiz<span class="arrow">»</span>
+            </button>
           </div>
         </div>
-       
-{:else if quizCompleted}
-  <!-- Completion Screen - Properly centered -->
-  <div class="completion-screen-wrapper">
-    <div class="completion-screen">
-      <div class="completion-content">
-        <div class="completion-header">
-          <h3 class="completion-title">CONGRATULATIONS!</h3>
-          <p class="completion-subtitle">You have completed the quiz. Review your results.</p>
+
+        <div class="footer-div-out">
+<Footer nextPage="/learn-more"  hikerColor="#000" textColor="#000" arrowDisplay="none"/>
+</div>
+      {:else if quizCompleted}
+        <!-- Completion Screen - Properly centered -->
+        <div class="completion-screen-wrapper">
+          <div class="completion-screen">
+            <div class="completion-content">
+              <div class="completion-header">
+                <h3 class="completion-title">CONGRATULATIONS!</h3>
+                <p class="completion-subtitle">
+                  You have completed the quiz. Review your results.
+                </p>
+              </div>
+
+              <!-- Question Grid -->
+              <div class="question-grid">
+                {#each questions as question, index}
+                  <div class="question-number">
+                    <span>{index + 1}</span>
+                    {#if userAnswers[question.id] === question.correctAnswer}
+                      <!-- Correct answer -->
+                      <div class="question-indicator correct" title="Correct">
+                        <img
+                          loading="lazy"
+                          height="16"
+                          width="16"
+                          alt=""
+                          src="/icons/icon-benefit.svg"
+                        />
+                      </div>
+                    {:else if userAnswers[question.id]}
+                      <!-- Incorrect answer -->
+                      <div
+                        class="question-indicator incorrect"
+                        title="Incorrect"
+                      >
+                        <img
+                          loading="lazy"
+                          height="14"
+                          width="14"
+                          alt=""
+                          src="/icons/icon-negative.svg"
+                        />
+                      </div>
+                    {:else}
+                      <!-- Not answered (shouldn't happen, but just in case) -->
+                      <div
+                        class="question-indicator not-answered"
+                        title="Not answered"
+                      >
+                        {index + 1}
+                      </div>
+                    {/if}
+                  </div>
+                {/each}
+              </div>
+
+              <footer class="completion-footer">
+                <!-- <button class="retake-button" on:click={retakeQuiz}>Retake Quiz<span class="arrow-right">»</span></button> -->
+
+                <button class="start-button" on:click={retakeQuiz}
+                  >Retake Quiz<span class="arrow">»</span></button
+                >
+              </footer>
+            </div>
+          </div>
         </div>
-        
-        <!-- Question Grid -->
-        <div class="question-grid">
 
+        <div class="footer-div-out">
+          <Footer nextPage="/learn-more" hikerColor="#fff" textColor="#fff" />
+        </div>
+      {:else}
+        <div class="full-quiz-progress-con">
+          <!-- Quiz Screen -->
+          <div class="quiz-container">
+            <div class="question-text-container">
+              <p class="question-text">{currentQuestion.text}</p>
+            </div>
 
-          {#each questions as question, index}
-          
-            <div class="question-number">
-              <span>{index + 1}</span>
-              {#if userAnswers[question.id] === question.correctAnswer}
-                <!-- Correct answer -->
-                <div class="question-indicator correct" title="Correct">
-                  <img loading="lazy" height="16" width="16" alt="" src="/icons/icon-benefit.svg">
+            <div class="options-container">
+              {#each currentQuestion.options as option}
+                <div
+                  class="option-item {getOptionClasses(option.key)}"
+                  on:click={() =>
+                    !isCurrentQuestionAnswered &&
+                    handleAnswerSelect(option.key)}
+                >
+                  <div class="option-content">
+                    <span class="option-text">
+                      {#if isCurrentQuestionAnswered && showExplanationForOption === option.key}
+                        <!-- Show explanation for the clicked option -->
+                        {option.explanation || option.text}
+                      {:else if isCurrentQuestionAnswered && option.key === currentQuestion.correctAnswer}
+                        <!-- Show explanation for correct answer (if user got it wrong) -->
+                        {option.explanation || option.text}
+                      {:else}
+                        <!-- Normal text -->
+                        {option.text}
+                      {/if}
+                    </span>
+
+                    <div class="option-judge">
+                      {#if isCurrentQuestionAnswered}
+                        {#if shouldShowOCircle(option.key)}
+                          <span class="feedback-icon correct-icon">
+                            <img
+                              loading="lazy"
+                              height="23"
+                              width="20"
+                              alt=""
+                              src="/icons/icon-benefit.svg"
+                            />
+                          </span>
+                        {:else if shouldShowXCross(option.key)}
+                          <span class="feedback-icon incorrect-icon">
+                            <img
+                              loading="lazy"
+                              height="22"
+                              width="20"
+                              alt=""
+                              src="/icons/icon-negative.svg"
+                            />
+                          </span>
+                        {/if}
+                      {/if}
+                    </div>
+                  </div>
                 </div>
-              {:else if userAnswers[question.id]}
-                <!-- Incorrect answer -->
-                <div class="question-indicator incorrect" title="Incorrect">
-                  <img loading="lazy" height="14" width="14" alt="" src="/icons/icon-negative.svg">
-                </div>
+              {/each}
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="navigation-container">
+              {#if currentQuestionIndex < questions.length - 1}
+                <button
+                  class="nav-button next-button {currentQuestion.buttonColor} {isCurrentQuestionAnswered
+                    ? 'enabled'
+                    : 'disabled'}"
+                  on:click={nextQuestion}
+                  disabled={!isCurrentQuestionAnswered}
+                >
+                  Next Question
+                </button>
               {:else}
-                <!-- Not answered (shouldn't happen, but just in case) -->
-                <div class="question-indicator not-answered" title="Not answered">
-                  {index + 1}
-                </div>
+                <button
+                  class="nav-button finish-button {isCurrentQuestionAnswered
+                    ? 'enabled'
+                    : 'disabled'}"
+                  on:click={finishQuiz}
+                  disabled={!isCurrentQuestionAnswered}
+                >
+                  Finish
+                </button>
               {/if}
             </div>
-          {/each}
-        </div>
-        
-        <footer class="completion-footer">
-          <!-- <button class="retake-button" on:click={retakeQuiz}>Retake Quiz<span class="arrow-right">»</span></button> -->
-
-                      <button class="start-button" on:click={retakeQuiz}>Retake Quiz<span class="arrow">»</span></button>
-        </footer>
-      </div>
-    </div>
-  </div>
-      
-      {:else}
-      <div class="full-quiz-progress-con" >
-        <!-- Quiz Screen -->
-        <div class="quiz-container">
-          <div class="question-text-container">
-            <p class="question-text">{currentQuestion.text}</p>
           </div>
-        
-          <div class="options-container">
-{#each currentQuestion.options as option}
-  <div
-    class="option-item {getOptionClasses(option.key)}"
-    on:click={() => !isCurrentQuestionAnswered && handleAnswerSelect(option.key)}
-  >
-    <div class="option-content">
-      <span class="option-text">
-        {#if isCurrentQuestionAnswered && showExplanationForOption === option.key}
-          <!-- Show explanation for the clicked option -->
-          {option.explanation || option.text}
-        {:else if isCurrentQuestionAnswered && option.key === currentQuestion.correctAnswer}
-          <!-- Show explanation for correct answer (if user got it wrong) -->
-          {option.explanation || option.text}
-        {:else}
-          <!-- Normal text -->
-          {option.text}
-        {/if}
-      </span>
-      
-      <div class="option-judge">
-        {#if isCurrentQuestionAnswered}
-          {#if shouldShowOCircle(option.key)}
-            <span class="feedback-icon correct-icon">
-              <img loading="lazy" height="23" width="20" alt="" src="/icons/icon-benefit.svg">
-            </span>
-          {:else if shouldShowXCross(option.key)}
-            <span class="feedback-icon incorrect-icon">
-              <img loading="lazy" height="22" width="20" alt="" src="/icons/icon-negative.svg">
-            </span>
-          {/if}
-        {/if}
-      </div>
-    </div>
-  </div>
-{/each}
-          </div>
-        
-          <!-- Navigation buttons -->
-          <div class="navigation-container">
-            {#if currentQuestionIndex < questions.length - 1}
-              <button
-                class="nav-button next-button {currentQuestion.buttonColor} {isCurrentQuestionAnswered ? 'enabled' : 'disabled'}"
-                on:click={nextQuestion}
-                disabled={!isCurrentQuestionAnswered}
-              >
-                Next Question
-              </button>
-            {:else}
-              <button
-                class="nav-button finish-button {isCurrentQuestionAnswered ? 'enabled' : 'disabled'}"
-                on:click={finishQuiz}
-                disabled={!isCurrentQuestionAnswered}
-              >
-                Finish
-              </button>
-            {/if}
-          </div>
-        
 
-        </div>
-
-                  <!-- Progress Bar -->
+          <!-- Progress Bar -->
           <div class="progress-container">
             <div class="progress-text">
               {answeredQuestions.size} of {questions.length}
             </div>
             <div class="progress-bar">
-              <div class="progress-fill" style="width: {progressPercentage}%;"></div>
+              <div
+                class="progress-fill"
+                style="width: {progressPercentage}%;"
+              ></div>
             </div>
           </div>
         </div>
+
+
+          <div class="footer-div-out">
+          <Footer nextPage="/learn-more" hikerColor="#fff" textColor="#fff"  arrowDisplay="none"/>
+        </div>
       {/if}
     </div>
-    
-
-
   </div>
- 
 </section>
 
 <style>
+  .footer-div-out {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 100000;
+  }
 
-
-
-  section .welcome-title{
-
-    color:#000;
+  section .welcome-title {
+    color: #000;
     font-family: sans-serif;
     font-weight: 300;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    margin-bottom:25px;
-    font-size:45px;
-letter-spacing: 5px;
-
-
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 25px;
+    font-size: 45px;
+    letter-spacing: 5px;
   }
 
-  .option-item:has(.feedback-icon){
-  background: rgba(255, 255, 255, 0.5);
-
+  .option-item:has(.feedback-icon) {
+    background: rgba(255, 255, 255, 0.5);
   }
 
-.full-quiz-progress-con{
+  .full-quiz-progress-con {
+    position: relative;
+    display: flex;
+    flex-direction: column;
 
-  position: relative;
-  display:flex;
-  flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
 
-width:100%;
-justify-content: center;
-align-items: center;
-}
-
-#review,
-.review-section {
+  #review,
+  .review-section {
     position: relative;
     height: calc(100vh - 76px);
     width: 100vw;
   }
-.page-inner,
-.page-content {
+  .page-inner,
+  .page-content {
     height: 100%;
     width: 100%;
   }
-  
+
   /* Background */
   .background-container {
     position: fixed;
@@ -570,7 +618,7 @@ align-items: center;
     background-size: cover;
     background-position: center;
   }
-  
+
   /* Welcome Screen */
   .welcome-screen {
     position: fixed;
@@ -589,7 +637,7 @@ align-items: center;
   .welcome-title {
     font-size: 2.5rem;
     margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
   /* .start-button {
     cursor: pointer;
@@ -609,7 +657,7 @@ align-items: center;
   } */
 
   .start-button {
-  background-color: #2970C0;
+    background-color: #2970c0;
     color: #ffffff;
     -webkit-transition: all 150ms ease;
     transition: all 150ms ease;
@@ -624,8 +672,6 @@ align-items: center;
     border-radius: 50px;
   }
 
-
-
   span.arrow {
     font-size: 30px;
     bottom: -3px;
@@ -633,12 +679,12 @@ align-items: center;
     margin-left: 6px;
     line-height: 0;
     color: #ffffff;
-}
+  }
   .arrow-right {
-     margin-left: 5px;
-     line-height: 0;
+    margin-left: 5px;
+    line-height: 0;
 
-   /* line-height: 34px;
+    /* line-height: 34px;
     font-size:34px;
         display: inline-flex;
     align-items: center;
@@ -648,14 +694,14 @@ align-items: center;
     align-items: center; */
   }
 
-/* .arrow-right path {
+  /* .arrow-right path {
   fill: none;
   stroke: white;
   stroke-width: 2; 
 
 
 } */
-  
+
   /* Completion Screen - Properly centered */
   .completion-screen-wrapper {
     position: fixed;
@@ -668,9 +714,13 @@ align-items: center;
     justify-content: center;
     z-index: 10000;
   }
-  
+
   .completion-screen {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.9)
+    );
     color: white;
     padding: 40px;
     width: 80%;
@@ -680,7 +730,7 @@ align-items: center;
     text-align: center;
     backdrop-filter: blur(5px);
   }
-  
+
   .completion-content {
     display: block;
   }
@@ -688,8 +738,7 @@ align-items: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap:0;
-
+    gap: 0;
   }
   .completion-title {
     color: #fff;
@@ -703,7 +752,7 @@ align-items: center;
     color: #ddd;
     margin-bottom: 30px;
     font-weight: bold;
-    margin-top:0;
+    margin-top: 0;
     font-size: 14px;
     line-height: 19px;
     font-weight: 600;
@@ -722,7 +771,7 @@ align-items: center;
   .score-percentage {
     font-size: 3rem;
     font-weight: bold;
-    color: #4CAF50;
+    color: #4caf50;
     margin: 10px 0;
   }
   .completion-footer {
@@ -730,8 +779,8 @@ align-items: center;
   }
   .retake-button {
     cursor: pointer;
-    border: 2px solid #4CAF50;
-    background: #4CAF50;
+    border: 2px solid #4caf50;
+    background: #4caf50;
     color: white;
     padding: 15px 40px;
     font-size: 1.1rem;
@@ -739,7 +788,7 @@ align-items: center;
     display: inline-flex;
     align-items: center;
   }
-  
+
   /* Quiz Screen */
   .quiz-container {
     /* position: fixed;
@@ -747,7 +796,11 @@ align-items: center;
     left: 50%;
     transform: translate(-50%, -50%); */
     z-index: 10000;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.4)
+    );
     color: white;
     /* padding: 40px; */
     padding: 60px 70px 30px 75px;
@@ -755,18 +808,18 @@ align-items: center;
     width: 80%;
     max-width: 630px;
     border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     text-align: center;
     backdrop-filter: blur(2px);
   }
-  
+
   .question-text-container {
     color: white;
     padding: 0 0 20px 0;
     margin-bottom: 20px;
     text-align: center;
   }
-  
+
   .question-text {
     font-size: 16px;
     line-height: 1.5;
@@ -774,38 +827,34 @@ align-items: center;
     margin: 0;
     font-weight: bold;
   }
-  
+
   /* Options Container */
   .options-container {
     margin-bottom: 20px;
   }
 
- .option-item {
+  .option-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  
-  cursor: pointer;
-  color: white;
-  position: relative;
+    cursor: pointer;
+    color: white;
+    position: relative;
 
-  /* height:75px; */
-  height:80px;
-  /* margin: 15px 0; */
-  align-items: center;
-      display: grid;
-}
+    /* height:75px; */
+    height: 80px;
+    /* margin: 15px 0; */
+    align-items: center;
+    display: grid;
+  }
 
-
-   .option-item:first-child{
+  .option-item:first-child {
     border-top: 1px solid rgba(255, 255, 255, 0.4);
   }
-  
+
   /* .option-item:last-child {
     border-bottom: none;
   } */
-  
- 
-  
+
   /* Option Content */
   .option-content {
     display: flex;
@@ -813,7 +862,7 @@ align-items: center;
     align-items: center;
     flex-direction: row-reverse;
   }
-  
+
   .option-text {
     cursor: pointer;
     font-size: 14px;
@@ -825,19 +874,18 @@ align-items: center;
     /* padding-left: 30px; */
     line-height: 1.5;
     /* border-left:24px solid transparent; */
-    padding-left:5px;
-    padding-right:35px;
-   
+    padding-left: 5px;
+    padding-right: 35px;
   }
-  
+
   /* Feedback Icons */
   .feedback-icon {
-    position:absolute;
-    top:0;
-    left:0;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 35px;
     /* height:73px; */
-    height:100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -845,47 +893,45 @@ align-items: center;
     font-weight: bold;
     flex-shrink: 0;
   }
-  
+
   .correct-icon {
     color: #fff;
-     background:  #509917;
-        
+    background: #509917;
+
     font-weight: bold;
     /* height: 50px; */
+  }
 
-
-}
-  
   .incorrect-icon {
-    color:#fff ;
+    color: #fff;
     background: #f44336;
     font-weight: bold;
     /* height: 50px; */
   }
-  
+
   /* Correct Answer Styling - Green left bar + always shown when answered */
   .option-item.correct {
     position: relative;
   }
-  
+
   .option-item.correct::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
     width: 6px;
-    background: linear-gradient(to bottom, #4CAF50, #2E7D32);
+    background: linear-gradient(to bottom, #4caf50, #2e7d32);
     border-radius: 0 3px 3px 0;
   }
-  
+
   /* Incorrect Selected Answer Styling - Red left bar */
   .option-item.incorrect {
     position: relative;
   }
-  
+
   .option-item.incorrect::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 0;
     top: 0;
@@ -894,22 +940,22 @@ align-items: center;
     background: linear-gradient(to bottom, #f44336, #c62828);
     border-radius: 0 3px 3px 0;
   }
-  
+
   /* Disabled state for answered questions */
   .option-item.answered {
     cursor: default;
   }
-  
+
   .option-item.answered .option-text {
     cursor: default;
   }
-  
+
   /* Navigation */
   .navigation-container {
     text-align: center;
     margin-bottom: 15px;
   }
-  
+
   .nav-button {
     padding: 12px 30px;
     border: none;
@@ -919,68 +965,65 @@ align-items: center;
     font-size: 15px;
     margin-top: 10px;
   }
-  
+
   .next-button.enabled {
     /* background: #ffe385; */
     color: #000;
   }
-     .navigation-container .light-yellow{
-        background: #ffe385;
-   }
-  
+  .navigation-container .light-yellow {
+    background: #ffe385;
+  }
 
-      .navigation-container .blue{
-        background: #2970C0;
-   }
+  .navigation-container .blue {
+    background: #2970c0;
+  }
 
-         .navigation-container .green{
-        background: #509917;
-   }
+  .navigation-container .green {
+    background: #509917;
+  }
 
-      .navigation-container .yellow{
-        background: #EDBB3E;
-   }
-  .next-button.disabled{
+  .navigation-container .yellow {
+    background: #edbb3e;
+  }
+  .next-button.disabled {
     color: #fff;
     cursor: not-allowed;
   }
-
 
   .finish-button.disabled {
-    background: #EDBB3E;
+    background: #edbb3e;
     color: #fff;
     cursor: not-allowed;
   }
-  
+
   .finish-button.enabled {
-    background: #EDBB3E;
+    background: #edbb3e;
     color: #000;
   }
-  
+
   /* Progress */
   .progress-container {
     margin-top: 10px;
     position: relative;
     z-index: 400;
-        width: 80%;
+    width: 80%;
     max-width: 600px;
-
   }
-  
+
   .progress-text {
     font-weight: bold;
     color: white;
     margin-bottom: 5px;
     font-size: 1rem;
   }
-  
+
   .progress-bar {
     height: 4px;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 2px;
     overflow: hidden;
   }
-  
+
   .progress-fill {
     height: 100%;
     background-color: rgba(255, 255, 255, 0.9);
@@ -988,120 +1031,111 @@ align-items: center;
   }
 
   .option-judge {
-    width:35px;
+    width: 35px;
   }
-
-
 
   /* Question Grid Styles */
-.question-grid {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  row-gap: 30px;
-  margin: 30px 0;
-  padding: 20px;
- 
-  border-radius: 10px;
-}
-
-.question-number {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap:30px;
-  position: relative;
-  padding-bottom:20px;
-  
-
-}
-
-.question-number::before{
-  content:"";
-  height:70%;
-  width: 100%;
- background: rgba(255, 255, 255, 0.05);
- position:absolute;
- z-index:-1;
- bottom:0;
- left:0;
-
-}
-
-.question-number:first-child::before {
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-}
-.question-number:last-child::before {
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-}
-
-.question-number:nth-child(8n + 1)::before {
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-}
-
-/* Right curve: 8, 16, 24, ... */
-.question-number:nth-child(8n)::before {
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-}
-
-.question-number span{
-  font-weight: bold;
-}
-
-.question-indicator {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.2s;
-  
-}
-
-
-
-.question-indicator.correct {
-  background-color: #4CAF50;
-  color: white;
-  border: 2px solid #2E7D32;
-}
-
-.question-indicator.incorrect {
-  background-color: #f44336;
-  color: white;
-  border: 2px solid #c62828;
-}
-
-.question-indicator.not-answered {
-  background-color: #666;
-  color: #ddd;
-  border: 2px solid #888;
-}
-
-/* Optional: Add tooltip with question details */
-.question-indicator {
-  position: relative;
-}
-
-
-/* Responsive grid for smaller screens */
-@media (max-width: 768px) {
   .question-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    row-gap: 30px;
+    margin: 30px 0;
+    padding: 20px;
 
-@media (max-width: 480px) {
-  .question-grid {
-    grid-template-columns: repeat(3, 1fr);
+    border-radius: 10px;
   }
-}
+
+  .question-number {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    padding-bottom: 20px;
+  }
+
+  .question-number::before {
+    content: "";
+    height: 70%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+  }
+
+  .question-number:first-child::before {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+  .question-number:last-child::before {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+
+  .question-number:nth-child(8n + 1)::before {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+  }
+
+  /* Right curve: 8, 16, 24, ... */
+  .question-number:nth-child(8n)::before {
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+
+  .question-number span {
+    font-weight: bold;
+  }
+
+  .question-indicator {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .question-indicator.correct {
+    background-color: #4caf50;
+    color: white;
+    border: 2px solid #2e7d32;
+  }
+
+  .question-indicator.incorrect {
+    background-color: #f44336;
+    color: white;
+    border: 2px solid #c62828;
+  }
+
+  .question-indicator.not-answered {
+    background-color: #666;
+    color: #ddd;
+    border: 2px solid #888;
+  }
+
+  /* Optional: Add tooltip with question details */
+  .question-indicator {
+    position: relative;
+  }
+
+  /* Responsive grid for smaller screens */
+  @media (max-width: 768px) {
+    .question-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .question-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 </style>
