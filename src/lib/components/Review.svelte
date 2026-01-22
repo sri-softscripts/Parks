@@ -234,7 +234,9 @@
   
   // Computed values
   $: currentQuestion = questions[currentQuestionIndex];
-  $: currentBackground = quizStarted
+$: currentBackground = quizCompleted
+  ? "/images/quiz-bg-6.png" 
+  : quizStarted
     ? (currentQuestion?.backgroundImage || "/images/quiz-bg-1.png")
     : "/images/quiz-bg-1.png";
   $: isCurrentQuestionAnswered = answeredQuestions.has(currentQuestionIndex);
@@ -364,21 +366,8 @@ const retakeQuiz = (): void => {
         <div class="welcome-screen">
           <div class="welcome-content">
             <h1 class="welcome-title">SOUNDBOARD QUIZ</h1>
-            <button class="start-button" on:click={startQuiz}>Start Quiz<span class="arrow-right">
-<svg xmlns="http://www.w3.org/2000/svg"
-     width="20"
-     height="20"
-     viewBox="0 0 20 20">
-  <path
-    d="M4 4l6 6-6 6M10 4l6 6-6 6"
-    fill="none"
-    stroke="#fff"
-    stroke-width="3"
-    stroke-linecap="butt"
-    stroke-linejoin="miter"/>
-</svg>
-
-            </span></button>
+            <button class="start-button" on:click={startQuiz}>Start Quiz<span class="arrow">»</span>
+</button>
           </div>
         </div>
        
@@ -403,12 +392,12 @@ const retakeQuiz = (): void => {
               {#if userAnswers[question.id] === question.correctAnswer}
                 <!-- Correct answer -->
                 <div class="question-indicator correct" title="Correct">
-                  <img loading="lazy" height="23" width="20" alt="" src="/icons/icon-benefit.svg">
+                  <img loading="lazy" height="16" width="16" alt="" src="/icons/icon-benefit.svg">
                 </div>
               {:else if userAnswers[question.id]}
                 <!-- Incorrect answer -->
                 <div class="question-indicator incorrect" title="Incorrect">
-                  <img loading="lazy" height="22" width="20" alt="" src="/icons/icon-negative.svg">
+                  <img loading="lazy" height="14" width="14" alt="" src="/icons/icon-negative.svg">
                 </div>
               {:else}
                 <!-- Not answered (shouldn't happen, but just in case) -->
@@ -423,21 +412,7 @@ const retakeQuiz = (): void => {
         <footer class="completion-footer">
           <!-- <button class="retake-button" on:click={retakeQuiz}>Retake Quiz<span class="arrow-right">»</span></button> -->
 
-                      <button class="start-button" on:click={retakeQuiz}>Retake Quiz<span class="arrow-right">
-<svg xmlns="http://www.w3.org/2000/svg"
-     width="20"
-     height="20"
-     viewBox="0 0 20 20">
-  <path
-    d="M4 4l6 6-6 6M10 4l6 6-6 6"
-    fill="none"
-    stroke="#fff"
-    stroke-width="3"
-    stroke-linecap="butt"
-    stroke-linejoin="miter"/>
-</svg>
-
-            </span></button>
+                      <button class="start-button" on:click={retakeQuiz}>Retake Quiz<span class="arrow">»</span></button>
         </footer>
       </div>
     </div>
@@ -534,6 +509,8 @@ const retakeQuiz = (): void => {
 
 <style>
 
+
+
   section .welcome-title{
 
     color:#000;
@@ -614,20 +591,49 @@ align-items: center;
     margin-bottom: 30px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   }
-  .start-button {
+  /* .start-button {
     cursor: pointer;
-    /* border: 2px solid white; */
     border: none;
     background: #2970C0;
     color: white;
     padding: 8px 30px;
-    font-size: 18px;
     border-radius: 25px;
     display: inline-flex;
     align-items: center;
+
+
+        font-size: 10px;
+    font-weight: 700;
     text-transform: uppercase;
-    font-weight: bold;
+    line-height: 1;
+  } */
+
+  .start-button {
+  background-color: #2970C0;
+    color: #ffffff;
+    -webkit-transition: all 150ms ease;
+    transition: all 150ms ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1;
+    display: inline-block;
+    padding: 8px 25px;
+    border-radius: 50px;
   }
+
+
+
+  span.arrow {
+    font-size: 30px;
+    bottom: -3px;
+    position: relative;
+    margin-left: 6px;
+    line-height: 0;
+    color: #ffffff;
+}
   .arrow-right {
      margin-left: 5px;
      line-height: 0;
@@ -679,16 +685,28 @@ align-items: center;
     display: block;
   }
   .completion-header {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:0;
+
   }
   .completion-title {
     color: #fff;
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 15px;
+    font-weight: normal;
+    text-align: left;
+    width: 71%;
   }
   .completion-subtitle {
     color: #ddd;
     margin-bottom: 30px;
+    font-weight: bold;
+    margin-top:0;
+    font-size: 14px;
+    line-height: 19px;
+    font-weight: 600;
   }
   .score-container {
     margin: 30px 0;
@@ -808,6 +826,7 @@ align-items: center;
     line-height: 1.5;
     /* border-left:24px solid transparent; */
     padding-left:5px;
+    padding-right:35px;
    
   }
   
@@ -903,7 +922,7 @@ align-items: center;
   
   .next-button.enabled {
     /* background: #ffe385; */
-    color: #333;
+    color: #000;
   }
      .navigation-container .light-yellow{
         background: #ffe385;
@@ -928,14 +947,14 @@ align-items: center;
 
 
   .finish-button.disabled {
-    background: #ffe385;
+    background: #EDBB3E;
     color: #fff;
     cursor: not-allowed;
   }
   
   .finish-button.enabled {
-    background: #4CAF50;
-    color: white;
+    background: #EDBB3E;
+    color: #000;
   }
   
   /* Progress */
@@ -992,7 +1011,6 @@ align-items: center;
   align-items: center;
   gap:30px;
   position: relative;
-  /* padding:0 20px 20px; */
   padding-bottom:20px;
   
 
@@ -1007,11 +1025,36 @@ align-items: center;
  z-index:-1;
  bottom:0;
  left:0;
+
+}
+
+.question-number:first-child::before {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.question-number:last-child::before {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.question-number:nth-child(8n + 1)::before {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+/* Right curve: 8, 16, 24, ... */
+.question-number:nth-child(8n)::before {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.question-number span{
+  font-weight: bold;
 }
 
 .question-indicator {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
