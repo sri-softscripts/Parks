@@ -305,7 +305,8 @@
 
 <div class="overlay-360 {showViewer ? 'hidden' : ''}" on:click={enter360}>
   <div class="overlay-content">
-    <img loading="lazy" src="/icons/icon-360.svg" alt="360" width="100" />
+    <!-- <img loading="lazy" src="/icons/icon-360.svg" alt="360" width="100" /> -->
+     <img loading="eager" src="/icons/icon-360.svg" alt="360" width="100" height="100" />
     <span>360<sup>0</sup> Experience</span>
   </div>
 </div>

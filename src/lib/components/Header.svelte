@@ -1,7 +1,7 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
-  import { fly } from 'svelte/transition';
+    import OptimizedImage from '$lib/components/OptimizedImage.svelte';
 
   // Track which pages should have animation
   const animatedPages = ['spectrogram', 'physics-of-sound', 'functional-effects'];
@@ -54,10 +54,14 @@
 <header class="site-header">
   <div class="site-header__inner">
     <a class="branding" href="/" on:click|preventDefault={() => goto("/")}>
-      <img
+      <!-- <img
         src="/images/logo@2x.png"
         alt="National Park Service logo"
-      />
+      /> -->
+
+   <div class="header-optimize-mar">
+<OptimizedImage src="/images/logo@2x.png" loading="eager" alt="logo" width={33}  height={44} priority={true} />
+    </div>
       <p>
         National Park Service
         <small>In partnership with Penn State University</small>
@@ -87,6 +91,10 @@
 
 <!-- Add this CSS for animations -->
 <style>
+
+  .header-optimize-mar{
+    margin-right:13px;
+  }
   /* Animation for specific pages */
   .page-transition-animated main > * {
     animation: pageFlyIn 600ms ease-out 300ms both;

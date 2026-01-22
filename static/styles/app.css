@@ -7,18 +7,18 @@
 @font-face {
   font-family: 'Coda';
   src: url('/fonts/Coda-Regular.woff2') format('woff2'),
-       url('/fonts/Coda-Regular.woff') format('woff'),
-       url('/fonts/Coda-Regular.ttf') format('truetype');
+       url('/fonts/Coda-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
+
+
 @font-face {
   font-family: 'Coda';
   src: url('/fonts/Coda-ExtraBold.woff2') format('woff2'),
-       url('/fonts/Coda-ExtraBold.woff') format('woff'),
-       url('/fonts/Coda-ExtraBold.ttf') format('truetype');
+       url('/fonts/Coda-ExtraBold.woff') format('woff');
   font-weight: 800;
   font-style: normal;
   font-display: swap;
