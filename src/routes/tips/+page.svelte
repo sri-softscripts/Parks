@@ -406,12 +406,28 @@
       {showSummary ? 'active toTop' : ''}"
       >
         <!-- Summary Toggle Button -->
-        <div
-          class="button-summary {showSummary ? 'active' : ''}"
-          on:click={toggleSummary}
-        >
-          <span>SUMMARY OF TIPS</span>
-        </div>
+<div
+  class="button-summary {showSummary ? 'active' : ''}"
+  on:click={toggleSummary}
+>
+  <span class="label">
+    SUMMARY OF TIPS
+    <span class="arrow">
+      <svg xmlns="http://www.w3.org/2000/svg"
+     width="16"
+     height="16"
+     viewBox="0 0 20 20">
+  <path
+    d="M4 4l6 6-6 6M10 4l6 6-6 6"
+    fill="none"
+    stroke="#fff"
+    stroke-width="3"
+    stroke-linecap="butt"
+    stroke-linejoin="miter"/>
+</svg>
+    </span>
+  </span>
+</div>
         <div class="summary-wrap">
           <div class="summary-container">
             <div class="summary-header">SUMMARY: TIPS AT A GLANCE</div>
@@ -1138,21 +1154,52 @@
 
     font-weight: 700;
   }
-  .summary-pannel .button-summary.active span:after {
+  /* .summary-pannel .button-summary.active span:after {
     content: "\f103";
-  }
+  } */
+
+  .button-summary {
+  cursor: pointer;
+  user-select: none;
+}
+
+.button-summary .label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+  .button-summary .arrow {
+  display: inline-block;
+  font-size: 40px;
+  transition: transform 0.25s ease;
+}
   .summary-pannel .button-summary span {
-    font-size: 10px;
+    font-size: 12px;
     text-transform: uppercase;
   }
-  .summary-pannel .button-summary span:after {
+  /* .summary-pannel .button-summary span:after {
     font-size: 15px;
     content: "\f102";
     margin-left: 5px;
     display: inline-block;
     vertical-align: middle;
     font-family: "FontAwesome";
-  }
+  } */
+
+
+  /* Closed state → pointing right */
+.button-summary .arrow {
+    transform: rotate(270deg);
+
+}
+
+/* Open state → pointing down */
+.button-summary.active .arrow {
+  transform: rotate(90deg);
+}
   .summary-pannel .summary-wrap {
     display: none;
   }
