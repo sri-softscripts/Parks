@@ -5,6 +5,7 @@
   import Spectrogramtwo from '$lib/components/Spectrogram/Spectrogram-2.svelte';
   import Spectrogramthree from '$lib/components/Spectrogram/Spectrogram-3.svelte';
   import { activeSpectrogram } from '$lib/components/Spectrogram/spectrogramStore';
+    import '../../spectrogram.css'
 
   let currentSection = 1;
 
@@ -93,6 +94,7 @@
 </div>
 
 <style>
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
   .spectrogram-container {
     position: relative;
     width: 100%;

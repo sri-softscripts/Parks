@@ -10,14 +10,14 @@
 
 <svelte:head>
   <link rel="icon" href="/favicon.svg" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"> -->
 
   <!-- Legacy CSS (temporary) -->
   <link rel="stylesheet" href="/styles/app.css" />
   <!-- <link rel="stylesheet" href="/styles/banner.css" /> -->
-  <link rel="stylesheet" href="/styles/banner-styles.css" />
-  <link rel="stylesheet" href="/styles/css.css" />
-  <link rel="stylesheet" href="/styles/iconochive.css" />
+  <!-- <link rel="stylesheet" href="/styles/banner-styles.css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/css.css" /> -->
+  <!-- <link rel="stylesheet" href="/styles/iconochive.css" /> -->
   <!-- <link rel="stylesheet" href="/css/slick.css" /> -->
 </svelte:head>
 

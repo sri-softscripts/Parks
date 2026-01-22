@@ -317,7 +317,8 @@ function addHotspots() {
   on:click={enter360}
 >
   <div class="overlay-content">
-    <OptimizedImage src="/icons/icon-360.svg" loading="eager" alt="360" width={100}  height={100} priority={true} />
+    <!-- <OptimizedImage src="/icons/icon-360.svg" loading="eager" alt="360" width={100}  height={100} priority={true} /> -->
+     <img loading="eager" src="/icons/icon-360.svg" alt="360" width="100" />
     <span>360<sup>0</sup> Experience</span>
   </div>
 </div>
@@ -509,6 +510,8 @@ function addHotspots() {
     50% { transform: scale(1.1); }
     100% { transform: scale(1); }
   }
+
+
 
 
 

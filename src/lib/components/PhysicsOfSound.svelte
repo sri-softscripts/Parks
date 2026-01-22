@@ -835,4 +835,658 @@ function createChart() {
       transform: translateY(-16px);
     }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+#physics-of-sound {
+  color: #ffffff; }
+  #physics-of-sound .page-content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column; }
+  #physics-of-sound .page-header {
+    text-align: center;
+    padding: 91px 0 200px; }
+  #physics-of-sound .page-title {
+    font-size: 52px;
+    letter-spacing: 0.2em;
+    margin: 0 0 39px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #000000; }
+  #physics-of-sound .sub-title {
+    font-size: 16px;
+    line-height: 22px;
+    max-width: 480px;
+    margin: 0 auto;
+    font-weight: 600; }
+  #physics-of-sound .section-header {
+    position: relative; }
+    #physics-of-sound .section-header:before, #physics-of-sound .section-header:after {
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      z-index: 0;
+      background-repeat: no-repeat; }
+    #physics-of-sound .section-header .container {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      min-height: 250px;
+      position: relative;
+      z-index: 10; }
+    #physics-of-sound .section-header__inner {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex; }
+    #physics-of-sound .section-header__name {
+      padding-right: 35px;
+      text-align: right;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column; }
+    #physics-of-sound .section-header__title {
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 42px;
+      margin: -4px 0 0;
+      color: #ffffff;
+      text-transform: uppercase; }
+    #physics-of-sound .section-header__subtitle, #physics-of-sound .section-header__summary {
+      font-size: 14px;
+      line-height: 19px;
+      font-weight: 600; }
+    #physics-of-sound .section-header__subtitle {
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      margin: 6px 0 0;
+      white-space: nowrap; }
+      #physics-of-sound .section-header__subtitle strong {
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: none; }
+    #physics-of-sound .section-header__summary {
+      line-height: 18px;
+      padding-left: 35px;
+      border-left: 1px solid #ffffff;
+      min-width: 360px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-flex: 6;
+          -ms-flex: 6;
+              flex: 6;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column; }
+      #physics-of-sound .section-header__summary h4 {
+        margin: 0 0 20px;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.2em; }
+      #physics-of-sound .section-header__summary p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 600; }
+    #physics-of-sound .section-header--gold:after {
+      background-image: url("/images/soundwave_yellow-bgremove.png");
+      background-size: 320%;
+      background-position: left center;
+      width: 36%;
+      top: 44%;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+      right: 0; }
+    #physics-of-sound .section-header--orange:before {
+      background-image: url("/images/NL_soundwave_orange.webp");
+      background-size: 170%;
+      background-position: right center;
+      width: 36%;
+      top: 52%;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+      left: 0; }
+  #physics-of-sound .title-line {
+    margin-bottom: 57px; }
+    #physics-of-sound .title-line__title {
+      text-transform: uppercase;
+      font-size: 32px;
+      font-weight: 800;
+      margin: 0;
+      position: relative; }
+      #physics-of-sound .title-line__title:after {
+        content: '';
+        display: block;
+        width: 80%;
+        height: 1px;
+        background-color: #ffffff;
+        position: absolute;
+        top: 50%;
+        margin-top: -.5px;
+        right: 0; }
+  #physics-of-sound .callout {
+    background: rgba(0, 0, 0, 0.44);
+    width: 530px;
+    border-radius: 40px;
+    padding: 50px;
+    margin-bottom: 40px; }
+    #physics-of-sound .callout:last-child {
+      margin-bottom: 0; }
+    #physics-of-sound .callout__title {
+      font-size: 14px;
+      line-height: 22px;
+      font-weight: 600;
+      margin-bottom: 31px; }
+      #physics-of-sound .callout__title strong {
+        font-weight: 800; }
+    #physics-of-sound .callout__image {
+      margin-bottom: 6px; }
+    #physics-of-sound .callout__note {
+      font-size: 11px;
+      line-height: 15.5px; }
+  #physics-of-sound .keyword {
+    margin-bottom: 43px; }
+    #physics-of-sound .keyword:last-child {
+      margin-bottom: 0; }
+    #physics-of-sound .keyword__word {
+      font-size: 18px;
+      line-height: 28px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      margin-bottom: 8px; }
+    #physics-of-sound .keyword__definition {
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 21px; }
+    #physics-of-sound .keyword__callout {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 10px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      margin-top: 17px; }
+      #physics-of-sound .keyword__callout.big {
+        padding: 20px; }
+      #physics-of-sound .keyword__callout img {
+        border-radius: 13px;
+        margin-right: 15px;
+        max-width: 180px; }
+        #physics-of-sound .keyword__callout img.stopwatch {
+          max-width: 73px;
+          margin: 0 15px 0 10px; }
+      #physics-of-sound .keyword__callout__content {
+        font-size: 14px;
+        line-height: 21px;
+        font-style: italic;
+        margin-top: -3px; }
+        #physics-of-sound .keyword__callout__content .special {
+          font-size: 50px;
+          font-weight: 800;
+          float: left;
+          font-style: normal;
+          margin-top: 10px;
+          margin-right: 7px; }
+  #physics-of-sound .sound-effects {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justofy-content: space-between;
+    padding-left: 71px; }
+  #physics-of-sound .sound-effect {
+    text-align: center;
+    padding: 18px 10px 0;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    position: relative;
+    -webkit-transition: all 150ms ease;
+    transition: all 150ms ease; }
+    #physics-of-sound .sound-effect.active, #physics-of-sound .sound-effect:hover {
+      background: rgba(255, 255, 255, 0.25); }
+      #physics-of-sound .sound-effect.active:before, #physics-of-sound .sound-effect:hover:before {
+        content: '';
+        display: block;
+        height: 269px;
+        width: 100%;
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+        background: inherit;
+        -webkit-transition: all 150ms ease;
+        transition: all 150ms ease; }
+    #physics-of-sound .sound-effect__icon {
+      height: 32px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      margin-bottom: 14px; }
+    #physics-of-sound .sound-effect__button {
+      background-color: #FF931E;
+      color: #ffffff;
+      -webkit-transition: all 150ms ease;
+      transition: all 150ms ease;
+      border: 2px solid transparent;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1;
+      display: inline-block;
+      padding: 3px 8px 1px;
+      border-radius: 50px;
+      letter-spacing: 0.1em;
+      margin-bottom: 18px; }
+      #physics-of-sound .sound-effect__button i {
+        margin-right: 2px;
+        color: #ffffff; }
+      #physics-of-sound .sound-effect__button span.arrow {
+        font-size: 15px;
+        top: 1px;
+        position: relative;
+        margin-left: 6px;
+        line-height: 0;
+        color: #ffffff; }
+      #physics-of-sound .sound-effect__button:hover {
+        color: #000000;
+        text-decoration: none; }
+        #physics-of-sound .sound-effect__button:hover i,
+        #physics-of-sound .sound-effect__button:hover .span.arrow {
+          color: #ffffff; }
+      #physics-of-sound .sound-effect__button:focus {
+        outline: none; }
+      #physics-of-sound .sound-effect__button.playing {
+        background-color: #ED2024; }
+        #physics-of-sound .sound-effect__button.playing .play {
+          display: none; }
+        #physics-of-sound .sound-effect__button.playing .pause {
+          display: block; }
+      #physics-of-sound .sound-effect__button .pause {
+        display: none;
+       align-items: center;
+      }
+        #physics-of-sound .sound-effect__button .pause i {
+          margin-right: 3px;
+          margin-left: -3px; }
+    #physics-of-sound .sound-effect__title {
+      font-size: 14px;
+      line-height: 15.5px; }
+      #physics-of-sound .sound-effect__title strong {
+        font-weight: 700; }
+      #physics-of-sound .sound-effect__title em {
+        font-size: 11px;
+        display: block; }
+    #physics-of-sound .sound-effect__warning {
+      margin-top: 8px; }
+    #physics-of-sound .sound-effect--ear img {
+      height: 35px; }
+    #physics-of-sound .sound-effect--volcano img {
+      height: 32px; }
+    #physics-of-sound .sound-effect--leaves img {
+      height: 45px; }
+    #physics-of-sound .sound-effect--crickets img {
+      height: 37px; }
+    #physics-of-sound .sound-effect--speech img {
+      height: 18px; }
+    #physics-of-sound .sound-effect--motorcycle img {
+      height: 32px; }
+    #physics-of-sound .sound-effect--thunder img {
+      height: 46px; }
+    #physics-of-sound .sound-effect--jet img {
+      height: 35px; }
+    #physics-of-sound .sound-effect--cannon img {
+      height: 33px; }
+  #physics-of-sound .ct-series-a .ct-line {
+    /* Set the colour of this series line */
+    stroke: #FF931E;
+    /* Control the thikness of your lines */
+    stroke-width: 2px;
+    /* Create a dashed line with a pattern */ }
+  #physics-of-sound .ct-series-a .ct-point {
+    /* Colour of your points */
+    stroke: #FF931E;
+    /* Size of your points */
+    stroke-width: 10px;
+    /* Make your points appear as squares */ }
+  #physics-of-sound .ct-series-a .ct-area {
+    fill: #FF931E;
+    fill-opacity: .39; }
+  #physics-of-sound .ct-grid {
+    stroke: #ffffff;
+    stroke-dasharray: 0;
+    stroke-opacity: 0; }
+    #physics-of-sound .ct-grid.ct-horizontal:first-child {
+      stroke-opacity: 1; }
+    #physics-of-sound .ct-grid.ct-vertical:first-of-type {
+      stroke-opacity: 1; }
+  #physics-of-sound .ct-axis-title {
+    color: #ffffff;
+    fill: #ffffff; }
+  #physics-of-sound .ct-label {
+    fill: #ffffff;
+    color: #ffffff; }
+  #physics-of-sound table {
+    padding-left: 70px;
+    margin-bottom: 36px; }
+  #physics-of-sound thead th {
+    text-align: center;
+    letter-spacing: 0.25em;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-right: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    vertical-align: middle;
+    padding: 0 0 23px; }
+    #physics-of-sound thead th:last-child {
+      border-right: 0; }
+  #physics-of-sound tr:last-child td {
+    border-bottom: 0; }
+  #physics-of-sound td {
+    font-family: "Coda-n8", "Coda", sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 1.875em;
+    border-right: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    vertical-align: middle;
+    text-align: center;
+    padding: 30px 0; }
+    #physics-of-sound td:last-child {
+      border-right: 0; }
+  #physics-of-sound .symbol {
+    font-size: 30px;
+    font-weight: 400;
+    margin: 0 6px; }
+  #physics-of-sound .db-level {
+    font-size: 50px;
+    width: 250px; }
+    #physics-of-sound .db-level .thin {
+      font-size: 33px;
+      font-weight: 400; }
+  #physics-of-sound .s-level {
+    font-size: 30px;
+    text-align: left;
+    width: 415px;
+    padding-left: 70px; }
+    #physics-of-sound .s-level * {
+      vertical-align: middle; }
+    #physics-of-sound .s-level img {
+      height: 60px; }
+    #physics-of-sound .s-level .metric {
+      font-family: "Open Sans-n4", "Open Sans", "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      position: relative;
+      top: 3px; }
+  #physics-of-sound .p-level {
+    width: 340px;
+    font-size: 30px; }
+    #physics-of-sound .p-level * {
+      vertical-align: middle; }
+  #physics-of-sound .bar-charts {
+    padding-left: 135px;
+    position: relative;
+    z-index: 15; }
+  #physics-of-sound .bar-chart {
+    margin-bottom: 42px; }
+    #physics-of-sound .bar-chart:after {
+      content: "";
+      display: table;
+      clear: both; }
+    #physics-of-sound .bar-chart:last-child {
+      margin-bottom: 0; }
+    #physics-of-sound .bar-chart div {
+      float: left; }
+    #physics-of-sound .bar-chart__label {
+      font-family: "Coda-n8", "Coda", sans-serif;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 50px;
+      width: 121px; }
+      #physics-of-sound .bar-chart__label span {
+        font-size: 33px;
+        font-weight: 400; }
+    #physics-of-sound .bar-chart__seperator {
+      font-size: 50px;
+      display: inline-block;
+      margin: 0 20px 0 18px; }
+    #physics-of-sound .bar-chart__value {
+      height: 45px;
+      /* min-width: 68px; */
+      background-image: url("/icons/icon-vaccume.svg");
+      background-repeat: repeat-x; }
+  #physics-of-sound .section-title {
+    font-family: "Coda-n8", "Coda", sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    text-align: center;
+    font-size: 46px;
+    text-transform: uppercase;
+    position: relative;
+    margin-top: 95px;
+    margin-bottom: -50px; }
+    #physics-of-sound .section-title span {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.796);
+      position: relative;
+      z-index: 10;
+      -webkit-box-shadow: 0 0 64px 105px rgba(0, 0, 0, 0.7);
+              box-shadow: 0 0 64px 105px rgba(0, 0, 0, 0.7);
+      padding: 70px 0;
+      border-radius: 50px; }
+    #physics-of-sound .section-title:before, #physics-of-sound .section-title:after {
+      content: '';
+      display: block;
+      background-image: url("/icons/NL_soundwave_white@2x.png");
+      height: 500px;
+      width: 50%;
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+              transform: translateY(-50%);
+      background-size: cover; }
+    #physics-of-sound .section-title:before {
+      left: 0;
+      background-position: right center; }
+    #physics-of-sound .section-title:after {
+      right: 0;
+      background-position: left center; }
+  #physics-of-sound .section--1 {
+    position: relative; }
+    #physics-of-sound .section--1 .container {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%); }
+  #physics-of-sound .section--2 .section-header {
+    margin-top: -20px;
+    margin-bottom: -32px; }
+    #physics-of-sound .section--2 .section-header__inner {
+      margin-left: 13%; }
+  #physics-of-sound .section--2 .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    max-width: 1000px;
+    margin: 0 auto; }
+  #physics-of-sound .section--2 .col {
+    width: 350px; }
+  #physics-of-sound .section--3 {
+    margin-top: 20px; }
+    #physics-of-sound .section--3 .section-header__inner {
+      margin-left: 26%; }
+    #physics-of-sound .section--3 .section-footer {
+      text-align: center;
+      margin-top: 34px; }
+      #physics-of-sound .section--3 .section-footer h3 {
+        font-size: 16px;
+        line-height: 22.5px;
+        font-weight: 700; }
+      #physics-of-sound .section--3 .section-footer p {
+        color: #ffffff;
+        margin: 0; }
+        #physics-of-sound .section--3 .section-footer p i {
+          font-size: 16px;
+          margin-right: 6px;
+          vertical-align: middle; }
+        #physics-of-sound .section--3 .section-footer p small {
+          font-size: 12px;
+          line-height: 15.5px;
+          font-style: italic; }
+  #physics-of-sound .section--4 {
+    background-size: contain; }
+    #physics-of-sound .section--4 .section-header {
+      margin-top: 3px;
+      margin-bottom: -26px; }
+    #physics-of-sound .section--4 .textblock p {
+      font-size: 14px;
+      line-height: 18px;
+      color: #ffffff;
+      font-weight: 600; }
+  #physics-of-sound .section--5 {
+    background-size: cover;
+    margin-top: -12px; }
+    #physics-of-sound .section--5 .section-header {
+      margin-bottom: -50px; }
+      #physics-of-sound .section--5 .section-header:after {
+        display: none; }
+  #physics-of-sound .section--keywords {
+    margin: 93px 0 30px; }
+    #physics-of-sound .section--keywords .row {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between; }
+    #physics-of-sound .section--keywords .col {
+      width: 360px; }
+      #physics-of-sound .section--keywords .col:first-child {
+        width: 290px; }
+      #physics-of-sound .section--keywords .col:last-child {
+        width: 315px; }
+  #physics-of-sound .move-to-next {
+    background: rgba(253, 255, 255, 0.4); }
+
+@-webkit-keyframes rotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg); } }
+
+@keyframes rotation {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(270deg);
+            transform: rotate(270deg); } }
+
+@-webkit-keyframes turn {
+  0% {
+    stroke-dashoffset: 187; }
+  50% {
+    stroke-dashoffset: 46.75;
+    -webkit-transform: rotate(135deg);
+            transform: rotate(135deg); }
+  100% {
+    stroke-dashoffset: 187;
+    -webkit-transform: rotate(450deg);
+            transform: rotate(450deg); } }
+
+@keyframes turn {
+  0% {
+    stroke-dashoffset: 187; }
+  50% {
+    stroke-dashoffset: 46.75;
+    -webkit-transform: rotate(135deg);
+            transform: rotate(135deg); }
+  100% {
+    stroke-dashoffset: 187;
+    -webkit-transform: rotate(450deg);
+            transform: rotate(450deg); } }
+
+@-webkit-keyframes sonar-animation {
+  0% {
+    width: 6rem;
+    height: 6rem;
+    opacity: 0; }
+  15% {
+    opacity: 1; }
+  100% {
+    width: 20rem;
+    height: 20rem;
+    opacity: 0; } }
+
+@keyframes sonar-animation {
+  0% {
+    width: 6rem;
+    height: 6rem;
+    opacity: 0; }
+  15% {
+    opacity: 1; }
+  100% {
+    width: 20rem;
+    height: 20rem;
+    opacity: 0; } }
+
+@-webkit-keyframes sprite {
+  0% {
+    background-position: 0px; }
+  100% {
+    background-position: -2010px; } }
+
+@keyframes sprite {
+  0% {
+    background-position: 0px; }
+  100% {
+    background-position: -2010px; } }
+
 </style>

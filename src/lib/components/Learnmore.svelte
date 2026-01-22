@@ -137,4 +137,137 @@
   .content-para{
     padding-left:35px;
   }
+
+
+
+
+          
+
+#learn-more .page-inner {
+  background-color: #ffffff; }
+#learn-more .img-blk{
+  position: relative;
+  flex: 1 0 407px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 44px;
+    margin-top: 44px;
+}
+#learn-more h1 {
+  font-size: 26px;
+  color: #000000; }
+  #learn-more .references a{
+    font-size: 0 !important;
+    border: none !important;
+}
+#learn-more .references a::before{
+  content: '';
+  display: inline-block;
+  background-image: url("/images/link-icon.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 30px;
+  height: 30px;
+}
+#learn-more .content {
+  padding-left: 3%;
+  padding-right: 10%; }
+  #learn-more .content p {
+    color: #000000; 
+    font-size: 14px;
+    line-height: 19px;
+  }
+.content-wrap p a {
+    font-weight: 600;
+    text-decoration: underline;
+    color: #000;
+}
+  #learn-more h2.line {
+    font-size: 26px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin:44px 0 29px 0;
+    font-weight: 800;
+}
+
+#learn-more h2.line::after {
+    content: '';
+    display: inline-block;
+    flex: 1 1 auto;
+    background: #c4c4c4;
+    height: 1px;
+}
+#learn-more .references {
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+
+#learn-more .reference {
+  margin-bottom: 51px;
+  padding: 0 35px;
+  width: 50%; }
+  #learn-more .reference__content {
+    margin-bottom: 6px; 
+    height: auto !important;
+  }
+  #learn-more .reference h2 {
+    color: #000000;
+    margin-bottom: 0;
+    font-size: 12px;
+    line-height: 17px;
+    text-transform: none;
+    font-weight: normal;
+    font-family: "Open Sans", sans-serif; }
+  #learn-more .reference p {
+    color: #575757;
+    font-size: 12px;
+    margin-bottom: 0;
+    line-height: 17px; }
+  #learn-more .reference a {
+    font-size: 12px;
+    position: relative;
+    width: auto;
+    color: #FF931E;
+    font-weight: 600;
+    border-bottom: 1px solid #FF931E; }
+
+#learn-more .button {
+  background-color: #FF931E;
+  color: #ffffff;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+  display: inline-block;
+  padding: 8px 25px;
+  border-radius: 50px; }
+  #learn-more .button i {
+    margin-right: 2px;
+    color: #ffffff; }
+  #learn-more .button span.arrow {
+    font-size: 15px;
+    top: 1px;
+    position: relative;
+    margin-left: 6px;
+    line-height: 0;
+    color: #ffffff; }
+  #learn-more .button:hover {
+    color: #000000;
+    text-decoration: none; }
+    #learn-more .button:hover i,
+    #learn-more .button:hover .span.arrow {
+      color: #ffffff; }
+
 </style>
