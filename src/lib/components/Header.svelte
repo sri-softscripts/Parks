@@ -60,7 +60,7 @@
       /> -->
 
    <div class="header-optimize-mar">
-<OptimizedImage src="/images/logo@2x.png" loading="eager" alt="logo" width={33}  height={44} priority={true} />
+<OptimizedImage src="/images/logo@2x.webp" loading="eager" alt="logo" width={33}  height={44} priority={true} />
     </div>
       <p>
         National Park Service
