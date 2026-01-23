@@ -136,7 +136,7 @@
      backgroundImage: "/images/quiz-bg-4.png",
      correctAnswer: "b",
      options: [
-       { key: "a", text: "True", explanation:"" },
+       { key: "a", text: "True", explanation:"Bats spend less time foraging in areas with road noise" },
        { key: "b", text: "False",explanation:"", isCorrect: true }
      ]
    },
@@ -196,7 +196,7 @@
      text: "Education and interpretation can be used to:",
      buttonColor:"yellow",
      backgroundImage: "/images/quiz-bg-5.png",
-     correctAnswer: "a",
+     correctAnswer: "d",
      options: [
        { key: "a", text: "Influence visitor behaviors to reduce human-caused noise.", explanation:"", isCorrect: true },
        { key: "b", text: "Increase the acceptability of human-caused noise.", explanation:"" },
@@ -535,9 +535,14 @@
 
           <!-- Progress Bar -->
           <div class="progress-container">
-            <div class="progress-text">
+            <!-- <div class="progress-text">
               {answeredQuestions.size} of {questions.length}
-            </div>
+            </div> -->
+
+            <div class="progress-text">
+  {currentQuestionIndex + 1} of {questions.length}
+</div>
+
             <div class="progress-bar">
               <div
                 class="progress-fill"
@@ -566,12 +571,17 @@
 
   section .welcome-title {
     color: #000;
-    font-family: sans-serif;
-    font-weight: 300;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-family: 'Open Sans',sans-serif;
+    /* font-weight: 300; */
+    /* font-family: sans-serif; */
+    
+    /* font-weight: 600; */
+    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */
     margin-bottom: 25px;
-    font-size: 45px;
-    letter-spacing: 5px;
+    font-size: 40px;
+    line-height: 46px;
+    letter-spacing: 7px;
+    line-height: 1;
   }
 
   .option-item:has(.feedback-icon) {
@@ -634,11 +644,11 @@
   .welcome-content {
     display: block;
   }
-  .welcome-title {
+  /* .welcome-title {
     font-size: 2.5rem;
     margin-bottom: 30px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
+  } */
   /* .start-button {
     cursor: pointer;
     border: none;
@@ -742,9 +752,10 @@
   }
   .completion-title {
     color: #fff;
-    font-size: 2rem;
+    font-family: 'Coda',sans-serif;
+    font-size: 30px;
+    line-height: 35px;
     margin-bottom: 15px;
-    font-weight: normal;
     text-align: left;
     width: 71%;
   }
@@ -957,12 +968,15 @@
   }
 
   .nav-button {
+    font-family: 'Open Sans','Lucida Sans', 'Lucida Sans Regular';
     padding: 12px 30px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
+    /* font-weight: bold; */
+    font-size: 10px;
+    line-height: 1;
+    text-transform: uppercase;
     margin-top: 10px;
   }
 

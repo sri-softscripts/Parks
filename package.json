@@ -22,8 +22,6 @@
 		"vite-imagetools": "^9.0.2"
 	},
 	"dependencies": {
-		"@threlte/core": "^8.3.1",
-		"@threlte/extras": "^9.7.1",
 		"chart.js": "^4.5.1",
 		"three": "^0.182.0"
 	}
