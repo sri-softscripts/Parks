@@ -94,7 +94,7 @@
 </div>
 
 <style>
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css');
+/* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'); */
   .spectrogram-container {
     position: relative;
     width: 100%;

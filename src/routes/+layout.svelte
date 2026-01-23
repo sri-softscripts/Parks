@@ -3,6 +3,7 @@
   import { navigating } from '$app/stores';
   import Header from '$lib/components/Header.svelte';
   import DesktopOnly from '$lib/components/DesktopOnly.svelte';
+  import '../app.css';
 
   // Key for triggering transitions on route changes
   $: routeKey = $navigating?.to?.url.pathname || '';
@@ -15,7 +16,7 @@
 
 
   <!-- Legacy CSS (temporary) -->
-  <link rel="stylesheet" href="/styles/app.css" />
+  <!-- <link rel="stylesheet" href="/styles/app.css" /> -->
   <!-- <link rel="stylesheet" href="/styles/banner.css" /> -->
   <!-- <link rel="stylesheet" href="/styles/banner-styles.css" /> -->
   <!-- <link rel="stylesheet" href="/styles/css.css" /> -->
