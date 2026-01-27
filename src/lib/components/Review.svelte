@@ -673,13 +673,14 @@
     transition: all 150ms ease;
     border: 2px solid transparent;
     cursor: pointer;
-    font-size: 15px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 400;
     text-transform: uppercase;
     line-height: 1;
     display: inline-block;
     padding: 8px 25px;
     border-radius: 50px;
+    font-family: 'Open Sans','Lucida Sans', 'Lucida Sans Regular';
   }
 
   span.arrow {
