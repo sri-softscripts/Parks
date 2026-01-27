@@ -620,7 +620,7 @@
         </div>
 
 
-          <div class="footer-div-out">
+          <div class="footer-div-z-index">
           <Footer nextPage="/learn-more" hikerColor="#fff" textColor="#fff"  arrowDisplay="none"/>
         </div>
       {/if}
@@ -634,6 +634,12 @@
     bottom: 0;
     width: 100%;
     z-index: 100000;
+  }
+  .footer-div-z-index{
+        position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 999;
   }
 
   section .welcome-title {
