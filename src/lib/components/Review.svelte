@@ -370,7 +370,34 @@
           <div class="welcome-content">
             <h1 class="welcome-title">SOUNDBOARD QUIZ</h1>
             <button class="start-button" on:click={startQuiz}
-              >Start Quiz<span class="arrow">»</span>
+              >Start Quiz
+              <!-- <span class="arrow">»</span> -->
+               <span class="arrow-right">
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="16"
+     height="16"
+     viewBox="0 0 24 20">
+  
+  <!-- First arrow -->
+  <path
+    d="M4 4l6 6-6 6"
+    fill="none"
+    stroke="#fff"
+    stroke-width="3"
+    stroke-linecap="butt"
+    stroke-linejoin="miter"/>
+
+  <!-- Second arrow (moved right) -->
+  <path
+    d="M12 4l6 6-6 6"
+    fill="none"
+    stroke="#fff"
+    stroke-width="3"
+    stroke-linecap="butt"
+    stroke-linejoin="miter"/>
+</svg>
+
+            </span>
             </button>
           </div>
         </div>
@@ -437,7 +464,47 @@
                 <!-- <button class="retake-button" on:click={retakeQuiz}>Retake Quiz<span class="arrow-right">»</span></button> -->
 
                 <button class="start-button" on:click={retakeQuiz}
-                  >Retake Quiz<span class="arrow">»</span></button
+                  >Retake Quiz
+                  <!-- <span class="arrow">»</span> -->
+                                  <!-- <span class="arrow-right">
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="12"
+     height="12"
+     viewBox="0 0 20 20">
+  <path
+    d="M4 4l6 6-6 6M10 4l6 6-6 6"
+    fill="none"
+    stroke="#fff"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="miter"/>
+</svg>
+
+            </span> -->
+                           <span class="arrow-right">
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="16"
+     height="16"
+     viewBox="0 0 24 20">
+  <path
+    d="M4 4l6 6-6 6"
+    fill="none"
+    stroke="#fff"
+    stroke-width="3"
+    stroke-linecap="butt"
+    stroke-linejoin="miter"/>
+
+  <path
+    d="M12 4l6 6-6 6"
+    fill="none"
+    stroke="#fff"
+    stroke-width="3"
+    stroke-linecap="butt"
+    stroke-linejoin="miter"/>
+</svg>
+
+            </span>
+                  </button
                 >
               </footer>
             </div>
@@ -678,7 +745,7 @@
     text-transform: uppercase;
     line-height: 1;
     display: inline-block;
-    padding: 8px 25px;
+    padding: 6px 25px 8px 25px;
     border-radius: 50px;
     font-family: 'Open Sans','Lucida Sans', 'Lucida Sans Regular';
   }
@@ -692,8 +759,11 @@
     color: #ffffff;
   }
   .arrow-right {
-    margin-left: 5px;
+    /* margin-left: 5px; */
     line-height: 0;
+   position:relative;
+   bottom:-3px;
+
 
     /* line-height: 34px;
     font-size:34px;
