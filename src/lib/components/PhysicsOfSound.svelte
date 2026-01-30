@@ -430,7 +430,7 @@ function createChart() {
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="71" src="/audio/VoicesAndFootstepsMUWO2.wav"></audio>
+              <audio id="71" src="https://github.com/sri-softscripts/Parks/releases/download/v1/VoicesAndFootstepsMUWO2.wav"></audio>
               <div class="sound-effect__title">
                 <strong>Casual speech <br />at 5m</strong>
                 <em>(Whitman Mission National Historic Park)</em>
