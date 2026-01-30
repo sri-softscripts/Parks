@@ -24,7 +24,7 @@
     'Boat': [
       {
         id: 1,
-        image: '/images/icon-boat.svg', // You can replace this later
+        image: '/icons/icon-boat.svg', // You can replace this later
         alt: 'boat noise',
         text: 'Boat engine noise has a consistent low-frequency rumble that can travel long distances over water.',
         hasListenButton: false
