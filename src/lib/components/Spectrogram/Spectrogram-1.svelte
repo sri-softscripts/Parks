@@ -12,9 +12,9 @@
   let isPlaying = true; // Start as true since audio autoplays
   
   const soundFiles = {
-    'Forest': '/audio/crickets.mp3',
-    'Desert': '/audio/Coyote.mp3',
-    'Lake': '/audio/Alligator.mp3'
+    'Forest': '/audio/Morning_ROMO015_20121130_071033.mp3',
+    'Desert': '/audio/Soundscape_ORPI001_20090505_030745.mp3',
+    'Lake': '/audio/Menors Ferry Rountrip Onboard.mp3'
   };
   
   // Define tips for each sound
