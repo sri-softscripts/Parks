@@ -430,7 +430,7 @@ function createChart() {
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="71" src="/audio/people_sounds"></audio>
+              <audio id="71" src="/audio/people_sounds.wav"></audio>
               <div class="sound-effect__title">
                 <strong>Casual speech <br />at 5m</strong>
                 <em>(Whitman Mission National Historic Park)</em>
