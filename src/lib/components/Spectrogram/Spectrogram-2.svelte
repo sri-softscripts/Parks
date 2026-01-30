@@ -16,7 +16,7 @@
     'Car': '/audio/MotorVehicle_NOCA005_20080715_091556.mp3',
     'Airplane': '/audio/8_26_2006_363_YOSE011_propeller.wav',
     'Thunder': '/audio/Featured_Thunder.mp3',
-    'Visitors': 'https://github.com/sri-softscripts/Parks/releases/download/v1/VoicesAndFootstepsMUWO2.wav'
+    'Visitors': '/audio/people_sounds.wav'
   };
   
   // Define tips for each noise
