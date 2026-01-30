@@ -382,9 +382,9 @@ function createChart() {
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="83" src="/audio/Uau_HAL.mp3"></audio>
+              <audio id="83" src="/audio/Uau_HALE002_20080421_204954.mp3"></audio>
               <div class="sound-effect__title">
-                <strong>Volcano <br />crater</strong>
+                <strong>Volcano <br />crater</strong> 
                 <em>(Haleakala National Park)</em>
               </div>
             </div>
@@ -430,7 +430,7 @@ function createChart() {
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="71" src=""></audio>
+              <audio id="71" src="/audio/VoicesAndFootstepsMUWO2.wav"></audio>
               <div class="sound-effect__title">
                 <strong>Casual speech <br />at 5m</strong>
                 <em>(Whitman Mission National Historic Park)</em>
@@ -446,7 +446,7 @@ function createChart() {
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="72" src="/audio/motorcycle.mp3"></audio>
+              <audio id="72" src="/audio/08_30_2008_ROMO000_motorcycle.wav"></audio>
               <div class="sound-effect__title">
                 <strong>Motorcycle <br />at 30m</strong>
                 <em>(Yellowstone National Park)</em>
@@ -480,7 +480,7 @@ function createChart() {
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="75" src="/audio/military-jet.mp3"></audio>
+              <audio id="75" src="/audio/NOCA007_20080805_Military_Jet.wav"></audio>
               <div class="sound-effect__title">
                 <strong>Military jet <br />at 100m AGL</strong>
                 <em>(Yukon-Charley Rivers National Park)</em>
@@ -499,7 +499,7 @@ function createChart() {
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="76" src=""></audio>
+              <audio id="76" src="/audio/cannon.mp3"></audio>
               <div class="sound-effect__title">
                 <strong>Cannon fire <br />at 150m</strong>
                 <em>(Vicksburg National Military Park)</em>
