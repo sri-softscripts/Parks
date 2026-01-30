@@ -12,11 +12,11 @@
   let isPlaying = true;
   
   const soundFiles = {
-    'Boat': '/audio/Boat.mp3',
-    'Car': '/audio/Car.mp3',
-    'Airplane': '/audio/Plane.mp3',
-    'Thunder': '/audio/Thunder.mp3',
-    'Visitors': '/audio/Visitors.mp3'
+    'Boat': '/audio/NOCA003_2007-08-07_boat.wav',
+    'Car': '/audio/MotorVehicle_NOCA005_20080715_091556.mp3',
+    'Airplane': '/audio/8_26_2006_363_YOSE011_propeller.wav',
+    'Thunder': '/audio/Featured_Thunder.mp3',
+    'Visitors': '/audio/VoicesAndFootstepsMUWO2.wav'
   };
   
   // Define tips for each noise
@@ -24,7 +24,7 @@
     'Boat': [
       {
         id: 1,
-        image: '/images/placeholder.png', // You can replace this later
+        image: '/images/icon-boat.svg', // You can replace this later
         alt: 'boat noise',
         text: 'Boat engine noise has a consistent low-frequency rumble that can travel long distances over water.',
         hasListenButton: false
@@ -33,7 +33,7 @@
     'Car': [
       {
         id: 2,
-        image: '/images/placeholder.png', // You can replace this later
+        image: '/icons/icon-car.svg', // You can replace this later
         alt: 'car noise',
         text: 'Traffic noise typically shows a mix of engine rumbles and tire friction sounds across multiple frequencies.',
         hasListenButton: false
@@ -42,7 +42,7 @@
     'Airplane': [
       {
         id: 3,
-        image: '/images/placeholder.png', // You can replace this later
+        image: '/icons/icon-plane.svg', // You can replace this later
         alt: 'airplane noise',
         text: 'Airplane noise often has a Doppler effect - rising in pitch as it approaches, then falling as it moves away.',
         hasListenButton: false
@@ -51,7 +51,7 @@
     'Thunder': [
       {
         id: 4,
-        image: '/images/placeholder.png', // You can replace this later
+        image: '/icons/icon-thunder.svg', // You can replace this later
         alt: 'thunder noise',
         text: 'Thunder produces powerful low-frequency waves that can mask many other natural and human-made sounds.',
         hasListenButton: false
@@ -60,7 +60,7 @@
     'Visitors': [
       {
         id: 5,
-        image: '/images/placeholder.png', // You can replace this later
+        image: '/icons/icon-visitors.svg', // You can replace this later
         alt: 'visitor noise',
         text: 'Human conversation creates complex overlapping frequencies that can significantly impact natural soundscapes.',
         hasListenButton: false
