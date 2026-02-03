@@ -37,16 +37,33 @@
     previousAudio = audioName;
   }
   
-  // Watch for audio changes
+  // Function to stop audio
+  function stopAudio() {
+    if (!browser || !audioElement) return;
+    
+    audioElement.pause();
+    audioElement.currentTime = 0;
+    previousAudio = '';
+  }
+  
+  // Watch for step changes to handle audio
   $: {
-    if (browser && audioToPlay && audioToPlay !== previousAudio) {
-      playAudio(audioToPlay);
+    if (browser) {
+      // When step is 0, stop all audio
+      if (currentStepValue === 0) {
+        stopAudio();
+      } else {
+        // Only play audio when audioToPlay changes AND it's different from previous
+        if (audioToPlay && audioToPlay !== previousAudio) {
+          playAudio(audioToPlay);
+        }
+      }
     }
   }
   
   onMount(() => {
-    // Initial audio play if mask1 is visible
-    if (browser && audioToPlay) {
+    // Initial audio play only if step is not 0 and audioToPlay exists
+    if (browser && currentStepValue > 0 && audioToPlay) {
       playAudio(audioToPlay);
     }
   });
@@ -75,9 +92,7 @@
           style="width: 100%; height: 100%; object-fit: cover;"
         />
       </div>
-    {/each}  
-
-
+    {/each}
   </div>
 
   <!-- Planes -->
