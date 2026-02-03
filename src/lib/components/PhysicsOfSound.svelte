@@ -499,7 +499,7 @@ function createChart() {
                   ><i class="icon-pause-circled"></i>Pause</span
                 >
               </button>
-              <audio id="76" src="/audio/cannon.mp3"></audio>
+              <audio id="76" src="/audio/Cannon-py.mp3"></audio>
               <div class="sound-effect__title">
                 <strong>Cannon fire <br />at 150m</strong>
                 <em>(Vicksburg National Military Park)</em>
