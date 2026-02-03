@@ -12,8 +12,8 @@
   let isPlaying = true; // Start as true since audio autoplays
   
   const soundFiles = {
-    'Forest': '/audio/Morning_ROMO015_20121130_071033.mp3',
-    'Desert': '/audio/Soundscape_ORPI001_20090505_030745.mp3',
+    'Forest': '/audio/EVER002_2008-08-24_alligator.wav',
+    'Desert': '/audio/BatsAndCoyote_VALL001_20170629_220751.mp3',
     'Lake': '/audio/Menors Ferry Rountrip Onboard.mp3'
   };
   
