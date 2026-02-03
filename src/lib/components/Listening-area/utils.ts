@@ -49,13 +49,13 @@ export function getActiveCalloutId(maskVisibility: VisibilityState): string {
 
 export function getAudioToPlay(maskVisibility: VisibilityState): string {
   if (maskVisibility.mask1) return 'fox';
-  if (maskVisibility.mask2) return '';
-  if (maskVisibility.mask3) return '';
-  if (maskVisibility.mask4) return '';
+  if (maskVisibility.mask2) return 'Predator';
+  if (maskVisibility.mask3) return 'Mate';
+  if (maskVisibility.mask4) return 'Prey';
   return ''; 
 }
 // audio names
-// fox.mp3           
+// fox.mp3            
 // mountain-lion.mp3 
 // fox-mate.mp3      
 // rabbit.mp3
