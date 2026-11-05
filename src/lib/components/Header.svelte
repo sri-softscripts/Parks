@@ -60,12 +60,12 @@
       /> -->
 
    <div class="header-optimize-mar">
-<OptimizedImage src="/images/new-logo.svg" loading="eager" alt="logo" width={33}  height={44} priority={true} />
+<OptimizedImage src="/images/new-logo.svg" loading="eager" alt="logo" width={250}  height={250} priority={true} />
     </div>
-      <p>
+      <!-- <p>
         National Park Service
         <small>In partnership with Penn State University</small>
-      </p>
+      </p> -->
     </a>
 
     <nav class="site-header__menu" aria-label="Main navigation">
